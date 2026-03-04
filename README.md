@@ -12,7 +12,7 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  'b0o/lavi.nvim',
+  'b0o/lavi',
   lazy = false,
   priority = 1000,
   config = function()
@@ -44,7 +44,7 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 {
-  'b0o/lavi.nvim',
+  'b0o/lavi',
   lazy = false,
   priority = 1000,
   config = function()
@@ -237,7 +237,7 @@ Lavi provides a Nix flake with multiple outputs for flexible integration.
 Add to your flake inputs:
 
 ```nix
-inputs.lavi.url = "github:b0o/lavi.nvim";
+inputs.lavi.url = "github:b0o/lavi";
 ```
 
 Import and configure:
@@ -295,7 +295,7 @@ xdg.configFile."ghostty/themes/lavi.conf".text = inputs.lavi.lib.themes.ghostty;
 For contributing or modifying themes:
 
 ```bash
-nix develop github:b0o/lavi.nvim
+nix develop github:b0o/lavi
 lavi-build  # Generate themes and format
 ```
 

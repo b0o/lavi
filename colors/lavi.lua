@@ -419,11 +419,4 @@ local colors = {
   -- PATCH_CLOSE
 }
 
-vim.cmd.highlight("clear")
-
-vim.o.background = "dark"
-vim.g.colors_name = "lavi"
-
-for group, attrs in pairs(colors) do
-  vim.api.nvim_set_hl(0, group, attrs)
-end
+require("lavi.setup")(false, colors)

@@ -29,6 +29,39 @@ programs.neovim.plugins = [
 ];
 ```
 
+### Configuration
+
+Lavi can be configured by setting `vim.g.lavi_config` before loading the colorscheme:
+
+```lua
+vim.g.lavi_config = {
+  transparent = false, -- set to true for a transparent background
+}
+vim.cmd.colorscheme 'lavi'
+```
+
+With [lazy.nvim](https://github.com/folke/lazy.nvim):
+
+```lua
+{
+  'b0o/lavi.nvim',
+  lazy = false,
+  priority = 1000,
+  config = function()
+    vim.g.lavi_config = {
+      transparent = true,
+    }
+    vim.cmd.colorscheme 'lavi'
+  end,
+},
+```
+
+#### Options
+
+| Option        | Type    | Default | Description          |
+| ------------- | ------- | ------- | -------------------- |
+| `transparent` | boolean | `false` | Transparent background |
+
 ### Other Programs
 
 <details>

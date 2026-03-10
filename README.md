@@ -58,8 +58,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 #### Options
 
-| Option        | Type    | Default | Description          |
-| ------------- | ------- | ------- | -------------------- |
+| Option        | Type    | Default | Description            |
+| ------------- | ------- | ------- | ---------------------- |
 | `transparent` | boolean | `false` | Transparent background |
 
 ### Other Programs
@@ -76,6 +76,24 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
      "~/.config/alacritty/lavi.toml",
    ]
    ```
+
+</details>
+
+<details>
+<summary><b>bat</b></summary>
+
+<a href="https://github.com/sharkdp/bat">bat</a>: A cat clone with syntax highlighting and Git integration
+
+1. Copy [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) to `~/.config/bat/themes/lavi.tmTheme`
+2. Rebuild bat's theme cache:
+   ```bash
+   bat cache --build
+   ```
+3. Use the theme:
+   ```bash
+   bat --theme=lavi file.rs
+   ```
+   Or set it permanently via `BAT_THEME=lavi` in your environment, or add `--theme="lavi"` to `~/.config/bat/config`.
 
 </details>
 
@@ -178,6 +196,18 @@ This writes the theme file to `~/.config/DankMaterialShell/themes/lavi.json` and
 </details>
 
 <details>
+<summary><b>TextMate Theme</b> (bat, Sublime Text, TextMate, VS Code)</summary>
+
+Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:
+
+- **[bat](https://github.com/sharkdp/bat)** — see the [bat](#other-programs) section above for specific instructions
+- **[Sublime Text](https://www.sublimetext.com/)** — copy `lavi.tmTheme` to your `Packages/User/` directory, then select it from Preferences → Color Scheme
+- **[TextMate](https://macromates.com/)** — double-click `lavi.tmTheme` to install, or copy it to `~/Library/Application Support/TextMate/Themes/`
+- **[VS Code](https://code.visualstudio.com/)** — tmTheme files can be used via the [TmTheme Editor](https://marketplace.visualstudio.com/items?itemName=Youssef.theme-converter) extension or as a base for a [color theme extension](https://code.visualstudio.com/api/extension-guides/color-theme)
+
+</details>
+
+<details>
 <summary><b>Wezterm</b></summary>
 
 <a href="https://github.com/wez/wezterm">Wezterm</a>: GPU-accelerated terminal emulator and multiplexer
@@ -251,6 +281,7 @@ Import and configure:
     neovim.enable = true;    # Adds lavi-nvim to programs.neovim.plugins
     ghostty.enable = true;   # Configures programs.ghostty.themes.lavi
     alacritty.enable = true; # Merges colors into programs.alacritty.settings
+    bat.enable = true;       # Installs tmTheme and sets bat theme to Lavi
     kitty.enable = true;     # Appends to programs.kitty.extraConfig
     foot.enable = true;      # Merges into programs.foot.settings
     btop.enable = true;      # Writes theme file and sets color_theme

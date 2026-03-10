@@ -32,6 +32,7 @@
           ghostty = builtins.readFile ./contrib/ghostty/lavi.conf;
           kitty = builtins.readFile ./contrib/kitty/lavi.conf;
           opencode = builtins.readFile ./contrib/opencode/lavi.json;
+          textmate = builtins.readFile ./contrib/textmate/lavi.tmTheme;
           wezterm = builtins.readFile ./contrib/wezterm/lavi.toml;
           windows_terminal = builtins.readFile ./contrib/windows_terminal/lavi.json;
           zellij = builtins.readFile ./contrib/zellij/lavi.kdl;

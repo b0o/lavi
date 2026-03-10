@@ -274,4 +274,82 @@ function M.to_nix(theme, opts)
   return lines
 end
 
+-- Plist XML generation utilities
+M.plist = {}
+
+local plist_array_mt = {}
+
+-- Create a plist dict from a table
+-- Usage: plist.dict({ key1 = val1, key2 = val2, ... })
+-- Keys are sorted alphabetically in the output for deterministic generation.
+function M.plist.dict(tbl)
+  return tbl
+end
+
+-- Create a plist array
+-- Usage: plist.array(val1, val2, ...)
+function M.plist.array(...)
+  return setmetatable({ ... }, plist_array_mt)
+end
+
+-- Escape special XML characters
+local function xml_escape(s)
+  return s:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
+end
+
+-- Serialize a value to plist XML lines
+local function plist_serialize(value, indent)
+  indent = indent or ""
+  local next_indent = indent .. "  "
+
+  if type(value) == "table" then
+    if getmetatable(value) == plist_array_mt then
+      local lines = { indent .. "<array>" }
+      for _, item in ipairs(value) do
+        vim.list_extend(lines, plist_serialize(item, next_indent))
+      end
+      table.insert(lines, indent .. "</array>")
+      return lines
+    elseif M.is_lush_color(value) then
+      return { indent .. "<string>" .. tostring(value) .. "</string>" }
+    else
+      -- Dict: sorted keys for deterministic output
+      local lines = { indent .. "<dict>" }
+      local keys = vim.tbl_keys(value)
+      table.sort(keys)
+      for _, k in ipairs(keys) do
+        table.insert(lines, next_indent .. "<key>" .. xml_escape(tostring(k)) .. "</key>")
+        vim.list_extend(lines, plist_serialize(value[k], next_indent))
+      end
+      table.insert(lines, indent .. "</dict>")
+      return lines
+    end
+  elseif type(value) == "string" then
+    return { indent .. "<string>" .. xml_escape(value) .. "</string>" }
+  elseif type(value) == "number" then
+    if math.floor(value) == value then
+      return { indent .. "<integer>" .. tostring(value) .. "</integer>" }
+    else
+      return { indent .. "<real>" .. tostring(value) .. "</real>" }
+    end
+  elseif type(value) == "boolean" then
+    return { indent .. (value and "<true/>" or "<false/>") }
+  else
+    return { indent .. "<string>" .. xml_escape(tostring(value)) .. "</string>" }
+  end
+end
+
+-- Generate a complete plist XML document from a plist value
+-- Returns an array of lines
+function M.plist.to_xml(value)
+  local lines = {
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">',
+    '<plist version="1.0">',
+  }
+  vim.list_extend(lines, plist_serialize(value, "  "))
+  table.insert(lines, "</plist>")
+  return lines
+end
+
 return M

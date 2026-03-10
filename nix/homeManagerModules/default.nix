@@ -41,6 +41,7 @@
 in {
   options.lavi = {
     alacritty.enable = lib.mkEnableOption "Lavi theme for Alacritty";
+    bat.enable = lib.mkEnableOption "Lavi theme for bat (TextMate)";
     bottom.enable = lib.mkEnableOption "Lavi theme for Bottom";
     btop.enable = lib.mkEnableOption "Lavi theme for Btop";
     clipse.enable = lib.mkEnableOption "Lavi theme for Clipse";
@@ -69,6 +70,14 @@ in {
       programs.alacritty.settings = import ../themes/alacritty.nix;
     })
 
+    # Bat - install TextMate theme for bat
+    (lib.mkIf cfg.bat.enable {
+      programs.bat = {
+        config.theme = "lavi";
+        themes.lavi.src = ../../contrib/textmate/lavi.tmTheme;
+      };
+    })
+
     # Btop - file-based theme, write file and set color_theme
     (lib.mkIf cfg.btop.enable {
       programs.btop.settings.color_theme = "lavi";
@@ -82,7 +91,8 @@ in {
 
     # Dank Material Shell - writes theme file and configures custom theme in settings
     # Requires DMS home-manager module: github:AvengeMedia/DankMaterialShell#homeModules.dank-material-shell
-    (lib.mkIf cfg.dank-material-shell.enable ({
+    (lib.mkIf cfg.dank-material-shell.enable (
+      {
         xdg.configFile."DankMaterialShell/themes/lavi.json".source =
           ../../contrib/dank-material-shell/lavi.json;
       }
@@ -91,7 +101,8 @@ in {
           currentThemeName = "custom";
           customThemeFile = "${config.xdg.configHome}/DankMaterialShell/themes/lavi.json";
         };
-      }))
+      }
+    ))
 
     # Foot - merge settings
     (lib.mkIf cfg.foot.enable {

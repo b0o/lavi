@@ -22,7 +22,6 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   local palette = require("lush_theme.lavi.palette")
 
   -- TODO: vivid
-  -- TODO: bat
 
   -- Neovim theme
   builder.run(
@@ -174,6 +173,15 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     transforms.compile_palette,
     clipse.transform_nix,
     { require("shipwright.transform.overwrite"), "nix/themes/clipse.nix" }
+  )
+
+  -- TextMate (for bat and other TextMate-compatible apps)
+  local textmate = require("lush_theme.lavi.textmate")
+  builder.run(
+    textmate.colors,
+    transforms.compile_palette,
+    textmate.transform,
+    { require("shipwright.transform.overwrite"), "contrib/textmate/lavi.tmTheme" }
   )
 
   -- Base16 (for Stylix)

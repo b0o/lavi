@@ -22,6 +22,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   local palette = require("lush_theme.lavi.palette")
 
   -- TODO: vivid
+  -- TODO: delta
 
   -- Neovim theme
   builder.run(

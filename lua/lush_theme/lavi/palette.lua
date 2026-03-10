@@ -130,6 +130,31 @@ M.deep_velvet = hsl("#8F8FB3")
 
 M.light_lavender = hsl("#EAD6FF")
 
+-- Muted ANSI colors for terminal emulators
+-- Softer than the raw palette to match the neovim theme's aesthetic
+M.ansi = {
+  normal = {
+    black = M.black,
+    red = M.red.desaturate(15).darken(5),
+    green = M.green.desaturate(25).darken(10),
+    yellow = M.yellow.desaturate(10).darken(5),
+    blue = M.blue.desaturate(10),
+    magenta = M.velvet,
+    cyan = M.cyan.desaturate(20).darken(5),
+    white = M.white,
+  },
+  bright = {
+    black = M.bright_black,
+    red = M.bright_red.desaturate(10),
+    green = M.bright_green.desaturate(20).darken(5),
+    yellow = M.bright_yellow.desaturate(10),
+    blue = M.bright_blue.desaturate(5),
+    magenta = M.bright_magenta.desaturate(15),
+    cyan = M.bright_cyan.desaturate(15),
+    white = M.bright_white,
+  },
+}
+
 return setmetatable(M, {
   __index = function(_, key)
     error("Invalid key: " .. key)

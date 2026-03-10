@@ -108,9 +108,11 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     { require("shipwright.transform.overwrite"), "contrib/wezterm/lavi.toml" }
   )
 
-  -- Windows Terminal (uses shipwright's built-in transform)
+  -- Windows Terminal (uses shipwright's built-in transform, needs flat palette)
+  local wt_palette = vim.tbl_extend("force", { name = "lavi" }, palette)
+  wt_palette.ansi = nil
   builder.run(
-    vim.tbl_extend("force", { name = "lavi" }, palette),
+    wt_palette,
     require("shipwright.transform.contrib.windows_terminal"),
     { require("shipwright.transform.overwrite"), "contrib/windows_terminal/lavi.json" }
   )

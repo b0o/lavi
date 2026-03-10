@@ -1,32 +1,29 @@
 local p = require("lush_theme.lavi.palette")
 local transforms = require("lush_theme.lavi.transforms")
 
--- Colors for foot terminal
 local colors = {
   bg = p.bg,
   fg = p.fg,
   cursor_fg = p.cursor_fg,
   cursor_bg = p.cursor_bg,
 
-  -- Normal colors
-  black = p.black,
-  red = p.red,
-  green = p.green,
-  yellow = p.yellow,
-  blue = p.blue,
-  magenta = p.magenta,
-  cyan = p.cyan,
-  white = p.white,
+  black = p.ansi.normal.black,
+  red = p.ansi.normal.red,
+  green = p.ansi.normal.green,
+  yellow = p.ansi.normal.yellow,
+  blue = p.ansi.normal.blue,
+  magenta = p.ansi.normal.magenta,
+  cyan = p.ansi.normal.cyan,
+  white = p.ansi.normal.white,
 
-  -- Bright colors
-  bright_black = p.bright_black,
-  bright_red = p.bright_red,
-  bright_green = p.bright_green,
-  bright_yellow = p.bright_yellow,
-  bright_blue = p.bright_blue,
-  bright_magenta = p.bright_magenta,
-  bright_cyan = p.bright_cyan,
-  bright_white = p.bright_white,
+  bright_black = p.ansi.bright.black,
+  bright_red = p.ansi.bright.red,
+  bright_green = p.ansi.bright.green,
+  bright_yellow = p.ansi.bright.yellow,
+  bright_blue = p.ansi.bright.blue,
+  bright_magenta = p.ansi.bright.magenta,
+  bright_cyan = p.ansi.bright.cyan,
+  bright_white = p.ansi.bright.white,
 }
 
 -- Helper to strip # from hex color

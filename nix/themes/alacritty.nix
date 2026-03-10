@@ -4,13 +4,13 @@
   colors = {
     bright = {
       black = "#8876A7";
-      blue = "#8591FF";
-      cyan = "#43EFC7";
-      green = "#8BF9A6";
-      magenta = "#BF94FF";
-      red = "#F47189";
+      blue = "#8893FC";
+      cyan = "#51E1C0";
+      green = "#84EB9E";
+      magenta = "#C09CF7";
+      red = "#ED788D";
       white = "#FFFFFF";
-      yellow = "#FFD68F";
+      yellow = "#F9D494";
     };
     cursor = {
       cursor = "#25213B";
@@ -32,13 +32,13 @@
     };
     normal = {
       black = "#2E2A37";
-      blue = "#7583FF";
-      cyan = "#2CEDC0";
-      green = "#7CF89B";
-      magenta = "#B98AFF";
-      red = "#F2637E";
+      blue = "#7C89F8";
+      cyan = "#33D7B0";
+      green = "#6DE38B";
+      magenta = "#B09CED";
+      red = "#E56179";
       white = "#EEE5FF";
-      yellow = "#FFD080";
+      yellow = "#F8C772";
     };
     primary = {
       background = "#25213B";

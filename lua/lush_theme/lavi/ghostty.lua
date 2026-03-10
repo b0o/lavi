@@ -1,7 +1,5 @@
 local p = require("lush_theme.lavi.palette")
 
--- Terminal colors tuned to match the neovim theme's softer aesthetic
--- These are less vibrant than the raw palette colors
 local colors = {
   bg = p.dark_bg,
   fg = p.dark_fg,
@@ -11,25 +9,23 @@ local colors = {
   cursor_bg = p.dark_bg,
   split_divider = p.med_black,
 
-  -- Normal colors - slightly muted versions
-  black = p.black,
-  red = p.red.desaturate(15).darken(5),
-  green = p.green.desaturate(25).darken(10),
-  yellow = p.yellow.desaturate(10).darken(5),
-  blue = p.blue.desaturate(10),
-  magenta = p.velvet, -- Use velvet (soft lavender) instead of bright magenta
-  cyan = p.cyan.desaturate(20).darken(5),
-  white = p.white,
+  black = p.ansi.normal.black,
+  red = p.ansi.normal.red,
+  green = p.ansi.normal.green,
+  yellow = p.ansi.normal.yellow,
+  blue = p.ansi.normal.blue,
+  magenta = p.ansi.normal.magenta,
+  cyan = p.ansi.normal.cyan,
+  white = p.ansi.normal.white,
 
-  -- Bright colors - still softer than raw palette
-  bright_black = p.bright_black,
-  bright_red = p.bright_red.desaturate(10),
-  bright_green = p.bright_green.desaturate(20).darken(5),
-  bright_yellow = p.bright_yellow.desaturate(10),
-  bright_blue = p.bright_blue.desaturate(5),
-  bright_magenta = p.bright_magenta.desaturate(15),
-  bright_cyan = p.bright_cyan.desaturate(15),
-  bright_white = p.bright_white,
+  bright_black = p.ansi.bright.black,
+  bright_red = p.ansi.bright.red,
+  bright_green = p.ansi.bright.green,
+  bright_yellow = p.ansi.bright.yellow,
+  bright_blue = p.ansi.bright.blue,
+  bright_magenta = p.ansi.bright.magenta,
+  bright_cyan = p.ansi.bright.cyan,
+  bright_white = p.ansi.bright.white,
 }
 
 -- Transform for contrib/ghostty/lavi.conf

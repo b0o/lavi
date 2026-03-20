@@ -2,7 +2,13 @@
 
 A soft and sweet colorscheme
 
+<!-- LAVI_HERO_OPEN -->
+
 ![Screenshot](https://github.com/user-attachments/assets/a7873a70-4b90-4e92-a11c-f262d9653f29)
+
+[More screenshots](./GALLERY.md)
+
+<!-- LAVI_HERO_CLOSE -->
 
 ## Installation
 

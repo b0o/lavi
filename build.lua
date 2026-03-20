@@ -61,6 +61,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   ---@field extra? MarkdownStr Raw markdown appended after steps
   ---@field contrib_dir? string Directory name under contrib/ (for contrib README generation)
 
+  -- Main screenshot shown at the top of the README
+  local hero_screenshot = "https://github.com/user-attachments/assets/a7873a70-4b90-4e92-a11c-f262d9653f29"
+
   local theme_docs = {}
 
   --- Normalize a MarkdownStr to a plain string.
@@ -566,34 +569,66 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   end
   local programs_content = table.concat(sections, "\n\n")
 
-  -- Patch README.md between LAVI_PROGRAMS markers
+  --- Patch a section of a file between open/close markers.
+  ---@param content string File content
+  ---@param open_marker string
+  ---@param close_marker string
+  ---@param replacement string
+  ---@return string? new_content
+  local function patch_between(content, open_marker, close_marker, replacement)
+    local open_pos = content:find(open_marker, 1, true)
+    local close_pos = content:find(close_marker, 1, true)
+    if not open_pos or not close_pos then
+      return nil
+    end
+    return content:sub(1, open_pos + #open_marker - 1) .. "\n" .. replacement .. "\n" .. content:sub(close_pos)
+  end
+
+  -- Patch README.md
   local readme_path = project_root() .. "/README.md"
   local readme = io.open(readme_path, "r")
   if readme then
     local content = readme:read("*a")
     readme:close()
 
-    local open_marker = "<!-- LAVI_PROGRAMS_OPEN -->"
-    local close_marker = "<!-- LAVI_PROGRAMS_CLOSE -->"
-    local open_pos = content:find(open_marker, 1, true)
-    local close_pos = content:find(close_marker, 1, true)
+    -- Patch hero screenshot
+    local hero_content = "![Screenshot](" .. hero_screenshot .. ")\n\n[More screenshots](./GALLERY.md)"
+    content = patch_between(content, "<!-- LAVI_HERO_OPEN -->", "<!-- LAVI_HERO_CLOSE -->", hero_content) or content
 
-    if open_pos and close_pos then
-      local new_content = content:sub(1, open_pos + #open_marker - 1)
-        .. "\n"
-        .. programs_content
-        .. "\n"
-        .. content:sub(close_pos)
+    -- Patch Other Programs section
+    content = patch_between(content, "<!-- LAVI_PROGRAMS_OPEN -->", "<!-- LAVI_PROGRAMS_CLOSE -->", programs_content)
+      or content
 
-      local out = io.open(readme_path, "w")
-      if out then
-        out:write(new_content)
-        out:close()
-        vim.notify("README.md: updated Other Programs section", vim.log.levels.INFO)
-      end
-    else
-      vim.notify("README.md: LAVI_PROGRAMS markers not found", vim.log.levels.WARN)
+    local out = io.open(readme_path, "w")
+    if out then
+      out:write(content)
+      out:close()
+      vim.notify("README.md: updated", vim.log.levels.INFO)
     end
+  end
+
+  -- Generate GALLERY.md
+  local gallery_path = project_root() .. "/GALLERY.md"
+  local gallery_lines = {
+    "# Lavi Gallery",
+    "",
+    "![Neovim](" .. hero_screenshot .. ")",
+    "",
+  }
+  for _, docs in ipairs(theme_docs) do
+    if docs.screenshots then
+      for _, url in ipairs(docs.screenshots) do
+        table.insert(gallery_lines, "### " .. docs.name)
+        table.insert(gallery_lines, "")
+        table.insert(gallery_lines, "![" .. docs.name .. "](" .. url .. ")")
+        table.insert(gallery_lines, "")
+      end
+    end
+  end
+  local gallery_out = io.open(gallery_path, "w")
+  if gallery_out then
+    gallery_out:write(table.concat(gallery_lines, "\n") .. "\n")
+    gallery_out:close()
   end
 
   -- Generate contrib/<app>/README.md files

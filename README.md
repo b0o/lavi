@@ -111,6 +111,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 <a href="https://github.com/ClementTsang/bottom">Bottom</a>: Graphical process/system monitor for the terminal
 
+![Bottom screenshot](https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725)
+
 1. Copy the contents of [`contrib/bottom/lavi.toml`](./contrib/bottom/lavi.toml) into your `~/.config/bottom/bottom.toml`
 
 </details>

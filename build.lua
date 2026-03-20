@@ -164,6 +164,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       url = "https://github.com/ClementTsang/bottom",
       tagline = "Graphical process/system monitor for the terminal",
       contrib_dir = "bottom",
+      screenshots = {
+        "https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725",
+      },
       steps = {
         "Copy the contents of [`%slavi.toml`](./%slavi.toml) into your `~/.config/bottom/bottom.toml`",
       },

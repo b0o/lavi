@@ -6,6 +6,10 @@
 
 ![bat](https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1)
 
+### Bottom
+
+![Bottom](https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725)
+
 ### Btop
 
 ![Btop](https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145)

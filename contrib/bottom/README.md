@@ -1,5 +1,7 @@
 # Lavi for Bottom
 
+![Bottom screenshot](https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725)
+
 <a href="https://github.com/ClementTsang/bottom">Bottom</a>: Graphical process/system monitor for the terminal
 
 ## Installation

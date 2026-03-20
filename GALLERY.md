@@ -2,6 +2,10 @@
 
 ![Neovim](https://github.com/user-attachments/assets/a7873a70-4b90-4e92-a11c-f262d9653f29)
 
+### Alacritty
+
+![Alacritty](https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214)
+
 ### bat
 
 ![bat](https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1)
@@ -17,6 +21,10 @@
 ### Dank Material Shell
 
 ![Dank Material Shell](https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e)
+
+### Ghostty
+
+![Ghostty](https://github.com/user-attachments/assets/8ce786b9-4d5d-4634-b5dc-4eb1afbab977)
 
 ### Opencode
 

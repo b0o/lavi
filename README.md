@@ -76,6 +76,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 <a href="https://github.com/alacritty/alacritty">Alacritty</a>: Cross-platform, GPU-accelerated terminal emulator
 
+![Alacritty screenshot](https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214)
+
 1. Copy [`contrib/alacritty/lavi.toml`](./contrib/alacritty/lavi.toml) to `~/.config/alacritty/lavi.toml`
 2. Import into your Alacritty config:
    ```toml
@@ -184,6 +186,8 @@ This writes the theme file to `~/.config/DankMaterialShell/themes/lavi.json` and
 <summary><b>Ghostty</b></summary>
 
 <a href="https://github.com/ghostty-org/ghostty">Ghostty</a>: Fast, native terminal emulator with platform-native UI
+
+![Ghostty screenshot](https://github.com/user-attachments/assets/8ce786b9-4d5d-4634-b5dc-4eb1afbab977)
 
 1. Copy [`contrib/ghostty/lavi.conf`](./contrib/ghostty/lavi.conf) to `~/.config/ghostty/themes/lavi.conf`
 2. Set `theme = lavi.conf` in your `~/.config/ghostty/config`

@@ -1,5 +1,7 @@
 # Lavi for Alacritty
 
+![Alacritty screenshot](https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214)
+
 <a href="https://github.com/alacritty/alacritty">Alacritty</a>: Cross-platform, GPU-accelerated terminal emulator
 
 ## Installation

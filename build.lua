@@ -107,6 +107,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     docs = {
       name = "Alacritty",
       url = "https://github.com/alacritty/alacritty",
+      screenshots = {
+        "https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214",
+      },
       tagline = "Cross-platform, GPU-accelerated terminal emulator",
       contrib_dir = "alacritty",
       steps = {
@@ -285,6 +288,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       url = "https://github.com/ghostty-org/ghostty",
       tagline = "Fast, native terminal emulator with platform-native UI",
       contrib_dir = "ghostty",
+      screenshots = {
+        "https://github.com/user-attachments/assets/8ce786b9-4d5d-4634-b5dc-4eb1afbab977",
+      },
       steps = {
         "Copy [`%slavi.conf`](./%slavi.conf) to `~/.config/ghostty/themes/lavi.conf`",
         "Set `theme = lavi.conf` in your `~/.config/ghostty/config`",

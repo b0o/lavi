@@ -91,6 +91,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 <a href="https://github.com/sharkdp/bat">bat</a>: A cat clone with syntax highlighting and Git integration
 
+![bat screenshot](https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1)
+
 1. Copy [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) to `~/.config/bat/themes/lavi.tmTheme`
 2. Rebuild bat's theme cache:
    ```bash
@@ -118,6 +120,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 <a href="https://github.com/aristocratos/btop">Btop</a>: Resource monitor with a customizable interface
 
+![Btop screenshot](https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145)
+
 1. Copy [`contrib/btop/lavi.theme`](./contrib/btop/lavi.theme) to `~/.config/btop/themes/lavi.theme`
 2. Set `color_theme = "lavi"` in your `~/.config/btop/btop.conf` or select it from the options menu
 
@@ -137,6 +141,8 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 <summary><b>Dank Material Shell</b></summary>
 
 <a href="https://github.com/AvengeMedia/DankMaterialShell">Dank Material Shell</a>: Desktop shell for wayland compositors
+
+![Dank Material Shell screenshot](https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e)
 
 1. Copy [`contrib/dank-material-shell/lavi.json`](./contrib/dank-material-shell/lavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`
 2. In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file
@@ -251,6 +257,8 @@ Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/t
 <summary><b>Zellij</b></summary>
 
 <a href="https://github.com/zellij-org/zellij">Zellij</a>: Terminal workspace and multiplexer
+
+![Zellij screenshot](https://github.com/user-attachments/assets/8c02440f-39d1-4173-bdfa-679cd0d72ada)
 
 1. Copy [`contrib/zellij/lavi.kdl`](./contrib/zellij/lavi.kdl) to `~/.config/zellij/themes/lavi.kdl`
 2. Set `theme "lavi"` in your `~/.config/zellij/config.kdl`

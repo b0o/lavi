@@ -1,5 +1,7 @@
 # Lavi for Zellij
 
+![Zellij screenshot](https://github.com/user-attachments/assets/8c02440f-39d1-4173-bdfa-679cd0d72ada)
+
 <a href="https://github.com/zellij-org/zellij">Zellij</a>: Terminal workspace and multiplexer
 
 ## Installation

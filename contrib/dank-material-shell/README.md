@@ -1,5 +1,7 @@
 # Lavi for Dank Material Shell
 
+![Dank Material Shell screenshot](https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e)
+
 <a href="https://github.com/AvengeMedia/DankMaterialShell">Dank Material Shell</a>: Desktop shell for wayland compositors
 
 ## Installation

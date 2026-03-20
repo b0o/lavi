@@ -130,6 +130,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       name = "bat",
       url = "https://github.com/sharkdp/bat",
       tagline = "A cat clone with syntax highlighting and Git integration",
+      screenshots = {
+        "https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1",
+      },
       steps = {
         "Copy [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) to `~/.config/bat/themes/lavi.tmTheme`",
         {
@@ -178,6 +181,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       url = "https://github.com/aristocratos/btop",
       tagline = "Resource monitor with a customizable interface",
       contrib_dir = "btop",
+      screenshots = {
+        "https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145",
+      },
       steps = {
         "Copy [`%slavi.theme`](./%slavi.theme) to `~/.config/btop/themes/lavi.theme`",
         'Set `color_theme = "lavi"` in your `~/.config/btop/btop.conf` or select it from the options menu',
@@ -215,6 +221,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       url = "https://github.com/AvengeMedia/DankMaterialShell",
       tagline = "Desktop shell for wayland compositors",
       contrib_dir = "dank-material-shell",
+      screenshots = {
+        "https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e",
+      },
       steps = {
         "Copy [`%slavi.json`](./%slavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`",
         "In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file",
@@ -414,6 +423,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       url = "https://github.com/zellij-org/zellij",
       tagline = "Terminal workspace and multiplexer",
       contrib_dir = "zellij",
+      screenshots = {
+        "https://github.com/user-attachments/assets/8c02440f-39d1-4173-bdfa-679cd0d72ada",
+      },
       steps = {
         "Copy [`%slavi.kdl`](./%slavi.kdl) to `~/.config/zellij/themes/lavi.kdl`",
         'Set `theme "lavi"` in your `~/.config/zellij/config.kdl`',

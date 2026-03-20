@@ -1,5 +1,7 @@
 # Lavi for Btop
 
+![Btop screenshot](https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145)
+
 <a href="https://github.com/aristocratos/btop">Btop</a>: Resource monitor with a customizable interface
 
 ## Installation

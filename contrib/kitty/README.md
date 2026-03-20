@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy the contents of [`contrib/kitty/lavi.conf`](./lavi.conf) into your `~/.config/kitty/themes/lavi.conf`
+1. Copy the contents of [`lavi.conf`](./lavi.conf) into your `~/.config/kitty/themes/lavi.conf`
 2. Run `kitty +kitten themes --reload-in=all lavi` to set the theme
 
 ---

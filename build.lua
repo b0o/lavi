@@ -107,7 +107,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Cross-platform, GPU-accelerated terminal emulator",
       contrib_dir = "alacritty",
       steps = {
-        "Copy [`contrib/alacritty/lavi.toml`](./contrib/alacritty/lavi.toml) to `~/.config/alacritty/lavi.toml`",
+        "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/alacritty/lavi.toml`",
         {
           "Import into your Alacritty config:",
           "   ```toml",
@@ -159,7 +159,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Graphical process/system monitor for the terminal",
       contrib_dir = "bottom",
       steps = {
-        "Copy the contents of [`contrib/bottom/lavi.toml`](./contrib/bottom/lavi.toml) into your `~/.config/bottom/bottom.toml`",
+        "Copy the contents of [`%slavi.toml`](./%slavi.toml) into your `~/.config/bottom/bottom.toml`",
       },
     },
   })
@@ -176,7 +176,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Resource monitor with a customizable interface",
       contrib_dir = "btop",
       steps = {
-        "Copy [`contrib/btop/lavi.theme`](./contrib/btop/lavi.theme) to `~/.config/btop/themes/lavi.theme`",
+        "Copy [`%slavi.theme`](./%slavi.theme) to `~/.config/btop/themes/lavi.theme`",
         'Set `color_theme = "lavi"` in your `~/.config/btop/btop.conf` or select it from the options menu',
       },
     },
@@ -195,7 +195,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Configurable TUI clipboard manager for Unix",
       contrib_dir = "clipse",
       steps = {
-        "Copy [`contrib/clipse/lavi.json`](./contrib/clipse/lavi.json) to `~/.config/clipse/custom_theme.json`",
+        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/clipse/custom_theme.json`",
         'Set `"themeFile": "custom_theme.json"` in your `~/.config/clipse/config.json`',
       },
     },
@@ -213,7 +213,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Desktop shell for wayland compositors",
       contrib_dir = "dank-material-shell",
       steps = {
-        "Copy [`contrib/dank-material-shell/lavi.json`](./contrib/dank-material-shell/lavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`",
+        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`",
         "In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file",
         'Alternatively, set `"currentThemeName": "custom"` and `"customThemeFile": "/path/to/lavi.json"` in `~/.config/DankMaterialShell/settings.json`',
       },
@@ -253,7 +253,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Fast, lightweight Wayland terminal emulator",
       contrib_dir = "foot",
       steps = {
-        "Copy the contents of [`contrib/foot/lavi.ini`](./contrib/foot/lavi.ini) into your `~/.config/foot/foot.ini`",
+        "Copy the contents of [`%slavi.ini`](./%slavi.ini) into your `~/.config/foot/foot.ini`",
       },
     },
   })
@@ -271,7 +271,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Fast, native terminal emulator with platform-native UI",
       contrib_dir = "ghostty",
       steps = {
-        "Copy [`contrib/ghostty/lavi.conf`](./contrib/ghostty/lavi.conf) to `~/.config/ghostty/themes/lavi.conf`",
+        "Copy [`%slavi.conf`](./%slavi.conf) to `~/.config/ghostty/themes/lavi.conf`",
         "Set `theme = lavi.conf` in your `~/.config/ghostty/config`",
       },
     },
@@ -289,7 +289,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "GPU-accelerated terminal emulator",
       contrib_dir = "kitty",
       steps = {
-        "Copy the contents of [`contrib/kitty/lavi.conf`](./contrib/kitty/lavi.conf) into your `~/.config/kitty/themes/lavi.conf`",
+        "Copy the contents of [`%slavi.conf`](./%slavi.conf) into your `~/.config/kitty/themes/lavi.conf`",
         "Run `kitty +kitten themes --reload-in=all lavi` to set the theme",
       },
     },
@@ -315,7 +315,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
         "https://github.com/user-attachments/assets/03d3a17c-310f-44fe-b554-b4ab6dfead8d",
       },
       steps = {
-        "Copy [`contrib/opencode/lavi.json`](./contrib/opencode/lavi.json) to `~/.config/opencode/themes/lavi.json`",
+        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/opencode/themes/lavi.json`",
         'Set `{ "theme": "lavi" }` in your `~/.config/opencode/opencode.jsonc` or select it from the UI theme picker',
       },
     },
@@ -337,7 +337,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       subtitle = "(bat, Sublime Text, TextMate, VS Code)",
       contrib_dir = "textmate",
       body = {
-        "Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:",
+        "Lavi provides a `.tmTheme` file at [`%slavi.tmTheme`](./%slavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:",
         "",
         "- **[bat](https://github.com/sharkdp/bat)** — see the [bat](#other-programs) section above for specific instructions",
         "- **[Sublime Text](https://www.sublimetext.com/)** — copy `lavi.tmTheme` to your `Packages/User/` directory, then select it from Preferences → Color Scheme",
@@ -359,7 +359,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "GPU-accelerated terminal emulator and multiplexer",
       contrib_dir = "wezterm",
       steps = {
-        "Copy [`contrib/wezterm/lavi.toml`](./contrib/wezterm/lavi.toml) to `~/.config/wezterm/colors/lavi.toml`",
+        "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/wezterm/colors/lavi.toml`",
         'Set `config.color_scheme = "lavi"` in your Wezterm config',
       },
     },
@@ -385,7 +385,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
         "Open the Windows Terminal settings (`ctrl+,`)",
         "Select **Open JSON file** at the bottom left corner (`ctrl+shift+,`)",
         {
-          "Copy the contents of [`contrib/windows_terminal/lavi.json`](./contrib/windows_terminal/lavi.json) inside of the `schemes` array",
+          "Copy the contents of [`%slavi.json`](./%slavi.json) inside of the `schemes` array",
           "   ```jsonc",
           "   {",
           '     "schemes": [',
@@ -412,7 +412,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       tagline = "Terminal workspace and multiplexer",
       contrib_dir = "zellij",
       steps = {
-        "Copy [`contrib/zellij/lavi.kdl`](./contrib/zellij/lavi.kdl) to `~/.config/zellij/themes/lavi.kdl`",
+        "Copy [`%slavi.kdl`](./%slavi.kdl) to `~/.config/zellij/themes/lavi.kdl`",
         'Set `theme "lavi"` in your `~/.config/zellij/config.kdl`',
       },
     },
@@ -426,11 +426,27 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   -- README generation
   ---------------------------------------------------------------------------
 
+  --- Format a MarkdownStr, substituting %s with the contrib path prefix.
+  --- Steps are format strings where %s expands to the contrib path prefix.
+  --- In the main README this is "contrib/<dir>/", in a contrib README it's "".
+  ---@param s MarkdownStr
+  ---@param contrib_prefix string
+  ---@return string
+  local function fmt(s, contrib_prefix)
+    local str = md(s)
+    -- Only format if the string contains %s to avoid issues with other % chars
+    if str:find("%%s") then
+      str = str:gsub("%%s", contrib_prefix)
+    end
+    return str
+  end
+
   --- Render a single theme's <details> block for the main README.
   ---@param docs ThemeDocs
   ---@return string
   local function render_readme_section(docs)
     local lines = {}
+    local prefix = docs.contrib_dir and ("contrib/" .. docs.contrib_dir .. "/") or ""
 
     -- Summary line
     local summary = "<b>" .. docs.name .. "</b>"
@@ -442,8 +458,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     table.insert(lines, "")
 
     if docs.body then
-      -- Fully custom content
-      table.insert(lines, md(docs.body))
+      table.insert(lines, fmt(docs.body, prefix))
     else
       -- Anchor for deep linking
       if docs.id then
@@ -465,14 +480,14 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       -- Numbered steps
       if docs.steps then
         for i, step in ipairs(docs.steps) do
-          table.insert(lines, i .. ". " .. md(step))
+          table.insert(lines, i .. ". " .. fmt(step, prefix))
         end
       end
 
       -- Extra content
       if docs.extra then
         table.insert(lines, "")
-        table.insert(lines, md(docs.extra))
+        table.insert(lines, fmt(docs.extra, prefix))
       end
     end
 
@@ -498,7 +513,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     end
 
     if docs.body then
-      table.insert(lines, md(docs.body))
+      table.insert(lines, fmt(docs.body, ""))
     else
       if docs.url and docs.tagline then
         table.insert(lines, '<a href="' .. docs.url .. '">' .. docs.name .. "</a>: " .. docs.tagline)
@@ -506,22 +521,16 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       end
 
       if docs.steps then
-        -- Rewrite relative links: ./contrib/<dir>/X -> ./X since we're inside contrib/<dir>/
-        local prefix = docs.contrib_dir and ("./contrib/" .. docs.contrib_dir .. "/") or nil
         table.insert(lines, "## Installation")
         table.insert(lines, "")
         for i, step in ipairs(docs.steps) do
-          local s = md(step)
-          if prefix then
-            s = s:gsub("%]%(" .. prefix:gsub("%-", "%%-") .. "", "](./")
-          end
-          table.insert(lines, i .. ". " .. s)
+          table.insert(lines, i .. ". " .. fmt(step, ""))
         end
       end
 
       if docs.extra then
         table.insert(lines, "")
-        table.insert(lines, md(docs.extra))
+        table.insert(lines, fmt(docs.extra, ""))
       end
     end
 

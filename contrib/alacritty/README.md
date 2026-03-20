@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/alacritty/lavi.toml`](./lavi.toml) to `~/.config/alacritty/lavi.toml`
+1. Copy [`lavi.toml`](./lavi.toml) to `~/.config/alacritty/lavi.toml`
 2. Import into your Alacritty config:
    ```toml
    general.import = [

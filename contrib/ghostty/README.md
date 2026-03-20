@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/ghostty/lavi.conf`](./lavi.conf) to `~/.config/ghostty/themes/lavi.conf`
+1. Copy [`lavi.conf`](./lavi.conf) to `~/.config/ghostty/themes/lavi.conf`
 2. Set `theme = lavi.conf` in your `~/.config/ghostty/config`
 
 ---

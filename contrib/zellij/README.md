@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/zellij/lavi.kdl`](./lavi.kdl) to `~/.config/zellij/themes/lavi.kdl`
+1. Copy [`lavi.kdl`](./lavi.kdl) to `~/.config/zellij/themes/lavi.kdl`
 2. Set `theme "lavi"` in your `~/.config/zellij/config.kdl`
 
 ---

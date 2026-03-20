@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy the contents of [`contrib/bottom/lavi.toml`](./lavi.toml) into your `~/.config/bottom/bottom.toml`
+1. Copy the contents of [`lavi.toml`](./lavi.toml) into your `~/.config/bottom/bottom.toml`
 
 ---
 

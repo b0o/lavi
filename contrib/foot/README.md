@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy the contents of [`contrib/foot/lavi.ini`](./lavi.ini) into your `~/.config/foot/foot.ini`
+1. Copy the contents of [`lavi.ini`](./lavi.ini) into your `~/.config/foot/foot.ini`
 
 ---
 

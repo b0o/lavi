@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/clipse/lavi.json`](./lavi.json) to `~/.config/clipse/custom_theme.json`
+1. Copy [`lavi.json`](./lavi.json) to `~/.config/clipse/custom_theme.json`
 2. Set `"themeFile": "custom_theme.json"` in your `~/.config/clipse/config.json`
 
 ---

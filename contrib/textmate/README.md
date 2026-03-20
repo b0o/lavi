@@ -1,6 +1,6 @@
 # Lavi for TextMate Theme
 
-Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:
+Lavi provides a `.tmTheme` file at [`lavi.tmTheme`](./lavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:
 
 - **[bat](https://github.com/sharkdp/bat)** — see the [bat](#other-programs) section above for specific instructions
 - **[Sublime Text](https://www.sublimetext.com/)** — copy `lavi.tmTheme` to your `Packages/User/` directory, then select it from Preferences → Color Scheme

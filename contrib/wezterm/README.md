@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/wezterm/lavi.toml`](./lavi.toml) to `~/.config/wezterm/colors/lavi.toml`
+1. Copy [`lavi.toml`](./lavi.toml) to `~/.config/wezterm/colors/lavi.toml`
 2. Set `config.color_scheme = "lavi"` in your Wezterm config
 
 ---

@@ -34,20 +34,47 @@ lavi/
 ├── colors/lavi_dev.lua          # SOURCE - development colorscheme loader (uses lush at runtime)
 ├── lua/lavi/palette.lua         # GENERATED - compiled palette (plain hex strings, no lush)
 ├── lua/lualine/themes/lavi.lua  # GENERATED - compiled lualine theme
-├── contrib/                     # GENERATED - theme files for each app
-│   ├── alacritty/lavi.toml
+├── contrib/                     # GENERATED - theme files + READMEs for each app
+│   ├── alacritty/
+│   │   ├── lavi.toml
+│   │   └── README.md            # Generated from docs metadata in build.lua
 │   ├── base16/lavi.yaml
-│   ├── bottom/lavi.toml
-│   ├── btop/lavi.theme
-│   ├── clipse/lavi.json
-│   ├── dank-material-shell/lavi.json
-│   ├── foot/lavi.ini
-│   ├── ghostty/lavi.conf
-│   ├── kitty/lavi.conf
-│   ├── opencode/lavi.json
-│   ├── wezterm/lavi.toml
-│   ├── windows_terminal/lavi.json
-│   └── zellij/lavi.kdl
+│   ├── bottom/
+│   │   ├── lavi.toml
+│   │   └── README.md
+│   ├── btop/
+│   │   ├── lavi.theme
+│   │   └── README.md
+│   ├── clipse/
+│   │   ├── lavi.json
+│   │   └── README.md
+│   ├── dank-material-shell/
+│   │   ├── lavi.json
+│   │   └── README.md
+│   ├── foot/
+│   │   ├── lavi.ini
+│   │   └── README.md
+│   ├── ghostty/
+│   │   ├── lavi.conf
+│   │   └── README.md
+│   ├── kitty/
+│   │   ├── lavi.conf
+│   │   └── README.md
+│   ├── opencode/
+│   │   ├── lavi.json
+│   │   └── README.md
+│   ├── textmate/
+│   │   ├── lavi.tmTheme
+│   │   └── README.md
+│   ├── wezterm/
+│   │   ├── lavi.toml
+│   │   └── README.md
+│   ├── windows_terminal/
+│   │   ├── lavi.json
+│   │   └── README.md
+│   └── zellij/
+│       ├── lavi.kdl
+│       └── README.md
 ├── nix/themes/                  # GENERATED - nix expressions for home-manager
 │   ├── alacritty.nix
 │   ├── bottom.nix
@@ -75,7 +102,7 @@ Generated files (do not edit directly):
 - `colors/lavi.lua` - compiled neovim colorscheme
 - `lua/lavi/palette.lua` - compiled palette (plain hex strings, no lush)
 - `lua/lualine/themes/` - compiled lualine theme
-- `contrib/` - theme files for external apps
+- `contrib/` - theme files and READMEs for external apps
 - `nix/themes/` - nix expressions
 
 CI will auto-regenerate and commit these on pushes to main. PRs will fail if generated files are stale.
@@ -86,18 +113,36 @@ The build pipeline uses [lush.nvim](https://github.com/rktjmp/lush.nvim) for col
 
 ### How it works
 
-`build.lua` bootstraps lazy.nvim, loads lush + shipwright, and defines the `LaviBuild` command. Each theme generator is registered with `builder.run()`:
+`build.lua` bootstraps lazy.nvim, loads lush + shipwright, and defines the `LaviBuild` command. Contrib themes are registered with the `build_contrib` wrapper:
 
 ```lua
-builder.run(
-  module.colors,                    -- table of lush color objects
-  transforms.compile_palette,       -- converts lush hsl -> hex strings
-  module.transform,                 -- app-specific formatter -> array of lines
-  { overwrite, "contrib/app/file" } -- writes lines to output file
-)
+build_contrib({
+  runs = {
+    { module.colors, transforms.compile_palette, module.transform, { overwrite, "contrib/app/file" } },
+    { module.colors, transforms.compile_palette, module.transform_nix, { overwrite, "nix/themes/app.nix" } }, -- optional
+  },
+  docs = {
+    name = "App Name",
+    url = "https://github.com/...",
+    tagline = "Short description",
+    contrib_dir = "app",           -- directory under contrib/
+    steps = { "Step 1", "Step 2" },
+    -- Optional fields:
+    subtitle = nil,                -- shown after name in <summary>
+    id = nil,                      -- anchor id inside <details> for deep linking
+    screenshots = {},              -- list of URLs; first in main README, all in contrib README
+    body = nil,                    -- raw markdown (replaces url+tagline+steps)
+    extra = nil,                   -- raw markdown appended after steps
+  },
+})
 ```
 
-Some generators have a second `builder.run()` call for the nix output using `transform_nix`.
+The wrapper runs all `builder.run()` pipelines and collects the `docs` metadata. After all themes are built, it:
+
+1. Generates the "Other Programs" section in `README.md` between `<!-- LAVI_PROGRAMS_OPEN -->` and `<!-- LAVI_PROGRAMS_CLOSE -->` markers
+2. Generates `contrib/<app>/README.md` for each theme with a `contrib_dir`
+
+Themes are sorted alphabetically by name in the generated README.
 
 ### Build commands
 
@@ -185,19 +230,23 @@ mkdir -p contrib/<app>
 
 ```lua
 local app = require("lush_theme.lavi.<app>")
-builder.run(
-  app.colors,
-  transforms.compile_palette,
-  app.transform,
-  { require("shipwright.transform.overwrite"), "contrib/<app>/lavi.<ext>" }
-)
--- If transform_nix exists:
-builder.run(
-  app.colors,
-  transforms.compile_palette,
-  app.transform_nix,
-  { require("shipwright.transform.overwrite"), "nix/themes/<app>.nix" }
-)
+build_contrib({
+  runs = {
+    { app.colors, transforms.compile_palette, app.transform, { overwrite, "contrib/<app>/lavi.<ext>" } },
+    -- If transform_nix exists:
+    { app.colors, transforms.compile_palette, app.transform_nix, { overwrite, "nix/themes/<app>.nix" } },
+  },
+  docs = {
+    name = "App Name",
+    url = "https://github.com/...",
+    tagline = "Short description of the app",
+    contrib_dir = "<app>",
+    steps = {
+      "Copy [`contrib/<app>/lavi.<ext>`](./contrib/<app>/lavi.<ext>) to `~/.config/<app>/themes/lavi.<ext>`",
+      "Set the theme in your config",
+    },
+  },
+})
 ```
 
 ### 4. Add to `flake.nix`
@@ -246,11 +295,7 @@ Add the config (choose the appropriate strategy):
 
 Check the app's home-manager module to determine which strategy fits.
 
-### 6. Add to README.md
-
-Add a collapsible section under "Other Programs" in alphabetical order.
-
-### 7. Build and verify
+### 6. Build and verify
 
 ```bash
 just build

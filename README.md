@@ -64,6 +64,7 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ### Other Programs
 
+<!-- LAVI_PROGRAMS_OPEN -->
 <details>
 <summary><b>Alacritty</b></summary>
 
@@ -249,6 +250,7 @@ Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/t
 2. Set `theme "lavi"` in your `~/.config/zellij/config.kdl`
 
 </details>
+<!-- LAVI_PROGRAMS_CLOSE -->
 
 ### Nix
 

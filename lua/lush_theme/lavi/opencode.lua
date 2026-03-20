@@ -2,7 +2,7 @@ local p = require("lush_theme.lavi.palette")
 local lavi = require("lush_theme.lavi")
 
 return {
-  ["$schema"] = "https://opencode.ai/desktop-theme.json",
+  ["$schema"] = "https://opencode.ai/theme.json",
   theme = {
     primary = {
       dark = p.bright_violet.darken(5).desaturate(30),

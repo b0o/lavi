@@ -6,7 +6,7 @@
 
 1. Open the Windows Terminal settings (`ctrl+,`)
 2. Select **Open JSON file** at the bottom left corner (`ctrl+shift+,`)
-3. Copy the contents of [`contrib/windows_terminal/lavi.json`](./contrib/windows_terminal/lavi.json) inside of the `schemes` array
+3. Copy the contents of [`contrib/windows_terminal/lavi.json`](./lavi.json) inside of the `schemes` array
    ```jsonc
    {
      "schemes": [

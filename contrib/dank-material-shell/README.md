@@ -4,7 +4,7 @@
 
 ## Installation
 
-1. Copy [`contrib/dank-material-shell/lavi.json`](./contrib/dank-material-shell/lavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`
+1. Copy [`contrib/dank-material-shell/lavi.json`](./lavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`
 2. In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file
 3. Alternatively, set `"currentThemeName": "custom"` and `"customThemeFile": "/path/to/lavi.json"` in `~/.config/DankMaterialShell/settings.json`
 

@@ -506,10 +506,16 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       end
 
       if docs.steps then
+        -- Rewrite relative links: ./contrib/<dir>/X -> ./X since we're inside contrib/<dir>/
+        local prefix = docs.contrib_dir and ("./contrib/" .. docs.contrib_dir .. "/") or nil
         table.insert(lines, "## Installation")
         table.insert(lines, "")
         for i, step in ipairs(docs.steps) do
-          table.insert(lines, i .. ". " .. md(step))
+          local s = md(step)
+          if prefix then
+            s = s:gsub("%]%(" .. prefix:gsub("%-", "%%-") .. "", "](./")
+          end
+          table.insert(lines, i .. ". " .. s)
         end
       end
 

@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. Copy [`contrib/opencode/lavi.json`](./contrib/opencode/lavi.json) to `~/.config/opencode/themes/lavi.json`
+1. Copy [`contrib/opencode/lavi.json`](./lavi.json) to `~/.config/opencode/themes/lavi.json`
 2. Set `{ "theme": "lavi" }` in your `~/.config/opencode/opencode.jsonc` or select it from the UI theme picker
 
 ---

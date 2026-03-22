@@ -337,7 +337,7 @@ vim.api.nvim_create_user_command("LaviBuild", function()
       },
       steps = {
         "Copy [`%slavi.json`](./%slavi.json) to `~/.config/opencode/themes/lavi.json`",
-        'Set `{ "theme": "lavi" }` in your `~/.config/opencode/opencode.jsonc` or select it from the UI theme picker',
+        'Set `{ "theme": "lavi" }` in your `~/.config/opencode/tui.jsonc` or select it from the UI theme picker',
       },
     },
   })

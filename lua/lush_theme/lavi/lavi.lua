@@ -289,9 +289,11 @@ local theme = lush(function(injected_functions)
     NeogitHunkHeaderCursor    { fg = p.white, bg = p.dark_bg.lighten(45).saturate(10) },
     NeogitDiffAdd             { bg = p.bg.mix(p.green.darken(30), 30) },
     NeogitDiffAddHighlight    { bg = p.bg.mix(p.green.darken(30), 40) },
+    NeogitDiffAddInline       { bg = p.bg.mix(p.green.darken(30), 40) },
     NeogitDiffAddCursor       { bg = p.bg.mix(p.green.darken(30), 50) },
     NeogitDiffDelete          { bg = p.bg.mix(p.bright_red.darken(30), 30) },
     NeogitDiffDeleteHighlight { bg = p.bg.mix(p.bright_red.darken(30), 40) },
+    NeogitDiffDeleteInline    { bg = p.bg.mix(p.bright_red.darken(30), 40) },
     NeogitDiffDeleteCursor    { bg = p.bg.mix(p.bright_red.darken(30), 50) },
     NeogitFloatBorder         { ActivePopupBorder },
 

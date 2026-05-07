@@ -42,7 +42,7 @@
         # See: https://github.com/chriskempson/base16/blob/main/styling.md
         lib.base16 = {
           scheme = "Lavi";
-          author = "Maddison Hellstrom (https://github.com/b0o)";
+          author = "Maddison Cohodas (https://github.com/b0o)";
           base00 = "25213B"; # Default Background
           base01 = "2E2A37"; # Lighter Background (status bars, line numbers)
           base02 = "584F8C"; # Selection Background

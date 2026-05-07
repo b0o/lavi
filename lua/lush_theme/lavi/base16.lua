@@ -33,7 +33,7 @@ local function transform(compiled)
     "# Base16 color scheme for Stylix and other base16 consumers",
     "# See: https://github.com/chriskempson/base16",
     "scheme: Lavi",
-    "author: Maddison Hellstrom (https://github.com/b0o)",
+    "author: Maddison Cohodas (https://github.com/b0o)",
     string.format('base00: "%s"', hex(compiled.base00)),
     string.format('base01: "%s"', hex(compiled.base01)),
     string.format('base02: "%s"', hex(compiled.base02)),

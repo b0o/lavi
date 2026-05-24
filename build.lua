@@ -342,6 +342,24 @@ vim.api.nvim_create_user_command("LaviBuild", function()
     },
   })
 
+  -- Pi
+  local pi = require("lush_theme.lavi.pi")
+  build_contrib({
+    runs = {
+      { pi.colors, transforms.compile_palette, pi.transform, { overwrite, "contrib/pi/lavi.json" } },
+    },
+    docs = {
+      name = "Pi",
+      url = "https://pi.dev/docs/latest/themes",
+      tagline = "AI coding agent with a customizable terminal UI",
+      contrib_dir = "pi",
+      steps = {
+        "Copy [`%slavi.json`](./%slavi.json) to `~/.pi/agent/themes/lavi.json`",
+        'Set `{ "theme": "lavi" }` in your pi `settings.json`, or select **lavi** from `/settings`',
+      },
+    },
+  })
+
   -- TextMate (for bat and other TextMate-compatible apps)
   local textmate = require("lush_theme.lavi.textmate")
   build_contrib({

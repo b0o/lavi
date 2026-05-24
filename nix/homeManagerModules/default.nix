@@ -50,6 +50,7 @@ in {
     ghostty.enable = lib.mkEnableOption "Lavi theme for Ghostty";
     kitty.enable = lib.mkEnableOption "Lavi theme for Kitty";
     opencode.enable = lib.mkEnableOption "Lavi theme for Opencode";
+    pi.enable = lib.mkEnableOption "Lavi theme for Pi";
     wezterm.enable = lib.mkEnableOption "Lavi theme for Wezterm";
     zellij.enable = lib.mkEnableOption "Lavi theme for Zellij";
 
@@ -140,6 +141,11 @@ in {
       programs.opencode.themes.lavi = builtins.fromJSON (
         builtins.readFile ../../contrib/opencode/lavi.json
       );
+    })
+
+    # Pi - install theme file for pi discovery
+    (lib.mkIf cfg.pi.enable {
+      home.file.".pi/agent/themes/lavi.json".source = ../../contrib/pi/lavi.json;
     })
 
     # Zellij - themes (expects KDL string)

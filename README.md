@@ -218,6 +218,16 @@ This writes the theme file to `~/.config/DankMaterialShell/themes/lavi.json` and
 </details>
 
 <details>
+<summary><b>Pi</b></summary>
+
+<a href="https://pi.dev/docs/latest/themes">Pi</a>: AI coding agent with a customizable terminal UI
+
+1. Copy [`contrib/pi/lavi.json`](./contrib/pi/lavi.json) to `~/.pi/agent/themes/lavi.json`
+2. Set `{ "theme": "lavi" }` in your pi `settings.json`, or select **lavi** from `/settings`
+
+</details>
+
+<details>
 <summary><b>TextMate Theme</b> (bat, Sublime Text, TextMate, VS Code)</summary>
 
 Lavi provides a `.tmTheme` file at [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:

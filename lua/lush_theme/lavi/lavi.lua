@@ -518,6 +518,14 @@ local theme = lush(function(injected_functions)
     BlinkCmpSignatureHelpBorder { CmpBorder },
     BlinkCmpSignatureHelpActiveParameter { LspSignatureActiveParameter },
 
+    ---- blink.pairs
+    BlinkPairs                 { Delimiter },
+    BlinkPairsOrange           { fg = p.orange },
+    BlinkPairsPurple           { fg = p.velvet.rotate(15).lighten(25).desaturate(10) },
+    BlinkPairsBlue             { fg = p.blue.lighten(30).saturate(10) },
+    BlinkPairsUnmatched        { Error },
+    BlinkPairsMatchParen       { MatchParen },
+
     ---- flash.nvim
     FlashBackdrop             { bg = p.dark_bg.lighten(5) },
     FlashMatch                { bg = p.velvet.darken(10), fg = p.white },
@@ -583,6 +591,25 @@ local theme = lush(function(injected_functions)
     SnacksIndent              { IblIndent },
     SnacksIndentScope         { IblScope },
     SnacksIndentBlank         { IblWhitespace },
+
+    ---- blink.indent
+    BlinkIndent                 { IblIndent },
+    BlinkIndentScope            { IblScope },
+    BlinkIndentRed              { fg = p.bright_red.lighten(10) },
+    BlinkIndentOrange           { fg = p.orange },
+    BlinkIndentYellow           { fg = p.yellow.lighten(10) },
+    BlinkIndentGreen            { fg = p.green },
+    BlinkIndentCyan             { fg = p.cyan.desaturate(10).lighten(10) },
+    BlinkIndentBlue             { fg = p.blue.lighten(30).saturate(10) },
+    BlinkIndentViolet           { fg = p.velvet.rotate(15).lighten(25).desaturate(10) },
+    BlinkIndentUnderline        { sp = BlinkIndentScope.fg, gui = "underline" },
+    BlinkIndentRedUnderline     { sp = BlinkIndentRed.fg, gui = "underline" },
+    BlinkIndentOrangeUnderline  { sp = BlinkIndentOrange.fg, gui = "underline" },
+    BlinkIndentYellowUnderline  { sp = BlinkIndentYellow.fg, gui = "underline" },
+    BlinkIndentGreenUnderline   { sp = BlinkIndentGreen.fg, gui = "underline" },
+    BlinkIndentCyanUnderline    { sp = BlinkIndentCyan.fg, gui = "underline" },
+    BlinkIndentBlueUnderline    { sp = BlinkIndentBlue.fg, gui = "underline" },
+    BlinkIndentVioletUnderline  { sp = BlinkIndentViolet.fg, gui = "underline" },
 
     ---- nvim-dap
     DapBreakpoint           { fg = p.yellow.darken(20) },

@@ -40,7 +40,7 @@ local theme = lush(function(injected_functions)
     CursorLineNrNC   { fg = p.dark_fg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line in non-current windows.
     -- CursorLineFold   { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign   { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-    MatchParen       { bg = p.cyan, fg = p.black }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    MatchParen       { bg = p.velvet, fg = p.dark_bg }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
     ModeMsg          { fg = p.dark_fg }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea          { }, -- Area for messages and cmdline
     -- MsgSeparator     { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
@@ -157,7 +157,7 @@ local theme = lush(function(injected_functions)
 
     -- Underlined       { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore           { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    Error            { fg = p.dark_bg_bright, bg = p.bright_red }, -- Any erroneous construct
+    Error            { bg = p.cayenne.lighten(10), fg = p.dark_bg }, -- Any erroneous construct
     Todo             { fg = p.yellow }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     ---- LSP

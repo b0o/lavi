@@ -29,6 +29,11 @@ return function(seeds)
   M.bright_magenta = M.bright_magenta or M.magenta.lighten(10)
   M.bright_cyan = M.bright_cyan or M.cyan.lighten(10)
 
+  -- Muted / deep purple shades, derived from the base accent hues.
+  M.muted_anise = M.muted_anise or M.anise.desaturate(86).darken(28).rotate(17)
+  M.deep_anise = M.deep_anise or M.anise.desaturate(68).darken(42).rotate(8)
+  M.muted_velvet = M.muted_velvet or M.velvet.desaturate(72).darken(18).rotate(-12)
+
   -- Background ladder, darkest -> brightest (bg1 is the Normal background)
   M.bg0 = M.bg0 or M.bg1.darken(10)
   M.bg2 = M.bg2 or M.bg1.lighten(13)

@@ -52,7 +52,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     list_selected {
-      background "#564D84"
+      background "#564E83"
       base "#FFFFFF"
       emphasis_0 "#FF8597"
       emphasis_1 "#8BF9A6"
@@ -88,7 +88,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     ribbon_unselected {
-      background "#38265A"
+      background "#38285C"
       base "#DED3FD"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
@@ -96,7 +96,7 @@ themes {
       emphasis_3 "#7583FF"
     }
     table_cell_selected {
-      background "#564D84"
+      background "#564E83"
       base "#FFFFFF"
       emphasis_0 "#FF8597"
       emphasis_1 "#8BF9A6"
@@ -112,7 +112,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     table_title {
-      background "#483371"
+      background "#483271"
       base "#FFFFFF"
       emphasis_0 "#DB8FFF"
       emphasis_1 "#2CEDC0"

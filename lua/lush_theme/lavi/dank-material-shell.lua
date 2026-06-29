@@ -23,7 +23,7 @@ local colors = {
     background = lavi.NormalNC.bg,
     backgroundText = lavi.NormalNC.fg,
 
-    outline = p.anise_dark,
+    outline = p.muted_anise,
 
     surfaceContainer = lavi.Normal.bg,
     surfaceContainerHigh = lavi.Normal.bg.lighten(5),
@@ -40,7 +40,7 @@ local colors = {
 
     primary = p.med_violet.desaturate(20).darken(10),
     primaryText = p.bright_white,
-    primaryContainer = p.light_lavender,
+    primaryContainer = p.lavender.lighten(70).rotate(5),
 
     secondary = p.blue.desaturate(20).darken(10),
 
@@ -55,7 +55,7 @@ local colors = {
     background = p.light_bg,
     backgroundText = p.light_fg,
 
-    outline = p.anise_dark.lighten(15),
+    outline = p.muted_anise.lighten(15),
 
     surfaceContainer = p.light_bg_med,
     surfaceContainerHigh = p.light_bg_dark,

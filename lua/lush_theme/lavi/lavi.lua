@@ -117,7 +117,7 @@ local theme = lush(function(injected_functions)
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-    Comment          { fg = p.anise_dark, gui = 'italic,bold' }, -- Any comment
+    Comment          { fg = p.muted_anise, gui = 'italic,bold' }, -- Any comment
 
     Constant         { fg = p.cyan }, -- (*) Any constant
     String           { fg = p.yellow.lighten(40).rotate(50).saturate(10) }, --   A string constant: "this is a string"
@@ -151,7 +151,7 @@ local theme = lush(function(injected_functions)
     Special          { Identifier }, -- (*) Any special symbol
     SpecialChar      { fg = p.orange }, --   Special character in a constant
     Tag              { fg = p.dust }, --   You can use CTRL-] on this
-    Delimiter        { fg = p.deep_velvet.lighten(40).saturate(30) }, --   Character that needs attention
+    Delimiter        { fg = p.muted_velvet.lighten(40).saturate(30) }, --   Character that needs attention
     SpecialComment   { fg = p.fg2 }, --   Special things inside a comment (e.g. '\n')
     -- Debug            { }, --   Debugging statements
 
@@ -442,7 +442,7 @@ local theme = lush(function(injected_functions)
     CmpItemKindStruct         { CmpItemKindModule },
     CmpItemKindEnum           { CmpItemKindModule },
 
-    CmpItemKindEvent          { bg = p.light_lavender.darken(5), fg = p.bright_white },
+    CmpItemKindEvent          { bg = p.lavender.lighten(70).rotate(5).darken(5), fg = p.bright_white },
     CmpItemKindUnit           { CmpItemKindEvent },
     CmpItemKindFile           { CmpItemKindEvent },
     CmpItemKindFolder         { CmpItemKindEvent },
@@ -682,9 +682,9 @@ local theme = lush(function(injected_functions)
     RenderMarkdownSuccess        { fg = p.green },
     RenderMarkdownQuote          { fg = p.blue.lighten(30).saturate(10) },
     -- RenderMarkdownSign           { fg = hsl('#565f89') },
-    RenderMarkdownSign           { fg = p.deep_velvet.darken(20) },
-    RenderMarkdownDash           { fg = p.deep_velvet.darken(20) },
-    RenderMarkdownBullet         { fg = p.deep_velvet.lighten(70).saturate(70) },
+    RenderMarkdownSign           { fg = p.muted_velvet.darken(20) },
+    RenderMarkdownDash           { fg = p.muted_velvet.darken(20) },
+    RenderMarkdownBullet         { fg = p.muted_velvet.lighten(70).saturate(70) },
     RenderMarkdownTableHead      { fg = p.blue.lighten(80).saturate(-30).mix(p.bg1, 35) },
     RenderMarkdownTableRow       { RenderMarkdownTableHead },
     RenderMarkdownTableFill      { bg = p.bg1 },

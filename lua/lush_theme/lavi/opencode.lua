@@ -41,7 +41,7 @@ return {
       light = p.fg0,
     },
     placeholderText = {
-      dark = p.anise_dark,
+      dark = p.muted_anise,
       light = p.med_black,
     },
     background = {

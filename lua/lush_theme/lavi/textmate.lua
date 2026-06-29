@@ -11,7 +11,7 @@ local colors = {
   caret = lavi.Statement.fg,
   gutter_fg = p.bright_black,
   invisibles = p.med_black,
-  line_highlight = p.deep_lavender,
+  line_highlight = p.lavender.desaturate(58).darken(64).rotate(-6),
   selection = p.deep_anise,
   selection_fg = p.white,
 

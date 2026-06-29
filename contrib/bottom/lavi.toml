@@ -58,6 +58,6 @@ headers = { color = "#DED3FD", bold = true }
 border_color = "#4C425C"
 disabled_text = { color = "#6C5A8C" }
 selected_border_color = "#B1B0E8"
-selected_text = { color = "#FFFFFF", bg_color = "#564D84" }
+selected_text = { color = "#FFFFFF", bg_color = "#564E83" }
 text = { color = "#A79BCF" }
 widget_title = { color = "#DED3FD", bold = true }

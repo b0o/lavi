@@ -68,7 +68,7 @@
       };
       selected_border_color = "#B1B0E8";
       selected_text = {
-        bg_color = "#564D84";
+        bg_color = "#564E83";
         color = "#FFFFFF";
       };
       text = {

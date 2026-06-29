@@ -36,7 +36,7 @@ local colors = {
 
       ribbon_unselected = {
         base = p.fg1,
-        background = p.deep_lavender,
+        background = p.lavender.desaturate(58).darken(64).rotate(-6),
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.yellow,
@@ -54,7 +54,7 @@ local colors = {
 
       table_title = {
         base = p.bright_white,
-        background = p.licorice,
+        background = p.lavender.desaturate(58).darken(56).rotate(-3),
         emphasis_0 = p.violet,
         emphasis_1 = p.cyan,
         emphasis_2 = p.yellow,

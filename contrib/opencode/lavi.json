@@ -110,8 +110,8 @@
       "light": "#D5C2FF"
     },
     "markdownHorizontalRule": {
-      "dark": "#676798",
-      "light": "#676798"
+      "dark": "#6A6798",
+      "light": "#6A6798"
     },
     "markdownImage": {
       "dark": "#9EA8FF",
@@ -130,12 +130,12 @@
       "light": "#9EA8FF"
     },
     "markdownListEnumeration": {
-      "dark": "#CECEF8",
-      "light": "#CECEF8"
+      "dark": "#D0CEF8",
+      "light": "#D0CEF8"
     },
     "markdownListItem": {
-      "dark": "#CECEF8",
-      "light": "#CECEF8"
+      "dark": "#D0CEF8",
+      "light": "#D0CEF8"
     },
     "markdownStrong": {
       "dark": "#FFD68F",
@@ -146,7 +146,7 @@
       "light": "#EEE5FF"
     },
     "placeholderText": {
-      "dark": "#7E7490",
+      "dark": "#7D7490",
       "light": "#4C425C"
     },
     "primary": {
@@ -166,8 +166,8 @@
       "light": "#7CF89B"
     },
     "syntaxComment": {
-      "dark": "#7E7490",
-      "light": "#7E7490"
+      "dark": "#7D7490",
+      "light": "#7D7490"
     },
     "syntaxFunction": {
       "dark": "#9CF2DE",
@@ -186,8 +186,8 @@
       "light": "#BDA5EE"
     },
     "syntaxPunctuation": {
-      "dark": "#AFAFDF",
-      "light": "#AFAFDF"
+      "dark": "#B1AFDF",
+      "light": "#B1AFDF"
     },
     "syntaxString": {
       "dark": "#DBFFB3",

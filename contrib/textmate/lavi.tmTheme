@@ -32,11 +32,11 @@
           <key>invisibles</key>
           <string>#4C425C</string>
           <key>lineHighlight</key>
-          <string>#38265A</string>
+          <string>#38285C</string>
           <key>selection</key>
-          <string>#564D84</string>
+          <string>#564E83</string>
           <key>selectionBorder</key>
-          <string>#564D84</string>
+          <string>#564E83</string>
           <key>selectionForeground</key>
           <string>#EEE5FF</string>
           <key>tagsForeground</key>
@@ -55,7 +55,7 @@
           <key>fontStyle</key>
           <string>italic bold</string>
           <key>foreground</key>
-          <string>#7E7490</string>
+          <string>#7D7490</string>
         </dict>
       </dict>
       <dict>
@@ -66,7 +66,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#AFAFDF</string>
+          <string>#B1AFDF</string>
         </dict>
       </dict>
       <dict>
@@ -77,7 +77,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#AFAFDF</string>
+          <string>#B1AFDF</string>
         </dict>
       </dict>
       <dict>

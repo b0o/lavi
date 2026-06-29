@@ -15,7 +15,7 @@ local colors = {
     info = p.oceanblue.desaturate(10),
 
     textMuted = p.fg0,
-    placeholderText = p.anise_dark,
+    placeholderText = p.muted_anise,
 
     background = p.bg1,
     backgroundPanel = lavi.Normal.bg,

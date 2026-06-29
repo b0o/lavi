@@ -1,16 +1,20 @@
-vim.env.LAZY_STDPATH = "build/.nvim"
-load(vim.fn.system("curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/bootstrap.lua"))()
-
 local function project_root()
   return vim.fn.fnamemodify(debug.getinfo(2, "S").source:sub(2):match("(.*/)"), ":p:h")
 end
 
-require("lazy.minit").setup({
-  spec = {
-    "rktjmp/lush.nvim",
-    "rktjmp/shipwright.nvim",
-  },
-})
+-- If lush and shipwright are already on the runtimepath (e.g. provided by Nix),
+-- skip the lazy.nvim bootstrap. Otherwise bootstrap them via lazy.nvim.
+local have_deps = pcall(require, "lush") and pcall(require, "shipwright.builder")
+if not have_deps then
+  vim.env.LAZY_STDPATH = "build/.nvim"
+  load(vim.fn.system("curl -s https://raw.githubusercontent.com/folke/lazy.nvim/main/bootstrap.lua"))()
+  require("lazy.minit").setup({
+    spec = {
+      "rktjmp/lush.nvim",
+      "rktjmp/shipwright.nvim",
+    },
+  })
+end
 
 vim.opt.rtp:prepend(project_root())
 

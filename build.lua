@@ -25,23 +25,50 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   local builder = require("shipwright.builder")
   local overwrite = require("shipwright.transform.overwrite")
   local patchwrite = require("shipwright.transform.patchwrite")
-  local palette = require("lush_theme.lavi.palette")
-
   -- TODO: vivid
   -- TODO: delta
 
-  -- Neovim theme
-  builder.run(
-    require("lush_theme.lavi"),
-    require("shipwright.transform.lush").to_lua,
-    { patchwrite, "colors/lavi.lua", "-- PATCH_OPEN", "-- PATCH_CLOSE" }
-  )
+  -- Theme variants. The default "lavi" writes to the historic unsuffixed
+  -- output paths; each additional variant writes to "-<suffix>" paths
+  -- alongside (e.g. contrib/alacritty/lavi-sodium.toml).
+  local variants = {
+    { name = "lavi", suffix = "" },
+  }
 
-  -- Compiled palette for consumers
-  builder.run(palette, transforms.compile_palette, transforms.to_lua, { overwrite, "lua/lavi/palette.lua" })
+  -- The suffix of the variant currently being built (set by build_for_variant).
+  local current_suffix = ""
 
-  -- Lualine theme
-  builder.run(require("lush_theme.lavi.lualine"), transforms.to_lua, { overwrite, "lua/lualine/themes/lavi.lua" })
+  -- Rewrite a default output path to the active variant's suffixed path.
+  local function out(path)
+    if current_suffix == "" then
+      return path
+    elseif path:match("^nix/themes/") then
+      return (path:gsub("%.nix$", current_suffix .. ".nix"))
+    elseif path == "lua/lavi/palette.lua" then
+      return "lua/lavi/palette" .. current_suffix .. ".lua"
+    else
+      -- contrib/<app>/lavi.<ext>, colors/lavi.lua, lua/lualine/themes/lavi.lua
+      return (path:gsub("lavi%.", "lavi" .. current_suffix .. "."))
+    end
+  end
+
+  -- Ensure a colorscheme file exists for a variant so patchwrite has a target.
+  -- The default colors/lavi.lua is committed; variant skeletons are generated.
+  local function ensure_colors_skeleton(csname)
+    local path = "colors/" .. csname .. ".lua"
+    if vim.fn.filereadable(path) == 1 then
+      return
+    end
+    local name_arg = (csname == "lavi") and "" or (', "' .. csname .. '"')
+    vim.fn.writefile({
+      "local colors = {",
+      "  -- PATCH_OPEN",
+      "  -- PATCH_CLOSE",
+      "}",
+      "",
+      'require("lavi.setup")(false, colors' .. name_arg .. ")",
+    }, path)
+  end
 
   ---------------------------------------------------------------------------
   -- Contrib themes
@@ -84,392 +111,444 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   ---@param opts { runs: any[][], docs?: ThemeDocs }
   local function build_contrib(opts)
     for _, run in ipairs(opts.runs) do
+      -- The last element of a run is the writer spec { writer, path, ... };
+      -- rewrite its output path for the active variant.
+      local spec = run[#run]
+      spec[2] = out(spec[2])
       builder.run(unpack(run))
     end
-    if opts.docs then
+    -- Docs are variant-independent; collect them once, for the default variant.
+    if opts.docs and current_suffix == "" then
       table.insert(theme_docs, opts.docs)
     end
   end
 
-  -- Alacritty
-  local alacritty = require("lush_theme.lavi.alacritty")
-  build_contrib({
-    runs = {
-      {
-        alacritty.colors,
-        transforms.compile_palette,
-        alacritty.transform,
-        { overwrite, "contrib/alacritty/lavi.toml" },
-      },
-      {
-        alacritty.colors,
-        transforms.compile_palette,
-        alacritty.transform_nix,
-        { overwrite, "nix/themes/alacritty.nix" },
-      },
-    },
-    docs = {
-      name = "Alacritty",
-      url = "https://github.com/alacritty/alacritty",
-      screenshots = {
-        "https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214",
-      },
-      tagline = "Cross-platform, GPU-accelerated terminal emulator",
-      contrib_dir = "alacritty",
-      steps = {
-        "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/alacritty/lavi.toml`",
-        {
-          "Import into your Alacritty config:",
-          "   ```toml",
-          "   general.import = [",
-          '     "~/.config/alacritty/lavi.toml",',
-          "   ]",
-          "   ```",
-        },
-      },
-    },
-  })
+  -- Build every theme output for a single variant. Modules under
+  -- lush_theme.lavi are invalidated first so the palette rebuilds for this
+  -- variant's seeds.
+  local function build_for_variant(variant)
+    current_suffix = variant.suffix
+    vim.g.lavi_build_variant = variant.name
+    for mod in pairs(package.loaded) do
+      if mod:match("^lush_theme%.lavi") then
+        package.loaded[mod] = nil
+      end
+    end
+    local palette = require("lush_theme.lavi.palette")
+    ensure_colors_skeleton("lavi" .. current_suffix)
 
-  -- bat (uses textmate output, no module of its own)
-  build_contrib({
-    runs = {}, -- built as part of textmate below
-    docs = {
-      name = "bat",
-      url = "https://github.com/sharkdp/bat",
-      tagline = "A cat clone with syntax highlighting and Git integration",
-      screenshots = {
-        "https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1",
-      },
-      steps = {
-        "Copy [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) to `~/.config/bat/themes/lavi.tmTheme`",
+    -- Neovim theme
+    builder.run(
+      require("lush_theme.lavi"),
+      require("shipwright.transform.lush").to_lua,
+      { patchwrite, out("colors/lavi.lua"), "-- PATCH_OPEN", "-- PATCH_CLOSE" }
+    )
+
+    -- Compiled palette for consumers
+    builder.run(palette, transforms.compile_palette, transforms.to_lua, { overwrite, out("lua/lavi/palette.lua") })
+
+    -- Lualine theme
+    builder.run(
+      require("lush_theme.lavi.lualine"),
+      transforms.to_lua,
+      { overwrite, out("lua/lualine/themes/lavi.lua") }
+    )
+
+    -- Alacritty
+    local alacritty = require("lush_theme.lavi.alacritty")
+    build_contrib({
+      runs = {
         {
-          "Rebuild bat's theme cache:",
-          "   ```bash",
-          "   bat cache --build",
-          "   ```",
+          alacritty.colors,
+          transforms.compile_palette,
+          alacritty.transform,
+          { overwrite, "contrib/alacritty/lavi.toml" },
         },
         {
-          "Use the theme:",
-          "   ```bash",
-          "   bat --theme=lavi file.rs",
-          "   ```",
-          '   Or set it permanently via `BAT_THEME=lavi` in your environment, or add `--theme="lavi"` to `~/.config/bat/config`.',
+          alacritty.colors,
+          transforms.compile_palette,
+          alacritty.transform_nix,
+          { overwrite, "nix/themes/alacritty.nix" },
         },
       },
-    },
-  })
+      docs = {
+        name = "Alacritty",
+        url = "https://github.com/alacritty/alacritty",
+        screenshots = {
+          "https://github.com/user-attachments/assets/26c8c477-9483-442b-a13b-a10370ed7214",
+        },
+        tagline = "Cross-platform, GPU-accelerated terminal emulator",
+        contrib_dir = "alacritty",
+        steps = {
+          "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/alacritty/lavi.toml`",
+          {
+            "Import into your Alacritty config:",
+            "   ```toml",
+            "   general.import = [",
+            '     "~/.config/alacritty/lavi.toml",',
+            "   ]",
+            "   ```",
+          },
+        },
+      },
+    })
 
-  -- Bottom
-  local bottom = require("lush_theme.lavi.bottom")
-  build_contrib({
-    runs = {
-      { bottom.colors, transforms.compile_palette, bottom.transform, { overwrite, "contrib/bottom/lavi.toml" } },
-      { bottom.colors, transforms.compile_palette, bottom.transform_nix, { overwrite, "nix/themes/bottom.nix" } },
-    },
-    docs = {
-      name = "Bottom",
-      url = "https://github.com/ClementTsang/bottom",
-      tagline = "Graphical process/system monitor for the terminal",
-      contrib_dir = "bottom",
-      screenshots = {
-        "https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725",
+    -- bat (uses textmate output, no module of its own)
+    build_contrib({
+      runs = {}, -- built as part of textmate below
+      docs = {
+        name = "bat",
+        url = "https://github.com/sharkdp/bat",
+        tagline = "A cat clone with syntax highlighting and Git integration",
+        screenshots = {
+          "https://github.com/user-attachments/assets/6cd40f2e-2918-4a57-9ab3-292fe644c9e1",
+        },
+        steps = {
+          "Copy [`contrib/textmate/lavi.tmTheme`](./contrib/textmate/lavi.tmTheme) to `~/.config/bat/themes/lavi.tmTheme`",
+          {
+            "Rebuild bat's theme cache:",
+            "   ```bash",
+            "   bat cache --build",
+            "   ```",
+          },
+          {
+            "Use the theme:",
+            "   ```bash",
+            "   bat --theme=lavi file.rs",
+            "   ```",
+            '   Or set it permanently via `BAT_THEME=lavi` in your environment, or add `--theme="lavi"` to `~/.config/bat/config`.',
+          },
+        },
       },
-      steps = {
-        "Copy the contents of [`%slavi.toml`](./%slavi.toml) into your `~/.config/bottom/bottom.toml`",
-      },
-    },
-  })
+    })
 
-  -- Btop
-  local btop = require("lush_theme.lavi.btop")
-  build_contrib({
-    runs = {
-      { btop.colors, transforms.compile_palette, btop.transform, { overwrite, "contrib/btop/lavi.theme" } },
-    },
-    docs = {
-      name = "Btop",
-      url = "https://github.com/aristocratos/btop",
-      tagline = "Resource monitor with a customizable interface",
-      contrib_dir = "btop",
-      screenshots = {
-        "https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145",
+    -- Bottom
+    local bottom = require("lush_theme.lavi.bottom")
+    build_contrib({
+      runs = {
+        { bottom.colors, transforms.compile_palette, bottom.transform, { overwrite, "contrib/bottom/lavi.toml" } },
+        { bottom.colors, transforms.compile_palette, bottom.transform_nix, { overwrite, "nix/themes/bottom.nix" } },
       },
-      steps = {
-        "Copy [`%slavi.theme`](./%slavi.theme) to `~/.config/btop/themes/lavi.theme`",
-        'Set `color_theme = "lavi"` in your `~/.config/btop/btop.conf` or select it from the options menu',
+      docs = {
+        name = "Bottom",
+        url = "https://github.com/ClementTsang/bottom",
+        tagline = "Graphical process/system monitor for the terminal",
+        contrib_dir = "bottom",
+        screenshots = {
+          "https://github.com/user-attachments/assets/5e13f5a4-5b3f-4d14-87f7-8dc3fd382725",
+        },
+        steps = {
+          "Copy the contents of [`%slavi.toml`](./%slavi.toml) into your `~/.config/bottom/bottom.toml`",
+        },
       },
-    },
-  })
+    })
 
-  -- Clipse
-  local clipse = require("lush_theme.lavi.clipse")
-  build_contrib({
-    runs = {
-      { clipse.colors, transforms.compile_palette, clipse.transform, { overwrite, "contrib/clipse/lavi.json" } },
-      { clipse.colors, transforms.compile_palette, clipse.transform_nix, { overwrite, "nix/themes/clipse.nix" } },
-    },
-    docs = {
-      name = "Clipse",
-      url = "https://github.com/savedra1/clipse",
-      tagline = "Configurable TUI clipboard manager for Unix",
-      contrib_dir = "clipse",
-      steps = {
-        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/clipse/custom_theme.json`",
-        'Set `"themeFile": "custom_theme.json"` in your `~/.config/clipse/config.json`',
+    -- Btop
+    local btop = require("lush_theme.lavi.btop")
+    build_contrib({
+      runs = {
+        { btop.colors, transforms.compile_palette, btop.transform, { overwrite, "contrib/btop/lavi.theme" } },
       },
-    },
-  })
+      docs = {
+        name = "Btop",
+        url = "https://github.com/aristocratos/btop",
+        tagline = "Resource monitor with a customizable interface",
+        contrib_dir = "btop",
+        screenshots = {
+          "https://github.com/user-attachments/assets/c55b4f1e-4d6e-4fa9-babf-5aa76777e145",
+        },
+        steps = {
+          "Copy [`%slavi.theme`](./%slavi.theme) to `~/.config/btop/themes/lavi.theme`",
+          'Set `color_theme = "lavi"` in your `~/.config/btop/btop.conf` or select it from the options menu',
+        },
+      },
+    })
 
-  -- Dank Material Shell
-  local dms = require("lush_theme.lavi.dank-material-shell")
-  build_contrib({
-    runs = {
-      { dms.colors, transforms.compile_palette, dms.transform, { overwrite, "contrib/dank-material-shell/lavi.json" } },
-    },
-    docs = {
-      name = "Dank Material Shell",
-      url = "https://github.com/AvengeMedia/DankMaterialShell",
-      tagline = "Desktop shell for wayland compositors",
-      contrib_dir = "dank-material-shell",
-      screenshots = {
-        "https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e",
+    -- Clipse
+    local clipse = require("lush_theme.lavi.clipse")
+    build_contrib({
+      runs = {
+        { clipse.colors, transforms.compile_palette, clipse.transform, { overwrite, "contrib/clipse/lavi.json" } },
+        { clipse.colors, transforms.compile_palette, clipse.transform_nix, { overwrite, "nix/themes/clipse.nix" } },
       },
-      steps = {
-        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`",
-        "In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file",
-        'Alternatively, set `"currentThemeName": "custom"` and `"customThemeFile": "/path/to/lavi.json"` in `~/.config/DankMaterialShell/settings.json`',
+      docs = {
+        name = "Clipse",
+        url = "https://github.com/savedra1/clipse",
+        tagline = "Configurable TUI clipboard manager for Unix",
+        contrib_dir = "clipse",
+        steps = {
+          "Copy [`%slavi.json`](./%slavi.json) to `~/.config/clipse/custom_theme.json`",
+          'Set `"themeFile": "custom_theme.json"` in your `~/.config/clipse/config.json`',
+        },
       },
-      extra = {
-        "**Nix/Home-Manager:**",
-        "",
-        "Requires the [DMS home-manager module](https://github.com/AvengeMedia/DankMaterialShell) from the DMS flake:",
-        "",
-        "```nix",
-        "# flake.nix inputs:",
-        'inputs.dms.url = "github:AvengeMedia/DankMaterialShell/stable";',
-        "",
-        "# home-manager config:",
-        "imports = [",
-        "  inputs.dms.homeModules.dank-material-shell",
-        "  inputs.lavi.homeManagerModules.lavi",
-        "];",
-        "",
-        "lavi.dank-material-shell.enable = true;",
-        "```",
-        "",
-        "This writes the theme file to `~/.config/DankMaterialShell/themes/lavi.json` and sets `programs.dank-material-shell.settings` to use it as the active custom theme.",
-      },
-    },
-  })
+    })
 
-  -- Foot
-  local foot = require("lush_theme.lavi.foot")
-  build_contrib({
-    runs = {
-      { foot.colors, transforms.compile_palette, foot.transform, { overwrite, "contrib/foot/lavi.ini" } },
-      { foot.colors, transforms.compile_palette, foot.transform_nix, { overwrite, "nix/themes/foot.nix" } },
-    },
-    docs = {
-      name = "Foot",
-      url = "https://codeberg.org/dnkl/foot",
-      tagline = "Fast, lightweight Wayland terminal emulator",
-      contrib_dir = "foot",
-      steps = {
-        "Copy the contents of [`%slavi.ini`](./%slavi.ini) into your `~/.config/foot/foot.ini`",
-      },
-    },
-  })
-
-  -- Ghostty
-  local ghostty = require("lush_theme.lavi.ghostty")
-  build_contrib({
-    runs = {
-      { ghostty.colors, transforms.compile_palette, ghostty.transform, { overwrite, "contrib/ghostty/lavi.conf" } },
-      { ghostty.colors, transforms.compile_palette, ghostty.transform_nix, { overwrite, "nix/themes/ghostty.nix" } },
-    },
-    docs = {
-      name = "Ghostty",
-      url = "https://github.com/ghostty-org/ghostty",
-      tagline = "Fast, native terminal emulator with platform-native UI",
-      contrib_dir = "ghostty",
-      screenshots = {
-        "https://github.com/user-attachments/assets/8ce786b9-4d5d-4634-b5dc-4eb1afbab977",
-      },
-      steps = {
-        "Copy [`%slavi.conf`](./%slavi.conf) to `~/.config/ghostty/themes/lavi.conf`",
-        "Set `theme = lavi.conf` in your `~/.config/ghostty/config`",
-      },
-    },
-  })
-
-  -- Kitty
-  local kitty = require("lush_theme.lavi.kitty")
-  build_contrib({
-    runs = {
-      { kitty.colors, transforms.compile_palette, kitty.transform, { overwrite, "contrib/kitty/lavi.conf" } },
-    },
-    docs = {
-      name = "Kitty",
-      url = "https://github.com/kovidgoyal/kitty",
-      tagline = "GPU-accelerated terminal emulator",
-      contrib_dir = "kitty",
-      steps = {
-        "Copy the contents of [`%slavi.conf`](./%slavi.conf) into your `~/.config/kitty/themes/lavi.conf`",
-        "Run `kitty +kitten themes --reload-in=all lavi` to set the theme",
-      },
-    },
-  })
-
-  -- OpenCode (raw color table, handled specially)
-  build_contrib({
-    runs = {
-      {
-        require("lush_theme.lavi.opencode"),
-        transforms.compile_palette,
-        transforms.to_json,
-        { overwrite, "contrib/opencode/lavi.json" },
-      },
-    },
-    docs = {
-      name = "Opencode",
-      url = "https://github.com/opencode-ai/opencode",
-      tagline = "TUI for coding with LLMs from the terminal",
-      contrib_dir = "opencode",
-      id = "opencode-expanded",
-      screenshots = {
-        "https://github.com/user-attachments/assets/03d3a17c-310f-44fe-b554-b4ab6dfead8d",
-      },
-      steps = {
-        "Copy [`%slavi.json`](./%slavi.json) to `~/.config/opencode/themes/lavi.json`",
-        'Set `{ "theme": "lavi" }` in your `~/.config/opencode/tui.jsonc` or select it from the UI theme picker',
-      },
-    },
-  })
-
-  -- Pi
-  local pi = require("lush_theme.lavi.pi")
-  build_contrib({
-    runs = {
-      { pi.colors, transforms.compile_palette, pi.transform, { overwrite, "contrib/pi/lavi.json" } },
-    },
-    docs = {
-      name = "Pi",
-      url = "https://pi.dev/docs/latest/themes",
-      tagline = "AI coding agent with a customizable terminal UI",
-      contrib_dir = "pi",
-      steps = {
-        "Copy [`%slavi.json`](./%slavi.json) to `~/.pi/agent/themes/lavi.json`",
-        'Set `{ "theme": "lavi" }` in your pi `settings.json`, or select **lavi** from `/settings`',
-      },
-    },
-  })
-
-  -- TextMate (for bat and other TextMate-compatible apps)
-  local textmate = require("lush_theme.lavi.textmate")
-  build_contrib({
-    runs = {
-      {
-        textmate.colors,
-        transforms.compile_palette,
-        textmate.transform,
-        { overwrite, "contrib/textmate/lavi.tmTheme" },
-      },
-    },
-    docs = {
-      name = "TextMate Theme",
-      subtitle = "(bat, Sublime Text, TextMate, VS Code)",
-      contrib_dir = "textmate",
-      body = {
-        "Lavi provides a `.tmTheme` file at [`%slavi.tmTheme`](./%slavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:",
-        "",
-        "- **[bat](https://github.com/sharkdp/bat)** — see the [bat](#other-programs) section above for specific instructions",
-        "- **[Sublime Text](https://www.sublimetext.com/)** — copy `lavi.tmTheme` to your `Packages/User/` directory, then select it from Preferences → Color Scheme",
-        "- **[TextMate](https://macromates.com/)** — double-click `lavi.tmTheme` to install, or copy it to `~/Library/Application Support/TextMate/Themes/`",
-        "- **[VS Code](https://code.visualstudio.com/)** — tmTheme files can be used via the [TmTheme Editor](https://marketplace.visualstudio.com/items?itemName=Youssef.theme-converter) extension or as a base for a [color theme extension](https://code.visualstudio.com/api/extension-guides/color-theme)",
-      },
-    },
-  })
-
-  -- Wezterm
-  local wezterm = require("lush_theme.lavi.wezterm")
-  build_contrib({
-    runs = {
-      { wezterm.colors, transforms.compile_palette, wezterm.transform, { overwrite, "contrib/wezterm/lavi.toml" } },
-    },
-    docs = {
-      name = "Wezterm",
-      url = "https://github.com/wez/wezterm",
-      tagline = "GPU-accelerated terminal emulator and multiplexer",
-      contrib_dir = "wezterm",
-      steps = {
-        "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/wezterm/colors/lavi.toml`",
-        'Set `config.color_scheme = "lavi"` in your Wezterm config',
-      },
-    },
-  })
-
-  -- Windows Terminal (uses shipwright's built-in transform)
-  local wt_palette = vim.tbl_extend("force", { name = "lavi" }, palette)
-  wt_palette.ansi = nil
-  -- The windows_terminal transform expects literal `fg`/`bg` keys.
-  wt_palette.fg = palette.fg2
-  wt_palette.bg = palette.bg1
-  build_contrib({
-    runs = {
-      {
-        wt_palette,
-        require("shipwright.transform.contrib.windows_terminal"),
-        { overwrite, "contrib/windows_terminal/lavi.json" },
-      },
-    },
-    docs = {
-      name = "Windows Terminal",
-      url = "https://github.com/microsoft/terminal",
-      tagline = "Modern terminal application for Windows",
-      contrib_dir = "windows_terminal",
-      steps = {
-        "Open the Windows Terminal settings (`ctrl+,`)",
-        "Select **Open JSON file** at the bottom left corner (`ctrl+shift+,`)",
+    -- Dank Material Shell
+    local dms = require("lush_theme.lavi.dank-material-shell")
+    build_contrib({
+      runs = {
         {
-          "Copy the contents of [`%slavi.json`](./%slavi.json) inside of the `schemes` array",
-          "   ```jsonc",
-          "   {",
-          '     "schemes": [',
-          "       // paste the contents of lavi.json here",
-          "     ],",
-          "   }",
-          "   ```",
+          dms.colors,
+          transforms.compile_palette,
+          dms.transform,
+          { overwrite, "contrib/dank-material-shell/lavi.json" },
         },
-        "Save and exit",
-        "In the **Settings** panel under **Profiles**, select the profile you want to use the theme in, then select **Appearance** and choose **lavi** from the **Color scheme** dropdown",
       },
-    },
-  })
+      docs = {
+        name = "Dank Material Shell",
+        url = "https://github.com/AvengeMedia/DankMaterialShell",
+        tagline = "Desktop shell for wayland compositors",
+        contrib_dir = "dank-material-shell",
+        screenshots = {
+          "https://github.com/user-attachments/assets/110fe437-85ce-4c5d-bf07-0af2c072630e",
+        },
+        steps = {
+          "Copy [`%slavi.json`](./%slavi.json) to `~/.config/DankMaterialShell/themes/lavi.json`",
+          "In Settings → Theme & Colors, select **Custom** and set the theme file path to the copied file",
+          'Alternatively, set `"currentThemeName": "custom"` and `"customThemeFile": "/path/to/lavi.json"` in `~/.config/DankMaterialShell/settings.json`',
+        },
+        extra = {
+          "**Nix/Home-Manager:**",
+          "",
+          "Requires the [DMS home-manager module](https://github.com/AvengeMedia/DankMaterialShell) from the DMS flake:",
+          "",
+          "```nix",
+          "# flake.nix inputs:",
+          'inputs.dms.url = "github:AvengeMedia/DankMaterialShell/stable";',
+          "",
+          "# home-manager config:",
+          "imports = [",
+          "  inputs.dms.homeModules.dank-material-shell",
+          "  inputs.lavi.homeManagerModules.lavi",
+          "];",
+          "",
+          "lavi.dank-material-shell.enable = true;",
+          "```",
+          "",
+          "This writes the theme file to `~/.config/DankMaterialShell/themes/lavi.json` and sets `programs.dank-material-shell.settings` to use it as the active custom theme.",
+        },
+      },
+    })
 
-  -- Zellij
-  local zellij = require("lush_theme.lavi.zellij")
-  build_contrib({
-    runs = {
-      { zellij.colors, zellij.transform, { overwrite, "contrib/zellij/lavi.kdl" } },
-    },
-    docs = {
-      name = "Zellij",
-      url = "https://github.com/zellij-org/zellij",
-      tagline = "Terminal workspace and multiplexer",
-      contrib_dir = "zellij",
-      screenshots = {
-        "https://github.com/user-attachments/assets/8c02440f-39d1-4173-bdfa-679cd0d72ada",
+    -- Foot
+    local foot = require("lush_theme.lavi.foot")
+    build_contrib({
+      runs = {
+        { foot.colors, transforms.compile_palette, foot.transform, { overwrite, "contrib/foot/lavi.ini" } },
+        { foot.colors, transforms.compile_palette, foot.transform_nix, { overwrite, "nix/themes/foot.nix" } },
       },
-      steps = {
-        "Copy [`%slavi.kdl`](./%slavi.kdl) to `~/.config/zellij/themes/lavi.kdl`",
-        'Set `theme "lavi"` in your `~/.config/zellij/config.kdl`',
+      docs = {
+        name = "Foot",
+        url = "https://codeberg.org/dnkl/foot",
+        tagline = "Fast, lightweight Wayland terminal emulator",
+        contrib_dir = "foot",
+        steps = {
+          "Copy the contents of [`%slavi.ini`](./%slavi.ini) into your `~/.config/foot/foot.ini`",
+        },
       },
-    },
-  })
+    })
 
-  -- Base16 (for Stylix) - no docs entry, only referenced in the Nix section
-  local base16 = require("lush_theme.lavi.base16")
-  builder.run(base16.colors, transforms.compile_palette, base16.transform, { overwrite, "contrib/base16/lavi.yaml" })
+    -- Ghostty
+    local ghostty = require("lush_theme.lavi.ghostty")
+    build_contrib({
+      runs = {
+        { ghostty.colors, transforms.compile_palette, ghostty.transform, { overwrite, "contrib/ghostty/lavi.conf" } },
+        { ghostty.colors, transforms.compile_palette, ghostty.transform_nix, { overwrite, "nix/themes/ghostty.nix" } },
+      },
+      docs = {
+        name = "Ghostty",
+        url = "https://github.com/ghostty-org/ghostty",
+        tagline = "Fast, native terminal emulator with platform-native UI",
+        contrib_dir = "ghostty",
+        screenshots = {
+          "https://github.com/user-attachments/assets/8ce786b9-4d5d-4634-b5dc-4eb1afbab977",
+        },
+        steps = {
+          "Copy [`%slavi.conf`](./%slavi.conf) to `~/.config/ghostty/themes/lavi.conf`",
+          "Set `theme = lavi.conf` in your `~/.config/ghostty/config`",
+        },
+      },
+    })
+
+    -- Kitty
+    local kitty = require("lush_theme.lavi.kitty")
+    build_contrib({
+      runs = {
+        { kitty.colors, transforms.compile_palette, kitty.transform, { overwrite, "contrib/kitty/lavi.conf" } },
+      },
+      docs = {
+        name = "Kitty",
+        url = "https://github.com/kovidgoyal/kitty",
+        tagline = "GPU-accelerated terminal emulator",
+        contrib_dir = "kitty",
+        steps = {
+          "Copy the contents of [`%slavi.conf`](./%slavi.conf) into your `~/.config/kitty/themes/lavi.conf`",
+          "Run `kitty +kitten themes --reload-in=all lavi` to set the theme",
+        },
+      },
+    })
+
+    -- OpenCode (raw color table, handled specially)
+    build_contrib({
+      runs = {
+        {
+          require("lush_theme.lavi.opencode"),
+          transforms.compile_palette,
+          transforms.to_json,
+          { overwrite, "contrib/opencode/lavi.json" },
+        },
+      },
+      docs = {
+        name = "Opencode",
+        url = "https://github.com/opencode-ai/opencode",
+        tagline = "TUI for coding with LLMs from the terminal",
+        contrib_dir = "opencode",
+        id = "opencode-expanded",
+        screenshots = {
+          "https://github.com/user-attachments/assets/03d3a17c-310f-44fe-b554-b4ab6dfead8d",
+        },
+        steps = {
+          "Copy [`%slavi.json`](./%slavi.json) to `~/.config/opencode/themes/lavi.json`",
+          'Set `{ "theme": "lavi" }` in your `~/.config/opencode/tui.jsonc` or select it from the UI theme picker',
+        },
+      },
+    })
+
+    -- Pi
+    local pi = require("lush_theme.lavi.pi")
+    build_contrib({
+      runs = {
+        { pi.colors, transforms.compile_palette, pi.transform, { overwrite, "contrib/pi/lavi.json" } },
+      },
+      docs = {
+        name = "Pi",
+        url = "https://pi.dev/docs/latest/themes",
+        tagline = "AI coding agent with a customizable terminal UI",
+        contrib_dir = "pi",
+        steps = {
+          "Copy [`%slavi.json`](./%slavi.json) to `~/.pi/agent/themes/lavi.json`",
+          'Set `{ "theme": "lavi" }` in your pi `settings.json`, or select **lavi** from `/settings`',
+        },
+      },
+    })
+
+    -- TextMate (for bat and other TextMate-compatible apps)
+    local textmate = require("lush_theme.lavi.textmate")
+    build_contrib({
+      runs = {
+        {
+          textmate.colors,
+          transforms.compile_palette,
+          textmate.transform,
+          { overwrite, "contrib/textmate/lavi.tmTheme" },
+        },
+      },
+      docs = {
+        name = "TextMate Theme",
+        subtitle = "(bat, Sublime Text, TextMate, VS Code)",
+        contrib_dir = "textmate",
+        body = {
+          "Lavi provides a `.tmTheme` file at [`%slavi.tmTheme`](./%slavi.tmTheme) that works with any application supporting the TextMate theme format. This includes:",
+          "",
+          "- **[bat](https://github.com/sharkdp/bat)** — see the [bat](#other-programs) section above for specific instructions",
+          "- **[Sublime Text](https://www.sublimetext.com/)** — copy `lavi.tmTheme` to your `Packages/User/` directory, then select it from Preferences → Color Scheme",
+          "- **[TextMate](https://macromates.com/)** — double-click `lavi.tmTheme` to install, or copy it to `~/Library/Application Support/TextMate/Themes/`",
+          "- **[VS Code](https://code.visualstudio.com/)** — tmTheme files can be used via the [TmTheme Editor](https://marketplace.visualstudio.com/items?itemName=Youssef.theme-converter) extension or as a base for a [color theme extension](https://code.visualstudio.com/api/extension-guides/color-theme)",
+        },
+      },
+    })
+
+    -- Wezterm
+    local wezterm = require("lush_theme.lavi.wezterm")
+    build_contrib({
+      runs = {
+        { wezterm.colors, transforms.compile_palette, wezterm.transform, { overwrite, "contrib/wezterm/lavi.toml" } },
+      },
+      docs = {
+        name = "Wezterm",
+        url = "https://github.com/wez/wezterm",
+        tagline = "GPU-accelerated terminal emulator and multiplexer",
+        contrib_dir = "wezterm",
+        steps = {
+          "Copy [`%slavi.toml`](./%slavi.toml) to `~/.config/wezterm/colors/lavi.toml`",
+          'Set `config.color_scheme = "lavi"` in your Wezterm config',
+        },
+      },
+    })
+
+    -- Windows Terminal (uses shipwright's built-in transform)
+    local wt_palette = vim.tbl_extend("force", { name = "lavi" }, palette)
+    wt_palette.ansi = nil
+    -- The windows_terminal transform expects literal `fg`/`bg` keys.
+    wt_palette.fg = palette.fg2
+    wt_palette.bg = palette.bg1
+    build_contrib({
+      runs = {
+        {
+          wt_palette,
+          require("shipwright.transform.contrib.windows_terminal"),
+          { overwrite, "contrib/windows_terminal/lavi.json" },
+        },
+      },
+      docs = {
+        name = "Windows Terminal",
+        url = "https://github.com/microsoft/terminal",
+        tagline = "Modern terminal application for Windows",
+        contrib_dir = "windows_terminal",
+        steps = {
+          "Open the Windows Terminal settings (`ctrl+,`)",
+          "Select **Open JSON file** at the bottom left corner (`ctrl+shift+,`)",
+          {
+            "Copy the contents of [`%slavi.json`](./%slavi.json) inside of the `schemes` array",
+            "   ```jsonc",
+            "   {",
+            '     "schemes": [',
+            "       // paste the contents of lavi.json here",
+            "     ],",
+            "   }",
+            "   ```",
+          },
+          "Save and exit",
+          "In the **Settings** panel under **Profiles**, select the profile you want to use the theme in, then select **Appearance** and choose **lavi** from the **Color scheme** dropdown",
+        },
+      },
+    })
+
+    -- Zellij
+    local zellij = require("lush_theme.lavi.zellij")
+    build_contrib({
+      runs = {
+        { zellij.colors, zellij.transform, { overwrite, "contrib/zellij/lavi.kdl" } },
+      },
+      docs = {
+        name = "Zellij",
+        url = "https://github.com/zellij-org/zellij",
+        tagline = "Terminal workspace and multiplexer",
+        contrib_dir = "zellij",
+        screenshots = {
+          "https://github.com/user-attachments/assets/8c02440f-39d1-4173-bdfa-679cd0d72ada",
+        },
+        steps = {
+          "Copy [`%slavi.kdl`](./%slavi.kdl) to `~/.config/zellij/themes/lavi.kdl`",
+          'Set `theme "lavi"` in your `~/.config/zellij/config.kdl`',
+        },
+      },
+    })
+
+    -- Base16 (for Stylix) - no docs entry, only referenced in the Nix section
+    local base16 = require("lush_theme.lavi.base16")
+    builder.run(
+      base16.colors,
+      transforms.compile_palette,
+      base16.transform,
+      { overwrite, out("contrib/base16/lavi.yaml") }
+    )
+  end
+
+  -- Build each variant's outputs.
+  for _, variant in ipairs(variants) do
+    build_for_variant(variant)
+  end
 
   ---------------------------------------------------------------------------
   -- README generation

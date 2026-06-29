@@ -1,4 +1,5 @@
 return {
+  amethyst = "#B68FFF",
   anise = "#7E7CEE",
   ansi = {
     bright = {
@@ -35,7 +36,6 @@ return {
   bright_green = "#8BF9A6",
   bright_magenta = "#BF94FF",
   bright_red = "#F47189",
-  bright_violet = "#B68FFF",
   bright_white = "#FFFFFF",
   bright_yellow = "#FFD68F",
   cayenne = "#FF8093",
@@ -50,6 +50,7 @@ return {
   fg2 = "#EDE7FE",
   fg3 = "#FFFFFF",
   green = "#7CF89B",
+  iris = "#9487F8",
   lavender = "#AA74FB",
   light_bg = "#FFFFFF",
   light_bg_dark = "#E6E6E6",
@@ -59,7 +60,6 @@ return {
   magenta = "#B98AFF",
   matcha = "#9FDFB5",
   med_black = "#4C425C",
-  med_violet = "#9487F8",
   mint = "#A3E0CB",
   muted_anise = "#7D7490",
   muted_velvet = "#918FB3",

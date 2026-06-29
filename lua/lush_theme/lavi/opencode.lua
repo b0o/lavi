@@ -5,7 +5,7 @@ return {
   ["$schema"] = "https://opencode.ai/theme.json",
   theme = {
     primary = {
-      dark = p.bright_violet.darken(5).desaturate(30),
+      dark = p.amethyst.darken(5).desaturate(30),
       light = p.orange.darken(5).desaturate(30),
     },
     secondary = {

@@ -102,7 +102,7 @@ local colors = {
         background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
-        emphasis_2 = p.bright_violet,
+        emphasis_2 = p.amethyst,
         emphasis_3 = p.oceanblue,
       },
 
@@ -111,7 +111,7 @@ local colors = {
         background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
-        emphasis_2 = p.bright_violet,
+        emphasis_2 = p.amethyst,
         emphasis_3 = p.oceanblue,
       },
 
@@ -152,7 +152,7 @@ local colors = {
         player_7 = p.yellow,
         player_8 = p.orange,
         player_9 = p.red,
-        player_10 = p.bright_violet,
+        player_10 = p.amethyst,
       },
     },
   },

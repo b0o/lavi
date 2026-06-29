@@ -11,7 +11,7 @@ local colors = {
   cursor_bg = p.cursor_bg,
   blush = p.blush,
   bg_bright = p.bg3,
-  med_violet = p.med_violet,
+  med_violet = p.iris,
   selection_fg = p.selection_fg,
   selection_bg = p.selection_bg,
 

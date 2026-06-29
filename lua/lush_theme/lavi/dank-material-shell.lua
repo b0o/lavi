@@ -6,7 +6,7 @@ local colors = {
   dark = {
     name = "Lavi Dark",
 
-    primary = p.med_violet.desaturate(20),
+    primary = p.iris.desaturate(20),
     primaryText = lavi.NormalNC.bg,
     primaryContainer = p.selection_bg,
 
@@ -38,7 +38,7 @@ local colors = {
   light = {
     name = "Lavi Light",
 
-    primary = p.med_violet.desaturate(20).darken(10),
+    primary = p.iris.desaturate(20).darken(10),
     primaryText = p.bright_white,
     primaryContainer = p.lavender.lighten(70).rotate(5),
 

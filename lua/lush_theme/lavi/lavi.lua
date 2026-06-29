@@ -20,7 +20,7 @@ local theme = lush(function(injected_functions)
     CursorColumn     { bg = p.black }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
     CursorLine       { bg = p.bg2 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     CursorLineNC     { bg = p.bg1.lighten(6) }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    Directory        { fg = p.bright_violet.lighten(50).desaturate(10) }, -- Directory names (and other special names in listings)
+    Directory        { fg = p.amethyst.lighten(50).desaturate(10) }, -- Directory names (and other special names in listings)
 
     EndOfBuffer      { fg = p.black }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     -- TermCursor       { }, -- Cursor in a focused terminal
@@ -323,12 +323,12 @@ local theme = lush(function(injected_functions)
     AvanteConflictAncestor      { GitConflictAncestor },
     AvanteConflictAncestorLabel { GitConflictAncestorLabel },
 
-    AvanteInlineHint            { fg = p.bright_violet.lighten(35).saturate(-10) },
+    AvanteInlineHint            { fg = p.amethyst.lighten(35).saturate(-10) },
 
     ---- nvim-tree.lua
     NvimTreeGitDirty          { DiffChangeBright },
     NvimTreeGitStaged         { DiffTextBright },
-    NvimTreeGitMerge          { fg = p.bright_violet },
+    NvimTreeGitMerge          { fg = p.amethyst },
     NvimTreeGitRenamed        { fg = p.orange },
     NvimTreeGitNew            { DiffAddBright },
     NvimTreeGitDeleted        { DiffDeleteBright },
@@ -338,15 +338,15 @@ local theme = lush(function(injected_functions)
     NvimTreeFolderName        { fg = p.bright_black.lighten(40).saturate(30).rotate(-10)  },
     NvimTreeEmptyFolderName   { NvimTreeFolderName },
     NvimTreeOpenedFolderName  { fg = p.bright_black.lighten(70).saturate(50).rotate(-10)  },
-    NvimTreeOpenedHL          { NvimTreeNormal, fg = p.bright_violet.lighten(40).saturate(10)  },
+    NvimTreeOpenedHL          { NvimTreeNormal, fg = p.amethyst.lighten(40).saturate(10)  },
     NvimTreeExecFile          { gui = 'bold,italic' },
     NvimTreeSpecialFile       { gui = 'bold' },
 
     ---- Neo-tree.nvim
     NeoTreeBufferNumber       { fg = p.bright_black },
     NeoTreeCursorLine         { CursorLine },
-    NeoTreeDirectoryIcon      { fg = p.bright_violet.lighten(40).desaturate(50) },
-    NeoTreeDirectoryName      { fg = p.bright_violet.lighten(30).desaturate(10) },
+    NeoTreeDirectoryIcon      { fg = p.amethyst.lighten(40).desaturate(50) },
+    NeoTreeDirectoryName      { fg = p.amethyst.lighten(30).desaturate(10) },
     NeoTreeDotfile            { fg = p.anise.lighten(50).desaturate(10) },
     NeoTreeFileIcon           { fg = p.anise.lighten(40).desaturate(60) },
     NeoTreeFileName           { fg = p.anise.lighten(50).desaturate(10) },
@@ -531,8 +531,8 @@ local theme = lush(function(injected_functions)
     FlashMatch                { bg = p.velvet.darken(10), fg = p.white },
     FlashCurrent              { bg = p.blush, fg = p.bg2 },
     FlashLabel                { bg = p.yellow, fg = p.bg2 },
-    FlashPrompt               { bg = p.med_violet, fg = p.white },
-    FlashPromptIcon           { bg = p.med_violet, fg = p.white },
+    FlashPrompt               { bg = p.iris, fg = p.white },
+    FlashPromptIcon           { bg = p.iris, fg = p.white },
     FlashCursor               { bg = p.skyblue, fg = p.bg2 },
 
     ---- nvim-treesitter-context
@@ -634,7 +634,7 @@ local theme = lush(function(injected_functions)
     DapUIFloatNormal        { NormalFloat },
     DapUIFloatBorder        { FloatBorder },
     DapUIWatchesEmpty       { fg = p.cayenne },
-    DapUIWatchesValue       { fg = p.bright_violet },
+    DapUIWatchesValue       { fg = p.amethyst },
     DapUIWatchesError       { fg = p.red },
     DapUIBreakpointsPath    { fg = p.cyan },
     DapUIBreakpointsInfo    { fg = p.cyan.rotate(20) },

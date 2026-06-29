@@ -15,7 +15,7 @@ local colors = {
         p.blush,
         p.cyan.desaturate(30).lighten(20),
         p.orange.desaturate(20).lighten(20),
-        p.bright_violet.desaturate(20),
+        p.amethyst.desaturate(20),
         p.oceanblue.desaturate(10),
         p.lavender.lighten(20).desaturate(30),
         p.green.lighten(40).desaturate(30),

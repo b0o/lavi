@@ -14,7 +14,7 @@ return {
     c = lavi_c,
   },
   visual = {
-    a = { bg = lavi.pumpkin.hex, fg = lavi.bright_white.hex, gui = "bold" },
+    a = { bg = lavi.orange.hex, fg = lavi.bright_white.hex, gui = "bold" },
     b = lavi_b,
     c = lavi_c,
   },

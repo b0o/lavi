@@ -94,7 +94,6 @@ M.matcha = hsl("#9fdfb4")
 M.mint = hsl("#a2e0ca")
 
 M.cayenne = hsl("#FF7D90")
-M.pumpkin = hsl("#ff9969")
 
 M.deep_lavender = hsl("#38265A")
 M.deep_anise = hsl("#564D82")

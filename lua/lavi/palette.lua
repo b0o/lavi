@@ -77,7 +77,6 @@ return {
   mint = "#A3E0CB",
   oceanblue = "#80BDFF",
   orange = "#FF9A6B",
-  pumpkin = "#FF9A6B",
   red = "#F2637E",
   selection_bg = "#584F8C",
   selection_fg = "#EDE7FE",

@@ -122,7 +122,7 @@ local theme = lush(function(injected_functions)
     Constant         { fg = p.cyan }, -- (*) Any constant
     String           { fg = p.yellow.lighten(40).rotate(50).saturate(10) }, --   A string constant: "this is a string"
     Character        { String }, --   A character constant: 'c', '\n'
-    Number           { fg = p.pumpkin }, --   A number constant: 234, 0xff
+    Number           { fg = p.orange }, --   A number constant: 234, 0xff
     Float            { Number }, --   A floating point constant: 2.3e10
     Boolean          { fg = p.cyan.lighten(30) }, --   A boolean constant: TRUE, false
 
@@ -615,7 +615,7 @@ local theme = lush(function(injected_functions)
     DapBreakpoint           { fg = p.yellow.darken(20) },
     DapBreakpointCondition  { DapBreakpoint },
     DapLogPoint             { DapBreakpoint },
-    DapStopped              { fg = p.pumpkin.darken(5) },
+    DapStopped              { fg = p.orange.darken(5) },
     DapBreakpointRejected   { fg = p.red },
 
     ---- nvim-dap-ui

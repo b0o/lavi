@@ -74,57 +74,29 @@ M.cursor_bg = M.dark_bg
 M.cursor_border = M.dark_bg_bright
 
 M.orange = hsl("#ff9969")
-M.indigo = hsl("#9074FF")
 M.violet = hsl("#DC91FF")
 M.skyblue = hsl("#3FC4C4")
 
-M.bright_indigo = M.indigo.lighten(10)
 M.oceanblue = hsl("#80BDFF")
 M.med_violet = hsl("#9385F8")
 M.bright_violet = hsl("#B891FF")
-
-M.straw = hsl("#fffacf")
-
-M.tofu = hsl("#fdf6e3")
-M.cashew = hsl("#e6dac3")
-M.walnut = hsl("#CEB999")
-M.almond = hsl("#a6875a")
-M.cocoa = hsl("#3b290e")
 
 M.licorice = hsl("#483270")
 M.lavender = hsl("#A872FB")
 M.velvet = hsl("#B29EED")
 M.anise = hsl("#7F7DEE")
 M.anise_dark = hsl("#7E7490")
-M.hydrangea = hsl("#fb72fa")
 M.blush = hsl("#EBBBF9")
-M.powder = hsl("#EAC6F5")
 M.dust = hsl("#EAD2F1")
-M.mistyrose = hsl("#ffe4e1")
-M.rebeccapurple = hsl("#3C2C74")
 
 M.matcha = hsl("#9fdfb4")
 
-M.snow = hsl("#e4fffe")
-M.ice = hsl("#a4e2e0")
 M.mint = hsl("#a2e0ca")
 
-M.nectar = hsl("#f0f070")
 M.cayenne = hsl("#FF7D90")
-M.yam = hsl("#e86f54")
 M.pumpkin = hsl("#ff9969")
-M.rose = hsl("#b32e29")
-
-M.grey2 = hsl("#222222")
-M.grey5 = hsl("#777777")
-M.grey6 = hsl("#aaaaaa")
-M.grey7 = hsl("#cccccc")
-M.grey8 = hsl("#dddddd")
-
-M.mid_velvet = hsl("#6E6EA3")
 
 M.deep_lavender = hsl("#38265A")
-M.deep_licorice = M.dark_bg
 M.deep_anise = hsl("#564D82")
 M.deep_velvet = hsl("#8F8FB3")
 

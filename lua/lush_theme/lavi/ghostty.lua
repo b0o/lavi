@@ -1,12 +1,12 @@
 local p = require("lush_theme.lavi.palette")
 
 local colors = {
-  bg = p.dark_bg,
-  fg = p.dark_fg,
-  selection_fg = p.fg,
+  bg = p.bg1,
+  fg = p.fg2,
+  selection_fg = p.fg2,
   selection_bg = p.selection_bg,
-  cursor_fg = p.dark_fg,
-  cursor_bg = p.dark_bg,
+  cursor_fg = p.fg2,
+  cursor_bg = p.bg1,
   split_divider = p.med_black,
 
   black = p.ansi.normal.black,

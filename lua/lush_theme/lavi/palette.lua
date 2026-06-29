@@ -23,55 +23,33 @@ M.bright_white = hsl("#ffffff")
 
 M.med_black = hsl("#4C435C")
 
-M.dark_bg = hsl("#25213B")
-M.dark_bg_dark = M.dark_bg.darken(10)
-M.dark_bg_med = M.dark_bg.lighten(13)
-M.dark_bg_bright = M.dark_bg.lighten(20)
+-- Background ladder, darkest -> brightest (bg1 is the Normal background)
+M.bg1 = hsl("#25213B")
+M.bg0 = M.bg1.darken(10)
+M.bg2 = M.bg1.lighten(13)
+M.bg3 = M.bg1.lighten(20)
 
+-- Foreground ladder, dimmest -> brightest (fg2 is the main text color)
+M.fg0 = hsl("#A89CCF")
+M.fg1 = hsl("#DED4FD")
+M.fg2 = hsl("#ede7fe")
+M.fg3 = M.bright_white
+
+-- Light mode (deferred; currently consumed only by the dms light theme).
+-- Will be unified with the numeric ladder when the variant/mode system lands.
 M.light_bg = M.bright_white
 M.light_bg_med = M.light_bg.darken(5)
 M.light_bg_dark = M.light_bg.darken(10)
-M.light_bg_bright = M.light_bg.lighten(20)
 
 M.light_fg = M.black.lighten(5)
 M.light_fg_dim = M.light_fg.lighten(20)
-M.light_fg_nc = M.light_fg.lighten(40)
 
-M.dark_fg = hsl("#ede7fe")
-M.dark_fg_dim = hsl("#DED4FD")
-M.dark_fg_nc = hsl("#A89CCF")
+M.selection_fg = M.fg2
+M.selection_bg = M.bg1.lighten(30)
 
-M.fg = M.dark_fg
-M.fg_dim = M.dark_fg_dim
-M.fg_nc = M.dark_fg_nc
-M.fg_bright = M.bright_white
-
-M.bg = M.dark_bg
-M.bg_dark = M.dark_bg_dark
-M.bg_med = M.dark_bg_med
-M.bg_bright = M.dark_bg_bright
-
-M.selection_fg = M.fg
-M.selection_bg = M.dark_bg.lighten(30)
-
--- TODO: light mode
--- local function set_fg_bg()
---   local dark_mode = vim.g.colors_name == "lavi"
---   M.fg = dark_mode and M.dark_fg or M.light_fg
---   M.fg_dim = dark_mode and M.dark_fg_dim or M.light_fg_dim
---   M.fg_nc = dark_mode and M.dark_fg_nc or M.light_fg_nc
---
---   M.bg = dark_mode and M.dark_bg or M.light_bg
---   M.bg_dark = dark_mode and M.dark_bg_dark or M.light_bg_dark
---   M.bg_med = dark_mode and M.dark_bg_med or M.light_bg_med
---   M.bg_bright = dark_mode and M.dark_bg_bright or M.light_bg_bright
--- end
-
--- set_fg_bg()
-
-M.cursor_fg = M.dark_fg
-M.cursor_bg = M.dark_bg
-M.cursor_border = M.dark_bg_bright
+M.cursor_fg = M.fg2
+M.cursor_bg = M.bg1
+M.cursor_border = M.bg3
 
 M.orange = hsl("#ff9969")
 M.violet = hsl("#DC91FF")

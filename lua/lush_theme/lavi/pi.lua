@@ -14,12 +14,12 @@ local colors = {
     warning = p.orange.desaturate(10).darken(5),
     info = p.oceanblue.desaturate(10),
 
-    textMuted = p.fg_nc,
+    textMuted = p.fg0,
     placeholderText = p.anise_dark,
 
-    background = p.dark_bg,
+    background = p.bg1,
     backgroundPanel = lavi.Normal.bg,
-    backgroundMenu = p.bg_med,
+    backgroundMenu = p.bg2,
     border = p.med_black,
     borderActive = p.bright_black,
     borderSubtle = p.med_black,
@@ -45,10 +45,10 @@ local colors = {
     customMessageBg = "backgroundPanel",
     customMessageText = "",
     customMessageLabel = "primary",
-    toolPendingBg = p.bg_med.lighten(10),
-    toolSuccessBg = p.bg_med,
+    toolPendingBg = p.bg2.lighten(10),
+    toolSuccessBg = p.bg2,
     toolErrorBg = lavi.NeogitDiffDelete.bg,
-    toolTitle = p.fg_nc,
+    toolTitle = p.fg0,
     toolOutput = "",
 
     -- Markdown
@@ -66,7 +66,7 @@ local colors = {
     -- Tool diffs
     toolDiffAdded = lavi.DiffAddBright.fg,
     toolDiffRemoved = lavi.DiffDeleteBright.fg,
-    toolDiffContext = p.fg_nc.lighten(20).desaturate(10),
+    toolDiffContext = p.fg0.lighten(20).desaturate(10),
 
     -- Syntax highlighting
     syntaxComment = lavi.Comment.fg,

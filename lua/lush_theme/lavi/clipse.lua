@@ -6,17 +6,17 @@ local colors = {
   useCustom = true,
 
   -- Title bar
-  TitleFore = p.fg_dim,
+  TitleFore = p.fg1,
   TitleBack = lavi.Normal.bg,
-  TitleInfo = p.fg_nc,
+  TitleInfo = p.fg0,
 
   -- List items: restrained palette - lavender accent, muted shades for depth
-  NormalTitle = p.fg_dim,
+  NormalTitle = p.fg1,
   DimmedTitle = p.bright_black,
   SelectedTitle = p.blush,
-  NormalDesc = p.fg_nc,
+  NormalDesc = p.fg0,
   DimmedDesc = p.bright_black,
-  SelectedDesc = p.fg_dim,
+  SelectedDesc = p.fg1,
 
   -- Status: soft violet accent
   StatusMsg = p.velvet,
@@ -28,14 +28,14 @@ local colors = {
 
   -- Filter: keep cohesive with lavender/blush family
   FilteredMatch = p.blush,
-  FilterPrompt = p.fg_dim,
-  FilterInfo = p.fg_nc,
-  FilterText = p.fg_dim,
+  FilterPrompt = p.fg1,
+  FilterInfo = p.fg0,
+  FilterText = p.fg1,
   FilterCursor = p.lavender,
 
   -- Help
   HelpKey = p.velvet,
-  HelpDesc = p.fg_nc,
+  HelpDesc = p.fg0,
 
   -- Pagination: shades of the same palette
   PageActiveDot = p.velvet,
@@ -43,7 +43,7 @@ local colors = {
   DividerDot = p.med_black,
 
   -- Preview
-  PreviewedText = p.fg_nc,
+  PreviewedText = p.fg0,
   PreviewBorder = p.bright_black,
 }
 

@@ -7,7 +7,7 @@ local plist = transforms.plist
 local colors = {
   -- Editor settings
   fg = lavi.Normal.fg,
-  bg = p.bg,
+  bg = p.bg1,
   caret = lavi.Statement.fg,
   gutter_fg = p.bright_black,
   invisibles = p.med_black,

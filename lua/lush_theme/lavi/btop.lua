@@ -3,13 +3,13 @@ local p = require("lush_theme.lavi.palette")
 -- btop theme with muted colors matching the nvim theme aesthetic
 local colors = {
   -- Main background, empty for terminal default
-  main_bg = p.bg,
+  main_bg = p.bg1,
 
   -- Main text color
-  main_fg = p.fg_nc,
+  main_fg = p.fg0,
 
   -- Title color for boxes
-  title = p.fg_dim,
+  title = p.fg1,
 
   -- Highlight color for keyboard shortcuts
   hi_fg = p.yellow.lighten(20).desaturate(20),

@@ -3,12 +3,12 @@ local p = require("lush_theme.lavi.palette")
 -- Base16 color scheme mapping
 -- See: https://github.com/chriskempson/base16/blob/main/styling.md
 local colors = {
-  base00 = p.dark_bg, -- Default Background
+  base00 = p.bg1, -- Default Background
   base01 = p.black, -- Lighter Background
   base02 = p.selection_bg, -- Selection Background
   base03 = p.bright_black, -- Comments
-  base04 = p.fg_nc, -- Dark Foreground
-  base05 = p.fg, -- Default Foreground
+  base04 = p.fg0, -- Dark Foreground
+  base05 = p.fg2, -- Default Foreground
   base06 = p.white, -- Light Foreground
   base07 = p.bright_white, -- Light Background
   base08 = p.red, -- Variables, Diff Deleted

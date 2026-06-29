@@ -2,8 +2,8 @@ local p = require("lush_theme.lavi.palette")
 local transforms = require("lush_theme.lavi.transforms")
 
 local colors = {
-  bg = p.bg,
-  fg = p.fg,
+  bg = p.bg1,
+  fg = p.fg2,
   cursor_fg = p.cursor_fg,
   cursor_bg = p.cursor_bg,
 

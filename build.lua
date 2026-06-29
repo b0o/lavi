@@ -411,6 +411,9 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   -- Windows Terminal (uses shipwright's built-in transform)
   local wt_palette = vim.tbl_extend("force", { name = "lavi" }, palette)
   wt_palette.ansi = nil
+  -- The windows_terminal transform expects literal `fg`/`bg` keys.
+  wt_palette.fg = palette.fg2
+  wt_palette.bg = palette.bg1
   build_contrib({
     runs = {
       {

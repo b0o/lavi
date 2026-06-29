@@ -37,27 +37,27 @@ return {
       light = lavi.Normal.fg,
     },
     textMuted = {
-      dark = p.fg_nc,
-      light = p.fg_nc,
+      dark = p.fg0,
+      light = p.fg0,
     },
     placeholderText = {
       dark = p.anise_dark,
       light = p.med_black,
     },
     background = {
-      dark = p.dark_bg,
+      dark = p.bg1,
       light = p.bright_white,
     },
     backgroundPanel = {
-      dark = p.bg_med,
+      dark = p.bg2,
       light = p.bright_white,
     },
     backgroundElement = {
-      dark = p.bg_med,
+      dark = p.bg2,
       light = p.bright_white,
     },
     backgroundMenu = {
-      dark = p.dark_bg_bright,
+      dark = p.bg3,
       light = p.bright_white,
     },
     border = {
@@ -137,8 +137,8 @@ return {
       light = lavi.RenderMarkdownLink.fg,
     },
     markdownCode = {
-      dark = p.fg_nc,
-      light = p.fg_nc,
+      dark = p.fg0,
+      light = p.fg0,
     },
     markdownBlockQuote = {
       dark = lavi.RenderMarkdownQuote.fg,
@@ -177,8 +177,8 @@ return {
       light = lavi.RenderMarkdownLink.fg,
     },
     markdownCodeBlock = {
-      dark = p.fg_nc,
-      light = p.fg_nc,
+      dark = p.fg0,
+      light = p.fg0,
     },
     syntaxComment = {
       dark = lavi.Comment.fg,

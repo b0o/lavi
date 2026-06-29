@@ -12,8 +12,8 @@ local colors = {
 
     secondary = p.blue.desaturate(20),
 
-    surface = p.dark_bg_dark,
-    surfaceText = p.dark_fg_dim,
+    surface = p.bg0,
+    surfaceText = p.fg1,
 
     surfaceVariant = lavi.Normal.bg,
     surfaceVariantText = lavi.Normal.fg,

@@ -4,8 +4,8 @@ local transforms = require("lush_theme.lavi.transforms")
 local colors = {
   themes = {
     lavi = {
-      bg = p.bg,
-      fg = p.fg,
+      bg = p.bg1,
+      fg = p.fg2,
       red = p.red,
       green = p.green,
       blue = p.blue,
@@ -13,12 +13,12 @@ local colors = {
       magenta = p.magenta,
       orange = p.orange,
       cyan = p.cyan,
-      black = p.dark_bg,
-      white = p.fg,
+      black = p.bg1,
+      white = p.fg2,
 
       text_unselected = {
-        base = p.fg,
-        background = p.bg,
+        base = p.fg2,
+        background = p.bg1,
         emphasis_0 = p.orange,
         emphasis_1 = p.green,
         emphasis_2 = p.yellow,
@@ -35,7 +35,7 @@ local colors = {
       },
 
       ribbon_unselected = {
-        base = p.fg_dim,
+        base = p.fg1,
         background = p.deep_lavender,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
@@ -44,7 +44,7 @@ local colors = {
       },
 
       ribbon_selected = {
-        base = p.bg,
+        base = p.bg1,
         background = p.green.mix(p.yellow, 30).mix(p.bright_white, 45),
         emphasis_0 = p.cayenne.lighten(5),
         emphasis_1 = p.bright_green,
@@ -62,8 +62,8 @@ local colors = {
       },
 
       table_cell_unselected = {
-        base = p.fg_nc,
-        background = p.bg,
+        base = p.fg0,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.yellow,
@@ -80,8 +80,8 @@ local colors = {
       },
 
       list_unselected = {
-        base = p.fg_dim,
-        background = p.bg,
+        base = p.fg1,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.yellow,
@@ -99,7 +99,7 @@ local colors = {
 
       frame_unselected = {
         base = p.bright_black.darken(10),
-        background = p.bg,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.bright_violet,
@@ -108,7 +108,7 @@ local colors = {
 
       frame_selected = {
         base = p.blue,
-        background = p.bg,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.bright_violet,
@@ -126,7 +126,7 @@ local colors = {
 
       exit_code_success = {
         base = p.green,
-        background = p.bg,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.cyan,
         emphasis_2 = p.yellow,
@@ -135,7 +135,7 @@ local colors = {
 
       exit_code_error = {
         base = p.cayenne.lighten(5),
-        background = p.bg,
+        background = p.bg1,
         emphasis_0 = p.red,
         emphasis_1 = p.green,
         emphasis_2 = p.yellow,

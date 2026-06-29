@@ -8,18 +8,18 @@ local theme = lush(function(injected_functions)
   return {
     -- stylua: ignore start
     ---- General highlight groups
-    Normal           { fg = p.dark_fg, bg = p.dark_bg.lighten(1).saturate(1) }, -- Normal text
-    NormalNC         { fg = p.dark_fg, bg = p.dark_bg_dark.darken(10) }, -- normal text in non-current windows
-    NormalFloat      { fg = p.dark_fg, bg = p.dark_bg }, -- Normal text in floating windows.
-    NormalFloatNC    { fg = p.dark_fg, bg = p.dark_bg_dark }, -- Normal text in non-current floating windows.
+    Normal           { fg = p.fg2, bg = p.bg1.lighten(1).saturate(1) }, -- Normal text
+    NormalNC         { fg = p.fg2, bg = p.bg0.darken(10) }, -- normal text in non-current windows
+    NormalFloat      { fg = p.fg2, bg = p.bg1 }, -- Normal text in floating windows.
+    NormalFloatNC    { fg = p.fg2, bg = p.bg0 }, -- Normal text in non-current floating windows.
     ColorColumn      { bg = p.black }, -- Columns set with 'colorcolumn'
-    Conceal          { fg = p.green, bg = p.dark_bg_med }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor           { bg = p.dark_fg, fg = p.dark_bg }, -- Character under the cursor
+    Conceal          { fg = p.green, bg = p.bg2 }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    Cursor           { bg = p.fg2, fg = p.bg1 }, -- Character under the cursor
     -- lCursor          { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
     -- CursorIM         { }, -- Like Cursor, but used when in IME mode |CursorIM|
     CursorColumn     { bg = p.black }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine       { bg = p.dark_bg_med }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
-    CursorLineNC     { bg = p.dark_bg.lighten(6) }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine       { bg = p.bg2 }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLineNC     { bg = p.bg1.lighten(6) }, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory        { fg = p.bright_violet.lighten(50).desaturate(10) }, -- Directory names (and other special names in listings)
 
     EndOfBuffer      { fg = p.black }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
@@ -36,36 +36,36 @@ local theme = lush(function(injected_functions)
     LineNr           { fg = p.bright_black }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
     -- LineNrAbove      { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
     -- LineNrBelow      { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-    CursorLineNr     { fg = p.dark_fg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-    CursorLineNrNC   { fg = p.dark_fg }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line in non-current windows.
+    CursorLineNr     { fg = p.fg2 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+    CursorLineNrNC   { fg = p.fg2 }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line in non-current windows.
     -- CursorLineFold   { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     -- CursorLineSign   { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-    MatchParen       { bg = p.velvet, fg = p.dark_bg }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-    ModeMsg          { fg = p.dark_fg }, -- 'showmode' message (e.g., "-- INSERT -- ")
+    MatchParen       { bg = p.velvet, fg = p.bg1 }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+    ModeMsg          { fg = p.fg2 }, -- 'showmode' message (e.g., "-- INSERT -- ")
     -- MsgArea          { }, -- Area for messages and cmdline
     -- MsgSeparator     { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
-    MoreMsg          { fg = p.dark_fg }, -- |more-prompt|
+    MoreMsg          { fg = p.fg2 }, -- |more-prompt|
     NonText          { fg = p.med_black }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
     FloatBorder      { fg = p.med_black }, -- Border of floating windows.
     -- FloatTitle       { }, -- Title of floating windows.
-    Pmenu            { fg = p.dark_fg, bg = p.dark_bg.lighten(30) }, -- Popup menu: Normal item.
+    Pmenu            { fg = p.fg2, bg = p.bg1.lighten(30) }, -- Popup menu: Normal item.
     PmenuSel         { fg = p.cyan, bg = p.bright_black }, -- Popup menu: Selected item.
     -- PmenuKind        { }, -- Popup menu: Normal item "kind"
     -- PmenuKindSel     { }, -- Popup menu: Selected item "kind"
     -- PmenuExtra       { }, -- Popup menu: Normal item "extra text"
     -- PmenuExtraSel    { }, -- Popup menu: Selected item "extra text"
-    PmenuSbar        { fg = p.dark_fg, bg = p.dark_bg.lighten(30) }, -- Popup menu: Scrollbar.
-    PmenuThumb       { fg = p.violet.lighten(70).saturate(90), bg = p.dark_bg.lighten(50) }, -- Popup menu: Thumb of the scrollbar.
-    Question         { fg = p.dark_fg }, -- |hit-enter| prompt and yes/no questions
+    PmenuSbar        { fg = p.fg2, bg = p.bg1.lighten(30) }, -- Popup menu: Scrollbar.
+    PmenuThumb       { fg = p.violet.lighten(70).saturate(90), bg = p.bg1.lighten(50) }, -- Popup menu: Thumb of the scrollbar.
+    Question         { fg = p.fg2 }, -- |hit-enter| prompt and yes/no questions
     -- QuickFixLine     { }, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
     Search           { fg = p.blush }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    CurSearch        { bg = p.blush, fg = p.dark_bg }, -- Highlighting a search pattern under the cursor (see 'hlsearch').
+    CurSearch        { bg = p.blush, fg = p.bg1 }, -- Highlighting a search pattern under the cursor (see 'hlsearch').
     SpecialKey       { fg = p.bright_black }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad         { gui = 'undercurl' }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap         { gui = 'undercurl' }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal       { gui = 'undercurl' }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare        { gui = 'undercurl' }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-    StatusLine       { bg = p.dark_bg_dark, fg = p.med_black }, -- Status line of current window
+    StatusLine       { bg = p.bg0, fg = p.med_black }, -- Status line of current window
     StatusLineNC     { StatusLine }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     StatusLineTerm   { StatusLine }, -- Status line of current window
     StatusLineTermNC { StatusLineNC }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
@@ -73,10 +73,10 @@ local theme = lush(function(injected_functions)
     -- StatusLineNC     { fg = g.fg, bg = p.black_bright }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
     -- StatusLineTerm   { fg = g.cyan, bg = p.black_bright }, -- Status line of current window
     -- StatusLineTermNC { fg = g.fg, bg = p.black_bright }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
-    TabLine          { fg = p.dark_fg, bg = p.black }, -- Tab pages line, not active tab page label
-    TabLineFill      { fg = p.dark_fg, bg = p.black }, -- Tab pages line, where there are no labels
+    TabLine          { fg = p.fg2, bg = p.black }, -- Tab pages line, not active tab page label
+    TabLineFill      { fg = p.fg2, bg = p.black }, -- Tab pages line, where there are no labels
     TabLineSel       { fg = p.cyan, bg = p.bright_black }, -- Tab pages line, active tab page label
-    Title            { fg = p.dark_fg }, -- Titles for output from ":set all", ":autocmd" etc.
+    Title            { fg = p.fg2 }, -- Titles for output from ":set all", ":autocmd" etc.
     Visual           { bg = p.selection_bg }, -- Visual mode selection
     VisualNOS        { bg = p.med_black }, -- Visual mode selection when vim is "Not Owning the Selection".
     WarningMsg       { fg = p.black, bg = p.yellow }, -- Warning messages
@@ -86,22 +86,22 @@ local theme = lush(function(injected_functions)
     WinBar           { StatusLine }, -- Window bar of current window
     WinBarNC         { StatusLineNC }, -- Window bar of not-current windows
 
-    LocListNormal       { fg = p.dark_fg, bg = p.dark_bg.lighten(5).saturate(10).rotate(-20) }, -- Location list
-    LocListNormalNC     { fg = p.dark_fg, bg = p.dark_bg.saturate(5).rotate(-20) }, -- Location list (non-current window)
-    LocListCursorLine   { bg = p.dark_bg.lighten(20).saturate(10).rotate(-20) }, -- Location list cursor line
-    LocListCursorLineNC { bg = p.dark_bg.saturate(15).rotate(-20) }, -- Location list cursor line (non-current window)
+    LocListNormal       { fg = p.fg2, bg = p.bg1.lighten(5).saturate(10).rotate(-20) }, -- Location list
+    LocListNormalNC     { fg = p.fg2, bg = p.bg1.saturate(5).rotate(-20) }, -- Location list (non-current window)
+    LocListCursorLine   { bg = p.bg1.lighten(20).saturate(10).rotate(-20) }, -- Location list cursor line
+    LocListCursorLineNC { bg = p.bg1.saturate(15).rotate(-20) }, -- Location list cursor line (non-current window)
 
     QFListNormal       { Normal }, -- Quickfix list
     QFListNormalNC     { NormalNC }, -- Quickfix list (non-current window)
-    -- QFListNormal       { fg = p.dark_fg, bg = p.dark_bg.lighten(5).saturate(10).rotate(20) }, -- Quickfix list
-    -- QFListNormalNC     { fg = p.dark_fg, bg = p.dark_bg.saturate(5).rotate(20) }, -- Quickfix list (non-current window)
-    QFListCursorLine   { bg = p.dark_bg.lighten(20).saturate(10).rotate(20) }, -- Quickfix list cursor line
-    QFListCursorLineNC { bg = p.dark_bg.saturate(15).rotate(20) }, -- Quickfix list cursor line (non-current window)
+    -- QFListNormal       { fg = p.fg2, bg = p.bg1.lighten(5).saturate(10).rotate(20) }, -- Quickfix list
+    -- QFListNormalNC     { fg = p.fg2, bg = p.bg1.saturate(5).rotate(20) }, -- Quickfix list (non-current window)
+    QFListCursorLine   { bg = p.bg1.lighten(20).saturate(10).rotate(20) }, -- Quickfix list cursor line
+    QFListCursorLineNC { bg = p.bg1.saturate(15).rotate(20) }, -- Quickfix list cursor line (non-current window)
 
-    DiffAdd          { bg = p.bg.mix(p.green, 15).saturate(5) }, -- Diff mode: Added line |diff.txt|
-    DiffChange       { bg = p.bg.mix(p.skyblue, 10) }, -- Diff mode: Changed line |diff.txt|
+    DiffAdd          { bg = p.bg1.mix(p.green, 15).saturate(5) }, -- Diff mode: Added line |diff.txt|
+    DiffChange       { bg = p.bg1.mix(p.skyblue, 10) }, -- Diff mode: Changed line |diff.txt|
     DiffDelete       { fg = p.med_black }, -- Diff mode: Deleted line |diff.txt|
-    DiffText         { bg = p.bg.mix(p.blue, 20) }, -- Diff mode: Changed text within a changed line |diff.txt|
+    DiffText         { bg = p.bg1.mix(p.blue, 20) }, -- Diff mode: Changed text within a changed line |diff.txt|
 
     DiffAddBright     { fg = p.bright_green }, -- Diff mode: Added line |diff.txt|
     DiffChangeBright  { fg = p.bright_yellow  }, -- Diff mode: Changed line |diff.txt|
@@ -152,12 +152,12 @@ local theme = lush(function(injected_functions)
     SpecialChar      { fg = p.orange }, --   Special character in a constant
     Tag              { fg = p.dust }, --   You can use CTRL-] on this
     Delimiter        { fg = p.deep_velvet.lighten(40).saturate(30) }, --   Character that needs attention
-    SpecialComment   { fg = p.dark_fg }, --   Special things inside a comment (e.g. '\n')
+    SpecialComment   { fg = p.fg2 }, --   Special things inside a comment (e.g. '\n')
     -- Debug            { }, --   Debugging statements
 
     -- Underlined       { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore           { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-    Error            { bg = p.cayenne.lighten(10), fg = p.dark_bg }, -- Any erroneous construct
+    Error            { bg = p.cayenne.lighten(10), fg = p.bg1 }, -- Any erroneous construct
     Todo             { fg = p.yellow }, -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
     ---- LSP
@@ -167,7 +167,7 @@ local theme = lush(function(injected_functions)
 
     -- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
     --
-    LspReferenceText            {  bg = p.dark_bg.lighten(20) } , -- Used for highlighting "text" references
+    LspReferenceText            {  bg = p.bg1.lighten(20) } , -- Used for highlighting "text" references
     -- LspReferenceRead            { } , -- Used for highlighting "read" references
     -- LspReferenceWrite           { } , -- Used for highlighting "write" references
     -- LspCodeLens                 { } , -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
@@ -277,36 +277,36 @@ local theme = lush(function(injected_functions)
     GitSignsAdd               { DiffAddBright },
     GitSignsChange            { DiffChangeBright },
     GitSignsDelete            { DiffDeleteBright },
-    GitSignsCurrentLineBlame  { fg = p.dark_fg_dim.darken(10).desaturate(10) },
+    GitSignsCurrentLineBlame  { fg = p.fg1.darken(10).desaturate(10) },
     GitSignsAddPreview        { DiffAddBright },
     GitSignsDeletePreview     { DiffDeleteBright },
     GitSignsChangePreview     { DiffChangeBright },
 
     ---- Neogit
     NeogitCursorLine           { gui = "nocombine" },
-    NeogitHunkHeader           { fg = p.dark_fg_dim, bg = p.dark_bg.lighten(15).saturate(5) },
-    NeogitHunkHeaderHighlight  { fg = p.white, bg = p.dark_bg.lighten(30).saturate(10) },
-    NeogitHunkHeaderCursor     { fg = p.white, bg = p.dark_bg.lighten(45).saturate(10) },
-    NeogitDiffContext          { fg = p.dark_fg_dim, bg = p.dark_bg },
-    NeogitDiffContextHighlight { fg = p.dark_fg_dim, bg = p.dark_bg.lighten(4).saturate(3) },
-    NeogitDiffContextCursor    { fg = p.fg, bg = p.dark_bg.lighten(10).saturate(5) },
-    NeogitDiffAdd              { fg = p.fg_dim.lighten(10), bg = p.bg.mix(p.green.darken(30).desaturate(20), 15) },
-    NeogitDiffAddHighlight     { fg = p.fg_dim.lighten(10), bg = p.bg.mix(p.green.darken(30).desaturate(20), 27) },
-    NeogitDiffAddCursor        { bg = p.bg.mix(p.green.darken(30).desaturate(10), 45) },
-    NeogitDiffAddInline        { fg = p.fg, bg = p.bg.mix(p.green.darken(30), 45) },
-    NeogitDiffDelete           { fg = p.fg_dim.lighten(10), bg = p.bg.mix(p.bright_red.darken(30).desaturate(20), 15) },
-    NeogitDiffDeleteHighlight  { fg = p.fg_dim.lighten(10), bg = p.bg.mix(p.bright_red.darken(30).desaturate(20), 27) },
-    NeogitDiffDeleteCursor     { bg = p.bg.mix(p.bright_red.darken(30).desaturate(10), 45) },
-    NeogitDiffDeleteInline     { fg = p.fg, bg = p.bg.mix(p.bright_red.darken(30), 50) },
+    NeogitHunkHeader           { fg = p.fg1, bg = p.bg1.lighten(15).saturate(5) },
+    NeogitHunkHeaderHighlight  { fg = p.white, bg = p.bg1.lighten(30).saturate(10) },
+    NeogitHunkHeaderCursor     { fg = p.white, bg = p.bg1.lighten(45).saturate(10) },
+    NeogitDiffContext          { fg = p.fg1, bg = p.bg1 },
+    NeogitDiffContextHighlight { fg = p.fg1, bg = p.bg1.lighten(4).saturate(3) },
+    NeogitDiffContextCursor    { fg = p.fg2, bg = p.bg1.lighten(10).saturate(5) },
+    NeogitDiffAdd              { fg = p.fg1.lighten(10), bg = p.bg1.mix(p.green.darken(30).desaturate(20), 15) },
+    NeogitDiffAddHighlight     { fg = p.fg1.lighten(10), bg = p.bg1.mix(p.green.darken(30).desaturate(20), 27) },
+    NeogitDiffAddCursor        { bg = p.bg1.mix(p.green.darken(30).desaturate(10), 45) },
+    NeogitDiffAddInline        { fg = p.fg2, bg = p.bg1.mix(p.green.darken(30), 45) },
+    NeogitDiffDelete           { fg = p.fg1.lighten(10), bg = p.bg1.mix(p.bright_red.darken(30).desaturate(20), 15) },
+    NeogitDiffDeleteHighlight  { fg = p.fg1.lighten(10), bg = p.bg1.mix(p.bright_red.darken(30).desaturate(20), 27) },
+    NeogitDiffDeleteCursor     { bg = p.bg1.mix(p.bright_red.darken(30).desaturate(10), 45) },
+    NeogitDiffDeleteInline     { fg = p.fg2, bg = p.bg1.mix(p.bright_red.darken(30), 50) },
     NeogitFloatBorder          { ActivePopupBorder },
 
     ---- git-conflict.nvim
-    GitConflictCurrent        { bg = p.dark_bg.lighten(13).saturate(05) },
-    GitConflictCurrentLabel   { bg = p.dark_bg.lighten(30).saturate(10) },
-    GitConflictIncoming       { bg = p.dark_bg.lighten(13).saturate(5).rotate(-80) },
-    GitConflictIncomingLabel  { bg = p.dark_bg.lighten(30).saturate(10).rotate(-80) },
-    GitConflictAncestor       { bg = p.dark_bg.lighten(13).saturate(5).rotate(-30) },
-    GitConflictAncestorLabel  { bg = p.dark_bg.lighten(30).saturate(10).rotate(-30) },
+    GitConflictCurrent        { bg = p.bg1.lighten(13).saturate(05) },
+    GitConflictCurrentLabel   { bg = p.bg1.lighten(30).saturate(10) },
+    GitConflictIncoming       { bg = p.bg1.lighten(13).saturate(5).rotate(-80) },
+    GitConflictIncomingLabel  { bg = p.bg1.lighten(30).saturate(10).rotate(-80) },
+    GitConflictAncestor       { bg = p.bg1.lighten(13).saturate(5).rotate(-30) },
+    GitConflictAncestorLabel  { bg = p.bg1.lighten(30).saturate(10).rotate(-30) },
 
     ---- avante.nvim
     AvanteTitle               { fg = p.black, bg = p.green.lighten(10).saturate(10) },
@@ -378,7 +378,7 @@ local theme = lush(function(injected_functions)
     FylerGitStaged            { DiffTextBright },
     FylerGitRenamed           { NvimTreeGitRenamed },
     FylerGreen                { fg = p.green },
-    FylerGrey                 { fg = p.dark_fg_dim },
+    FylerGrey                 { fg = p.fg1 },
     FylerRed                  { fg = p.red },
     FylerYellow               { fg = p.yellow },
     FylerBorder               { FloatBorder },
@@ -407,12 +407,12 @@ local theme = lush(function(injected_functions)
 
     ---- nvim-cmp
     CmpNormal                 { Normal },
-    -- CmpNormal                 { fg = p.fg, bg = p.bg.lighten(10) },
+    -- CmpNormal                 { fg = p.fg2, bg = p.bg1.lighten(10) },
     CmpBorder                 { ActivePopupBorder },
-    CmpSel                    { bg = p.dark_bg.saturate(15).lighten(50), fg = p.bright_white, gui = 'bold' },
+    CmpSel                    { bg = p.bg1.saturate(15).lighten(50), fg = p.bright_white, gui = 'bold' },
 
     CmpItemMenu               { fg = p.dust, gui = "italic" },
-    CmpItemAbbr               { fg = p.dark_fg },
+    CmpItemAbbr               { fg = p.fg2 },
     CmpItemAbbrMatch          { Search },
     CmpItemAbbrMatchFuzzy     { Search },
 
@@ -527,30 +527,30 @@ local theme = lush(function(injected_functions)
     BlinkPairsMatchParen       { MatchParen },
 
     ---- flash.nvim
-    FlashBackdrop             { bg = p.dark_bg.lighten(5) },
+    FlashBackdrop             { bg = p.bg1.lighten(5) },
     FlashMatch                { bg = p.velvet.darken(10), fg = p.white },
-    FlashCurrent              { bg = p.blush, fg = p.dark_bg_med },
-    FlashLabel                { bg = p.yellow, fg = p.dark_bg_med },
+    FlashCurrent              { bg = p.blush, fg = p.bg2 },
+    FlashLabel                { bg = p.yellow, fg = p.bg2 },
     FlashPrompt               { bg = p.med_violet, fg = p.white },
     FlashPromptIcon           { bg = p.med_violet, fg = p.white },
-    FlashCursor               { bg = p.skyblue, fg = p.dark_bg_med },
+    FlashCursor               { bg = p.skyblue, fg = p.bg2 },
 
     ---- nvim-treesitter-context
-    TreesitterContext         { bg = p.dark_bg.lighten(15).desaturate(5) },
-    TreesitterContextLineNumber { fg = p.bright_black.lighten(10), bg = p.dark_bg.lighten(5) },
+    TreesitterContext         { bg = p.bg1.lighten(15).desaturate(5) },
+    TreesitterContextLineNumber { fg = p.bright_black.lighten(10), bg = p.bg1.lighten(5) },
     -- TreesitterContextSeparator {},
     -- TreesitterContextBottom    {},
 
     ---- twoslash-queries.nvim
-    TypeVirtualText           { fg = p.blue.lighten(30), bg = p.dark_bg.lighten(15).desaturate(5) },
+    TypeVirtualText           { fg = p.blue.lighten(30), bg = p.bg1.lighten(15).desaturate(5) },
 
     ---- aerial.nvim
-    AerialLine                { bg = p.dark_bg.lighten(40) },
-    AerialLineNC              { bg = p.dark_bg.lighten(20) },
+    AerialLine                { bg = p.bg1.lighten(40) },
+    AerialLineNC              { bg = p.bg1.lighten(20) },
 
     ---- multiple-cursors.nvim
-    MultipleCursorsCursor     { bg = p.dark_bg.lighten(75).saturate(50), fg = p.dark_bg_dark },
-    MultipleCursorsVisual     { bg = p.dark_bg.lighten(45) },
+    MultipleCursorsCursor     { bg = p.bg1.lighten(75).saturate(50), fg = p.bg0 },
+    MultipleCursorsVisual     { bg = p.bg1.lighten(45) },
 
     ---- nvim-navic
     NavicIconsFile            { Statement },
@@ -628,7 +628,7 @@ local theme = lush(function(injected_functions)
     DapUIDecoration         { fg = p.green },
     DapUIThread             { fg = p.green },
     DapUIStoppedThread      { fg = p.green, gui = "undercurl" },
-    DapUIFrameName          { fg = p.dark_fg },
+    DapUIFrameName          { fg = p.fg2 },
     DapUISource             { Tag },
     DapUILineNumber         { fg = p.yellow.lighten(30) },
     DapUIFloatNormal        { NormalFloat },
@@ -640,7 +640,7 @@ local theme = lush(function(injected_functions)
     DapUIBreakpointsInfo    { fg = p.cyan.rotate(20) },
     DapUIBreakpointsCurrentLine { fg = p.cyan.rotate(20), gui = "bold" },
     DapUIBreakpointsLine    { DapUILineNumber },
-    DapUIBreakpointsDisabledLine { fg = p.dark_fg_dim },
+    DapUIBreakpointsDisabledLine { fg = p.fg1 },
     DapUICurrentFrameName   { DapUIBreakpointsCurrentLine },
     DapUIStepOver           { fg = p.cyan },
     DapUIStepInto           { fg = p.cyan },
@@ -649,27 +649,27 @@ local theme = lush(function(injected_functions)
     DapUIStop               { DapStopped },
     DapUIPlayPause          { DapBreakpoint },
     DapUIRestart            { DapBreakpoint },
-    DapUIUnavailable        { fg = p.dark_fg_dim },
+    DapUIUnavailable        { fg = p.fg1 },
     DapUIWinSelect          { fg = p.cyan, gui = "bold" },
     DapUIEndofBuffer        { EndOfBuffer },
 
 
     --- RenderMarkdown.nvim
-    RenderMarkdownH1Bg           { fg = p.bright_white, bg = p.lavender.lighten(20).saturate(-40).mix(p.bg, 35), bold = true },
-    RenderMarkdownH2Bg           { fg = p.white.darken(2), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg, 75), bold = true },
-    RenderMarkdownH3Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg, 90), bold = true },
-    RenderMarkdownH4Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg, 95), bold = true },
-    RenderMarkdownH5Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg, 95) },
-    RenderMarkdownH6Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg, 95) },
+    RenderMarkdownH1Bg           { fg = p.bright_white, bg = p.lavender.lighten(20).saturate(-40).mix(p.bg1, 35), bold = true },
+    RenderMarkdownH2Bg           { fg = p.white.darken(2), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg1, 75), bold = true },
+    RenderMarkdownH3Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg1, 90), bold = true },
+    RenderMarkdownH4Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg1, 95), bold = true },
+    RenderMarkdownH5Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg1, 95) },
+    RenderMarkdownH6Bg           { fg = p.white.darken(8).desaturate(15), bg = p.blue.lighten(-20).saturate(-50).mix(p.bg1, 95) },
     RenderMarkdownH1             { fg = RenderMarkdownH1Bg.fg, bold = true },
     RenderMarkdownH2             { fg = RenderMarkdownH2Bg.fg, bold = true },
     RenderMarkdownH3             { fg = RenderMarkdownH3Bg.fg, bold = true },
     RenderMarkdownH4             { fg = RenderMarkdownH4Bg.fg, bold = true },
     RenderMarkdownH5             { fg = RenderMarkdownH5Bg.fg },
     RenderMarkdownH6             { fg = RenderMarkdownH6Bg.fg },
-    RenderMarkdownCode           { bg = p.dark_bg.lighten(5).saturate(10) },
-    RenderMarkdownCodeInline     { bg = p.dark_bg.lighten(25).saturate(10) },
-    RenderMarkdownInlineHighlight { bg = p.dark_bg.lighten(25).saturate(10).rotate(-40) },
+    RenderMarkdownCode           { bg = p.bg1.lighten(5).saturate(10) },
+    RenderMarkdownCodeInline     { bg = p.bg1.lighten(25).saturate(10) },
+    RenderMarkdownInlineHighlight { bg = p.bg1.lighten(25).saturate(10).rotate(-40) },
     RenderMarkdownChecked        { String },
     RenderMarkdownUnchecked      { fg = p.blue.lighten(10).saturate(10) },
     RenderMarkdownTodo           { Todo },
@@ -685,9 +685,9 @@ local theme = lush(function(injected_functions)
     RenderMarkdownSign           { fg = p.deep_velvet.darken(20) },
     RenderMarkdownDash           { fg = p.deep_velvet.darken(20) },
     RenderMarkdownBullet         { fg = p.deep_velvet.lighten(70).saturate(70) },
-    RenderMarkdownTableHead      { fg = p.blue.lighten(80).saturate(-30).mix(p.bg, 35) },
+    RenderMarkdownTableHead      { fg = p.blue.lighten(80).saturate(-30).mix(p.bg1, 35) },
     RenderMarkdownTableRow       { RenderMarkdownTableHead },
-    RenderMarkdownTableFill      { bg = p.bg },
+    RenderMarkdownTableFill      { bg = p.bg1 },
     RenderMarkdownHtmlComment    { Comment },
     RenderMarkdownMath           { fg = p.blue.lighten(30).saturate(10), italic = true },
     -- stylua: ignore end

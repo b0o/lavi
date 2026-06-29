@@ -5,7 +5,7 @@ local transforms = require("lush_theme.lavi.transforms")
 local colors = {
   styles = {
     cpu = {
-      all_entry_color = p.fg_dim,
+      all_entry_color = p.fg1,
       avg_entry_color = p.cyan.desaturate(20).lighten(30),
       cpu_core_colors = {
         p.velvet.lighten(10),
@@ -52,17 +52,17 @@ local colors = {
       low_battery_color = p.cayenne.lighten(10).desaturate(10),
     },
     tables = {
-      headers = { color = p.fg_dim, bold = true },
+      headers = { color = p.fg1, bold = true },
     },
     graphs = {
       graph_color = p.med_black,
-      legend_text = { color = p.fg_nc },
+      legend_text = { color = p.fg0 },
     },
     widgets = {
       border_color = p.med_black,
       selected_border_color = p.anise.lighten(30).desaturate(30),
-      widget_title = { color = p.fg_dim, bold = true },
-      text = { color = p.fg_nc },
+      widget_title = { color = p.fg1, bold = true },
+      text = { color = p.fg0 },
       selected_text = { color = p.bright_white, bg_color = p.deep_anise },
       disabled_text = { color = p.bright_black.darken(20) },
     },

@@ -12,7 +12,7 @@ M.magenta = hsl("#B98AFF")
 M.cyan = hsl("#2BEDC0")
 M.white = hsl("#EEE6FF")
 
-M.bright_black = hsl("#8977A8")
+M.bright_black = M.black.lighten(46).saturate(9).rotate(1)
 M.bright_red = M.red.lighten(10)
 M.bright_green = M.green.lighten(10)
 M.bright_yellow = M.yellow.lighten(10)
@@ -21,7 +21,7 @@ M.bright_magenta = M.magenta.lighten(10)
 M.bright_cyan = M.cyan.lighten(10)
 M.bright_white = hsl("#ffffff")
 
-M.med_black = hsl("#4C435C")
+M.med_black = M.black.lighten(15).saturate(2).rotate(1)
 
 -- Background ladder, darkest -> brightest (bg1 is the Normal background)
 M.bg1 = hsl("#25213B")
@@ -30,9 +30,9 @@ M.bg2 = M.bg1.lighten(13)
 M.bg3 = M.bg1.lighten(20)
 
 -- Foreground ladder, dimmest -> brightest (fg2 is the main text color)
-M.fg0 = hsl("#A89CCF")
-M.fg1 = hsl("#DED4FD")
 M.fg2 = hsl("#ede7fe")
+M.fg1 = M.fg2.darken(4)
+M.fg0 = M.fg2.desaturate(62).darken(25).rotate(-2)
 M.fg3 = M.bright_white
 
 -- Light mode (deferred; currently consumed only by the dms light theme).

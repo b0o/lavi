@@ -1,9 +1,9 @@
 {
   "name": "lavi",
-  "selectionBackground": "#475B8A",
-  "cursorColor": "#1C2436",
-  "foreground": "#E9E7FD",
-  "background": "#1C2436",
+  "selectionBackground": "#515D8A",
+  "cursorColor": "#24293D",
+  "foreground": "#EDE8FD",
+  "background": "#24293D",
   "black": "#2A2D3C",
   "blue": "#7583FF",
   "cyan": "#2CEDC0",

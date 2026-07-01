@@ -14,7 +14,7 @@
         <key>settings</key>
         <dict>
           <key>background</key>
-          <string>#1C2436</string>
+          <string>#24293D</string>
           <key>bracketContentsOptions</key>
           <string>underline</string>
           <key>bracketsOptions</key>
@@ -24,9 +24,9 @@
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>#E9E7FD</string>
+          <string>#EDE8FD</string>
           <key>gutter</key>
-          <string>#1C2436</string>
+          <string>#24293D</string>
           <key>gutterForeground</key>
           <string>#767EAD</string>
           <key>invisibles</key>
@@ -446,7 +446,7 @@
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>#E9E7FD</string>
+          <string>#EDE8FD</string>
         </dict>
       </dict>
       <dict>

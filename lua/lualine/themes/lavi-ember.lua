@@ -6,27 +6,27 @@ return {
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
   inactive = {
     a = {
-      bg = "#1C2436",
+      bg = "#24293D",
       fg = "#FFFFFF",
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
   insert = {
@@ -36,27 +36,27 @@ return {
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
   normal = {
     a = {
-      bg = "#6178AE",
+      bg = "#4F5A87",
       fg = "#FFFFFF",
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
   replace = {
@@ -66,12 +66,12 @@ return {
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
   visual = {
@@ -81,12 +81,12 @@ return {
       gui = "bold",
     },
     b = {
-      bg = "#39496F",
-      fg = "#C6CEE2",
+      bg = "#202537",
+      fg = "#CCD0E1",
     },
     c = {
-      bg = "#1C2436",
-      fg = "#ABB7D4",
+      bg = "#24293D",
+      fg = "#B2B8D2",
     },
   },
 }

@@ -1,18 +1,18 @@
 themes {
   lavi {
-    bg "#1C2436"
-    black "#1C2436"
+    bg "#24293D"
+    black "#24293D"
     blue "#7583FF"
     cyan "#2CEDC0"
-    fg "#E9E7FD"
+    fg "#EDE8FD"
     green "#7CF89B"
     magenta "#B98AFF"
     orange "#FF9A6B"
     red "#F2637E"
-    white "#E9E7FD"
+    white "#EDE8FD"
     yellow "#FFD080"
     exit_code_error {
-      background "#1C2436"
+      background "#24293D"
       base "#FF8597"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
@@ -20,7 +20,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     exit_code_success {
-      background "#1C2436"
+      background "#24293D"
       base "#7CF89B"
       emphasis_0 "#F2637E"
       emphasis_1 "#2CEDC0"
@@ -36,7 +36,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     frame_selected {
-      background "#1C2436"
+      background "#24293D"
       base "#7583FF"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
@@ -44,7 +44,7 @@ themes {
       emphasis_3 "#80BDFF"
     }
     frame_unselected {
-      background "#1C2436"
+      background "#24293D"
       base "#636CA1"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
@@ -60,8 +60,8 @@ themes {
       emphasis_3 "#80BDFF"
     }
     list_unselected {
-      background "#1C2436"
-      base "#D8D5FC"
+      background "#24293D"
+      base "#B7B7EB"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
       emphasis_2 "#FFD080"
@@ -81,7 +81,7 @@ themes {
     }
     ribbon_selected {
       background "#D4E8CE"
-      base "#1C2436"
+      base "#24293D"
       emphasis_0 "#FF8597"
       emphasis_1 "#8BF9A6"
       emphasis_2 "#FFD68F"
@@ -89,7 +89,7 @@ themes {
     }
     ribbon_unselected {
       background "#38285C"
-      base "#D8D5FC"
+      base "#B7B7EB"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
       emphasis_2 "#FFD080"
@@ -104,8 +104,8 @@ themes {
       emphasis_3 "#80BDFF"
     }
     table_cell_unselected {
-      background "#1C2436"
-      base "#A09DCD"
+      background "#24293D"
+      base "#A79DCD"
       emphasis_0 "#F2637E"
       emphasis_1 "#7CF89B"
       emphasis_2 "#FFD080"
@@ -128,8 +128,8 @@ themes {
       emphasis_3 "#80BDFF"
     }
     text_unselected {
-      background "#1C2436"
-      base "#E9E7FD"
+      background "#24293D"
+      base "#EDE8FD"
       emphasis_0 "#FF9A6B"
       emphasis_1 "#7CF89B"
       emphasis_2 "#FFD080"

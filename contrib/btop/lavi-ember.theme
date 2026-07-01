@@ -1,9 +1,9 @@
 # Lavi theme for btop
 # https://github.com/b0o/lavi.nvim
 
-theme[main_bg]="#1C2436"
-theme[main_fg]="#A09DCD"
-theme[title]="#D8D5FC"
+theme[main_bg]="#24293D"
+theme[main_fg]="#A79DCD"
+theme[title]="#B7B7EB"
 theme[hi_fg]="#F5D7A3"
 theme[selected_bg]="#564E83"
 theme[selected_fg]="#FFFFFF"

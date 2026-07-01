@@ -6,19 +6,19 @@
       "light": "#EAB9F9"
     },
     "background": {
-      "dark": "#1C2436",
+      "dark": "#24293D",
       "light": "#FFFFFF"
     },
     "backgroundElement": {
-      "dark": "#2F3C5B",
+      "dark": "#1C2030",
       "light": "#FFFFFF"
     },
     "backgroundMenu": {
-      "dark": "#39496F",
+      "dark": "#202537",
       "light": "#FFFFFF"
     },
     "backgroundPanel": {
-      "dark": "#2F3C5B",
+      "dark": "#1C2030",
       "light": "#FFFFFF"
     },
     "border": {
@@ -38,20 +38,20 @@
       "light": "#8BF9A6"
     },
     "diffAddedBg": {
-      "dark": "#253A46",
-      "light": "#253A46"
+      "dark": "#2F424C",
+      "light": "#2F424C"
     },
     "diffAddedLineNumberBg": {
-      "dark": "#2C5254",
-      "light": "#2C5254"
+      "dark": "#35595A",
+      "light": "#35595A"
     },
     "diffContext": {
       "dark": "#8FC5FF",
       "light": "#8FC5FF"
     },
     "diffContextBg": {
-      "dark": "#263364",
-      "light": "#263364"
+      "dark": "#2D376C",
+      "light": "#2D376C"
     },
     "diffHighlightAdded": {
       "dark": "#8BF9A6",
@@ -62,8 +62,8 @@
       "light": "#F58095"
     },
     "diffHunkHeader": {
-      "dark": "#D8D5FC",
-      "light": "#D8D5FC"
+      "dark": "#B7B7EB",
+      "light": "#B7B7EB"
     },
     "diffLineNumber": {
       "dark": "#767EAD",
@@ -74,12 +74,12 @@
       "light": "#F58095"
     },
     "diffRemovedBg": {
-      "dark": "#2A2942",
-      "light": "#2A2942"
+      "dark": "#373249",
+      "light": "#373249"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#41344C",
-      "light": "#41344C"
+      "dark": "#4C3851",
+      "light": "#4C3851"
     },
     "error": {
       "dark": "#F47189",
@@ -94,12 +94,12 @@
       "light": "#9EA8FF"
     },
     "markdownCode": {
-      "dark": "#A09DCD",
-      "light": "#A09DCD"
+      "dark": "#A79DCD",
+      "light": "#A79DCD"
     },
     "markdownCodeBlock": {
-      "dark": "#A09DCD",
-      "light": "#A09DCD"
+      "dark": "#A79DCD",
+      "light": "#A79DCD"
     },
     "markdownEmph": {
       "dark": "#9EA8FF",
@@ -158,8 +158,8 @@
       "light": "#7583FF"
     },
     "selectedListItemText": {
-      "dark": "#E9E7FD",
-      "light": "#E9E7FD"
+      "dark": "#EDE8FD",
+      "light": "#EDE8FD"
     },
     "success": {
       "dark": "#7CF89B",
@@ -202,12 +202,12 @@
       "light": "#EBEBFF"
     },
     "text": {
-      "dark": "#E9E7FD",
-      "light": "#E9E7FD"
+      "dark": "#EDE8FD",
+      "light": "#EDE8FD"
     },
     "textMuted": {
-      "dark": "#A09DCD",
-      "light": "#A09DCD"
+      "dark": "#A79DCD",
+      "light": "#A79DCD"
     },
     "warning": {
       "dark": "#FF9A6B",

@@ -13,20 +13,20 @@
       yellow = "#F9D494";
     };
     cursor = {
-      cursor = "#1C2436";
-      text = "#E9E7FD";
+      cursor = "#24293D";
+      text = "#EDE8FD";
     };
     footer_bar = {
-      background = "#39496F";
-      foreground = "#E9E7FD";
+      background = "#202537";
+      foreground = "#EDE8FD";
     };
     hints = {
       "end" = {
-        background = "#39496F";
-        foreground = "#E9E7FD";
+        background = "#202537";
+        foreground = "#EDE8FD";
       };
       start = {
-        background = "#39496F";
+        background = "#202537";
         foreground = "#9487F8";
       };
     };
@@ -41,28 +41,28 @@
       yellow = "#F8C772";
     };
     primary = {
-      background = "#1C2436";
+      background = "#24293D";
       bright_foreground = "#FFFFFF";
-      dim_foreground = "#D8D5FC";
-      foreground = "#E9E7FD";
+      dim_foreground = "#B7B7EB";
+      foreground = "#EDE8FD";
     };
     search = {
       focused_match = {
         background = "#EAB9F9";
-        foreground = "#1C2436";
+        foreground = "#24293D";
       };
       matches = {
-        background = "#1C2436";
+        background = "#24293D";
         foreground = "#EAB9F9";
       };
     };
     selection = {
-      background = "#475B8A";
-      text = "#E9E7FD";
+      background = "#515D8A";
+      text = "#EDE8FD";
     };
     vi_mode_cursor = {
-      cursor = "#1C2436";
-      text = "#E9E7FD";
+      cursor = "#24293D";
+      text = "#EDE8FD";
     };
   };
 }

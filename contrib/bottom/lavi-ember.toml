@@ -6,7 +6,7 @@ low_battery_color = "#F994A4"
 medium_battery_color = "#F6DDB1"
 
 [styles.cpu]
-all_entry_color = "#D8D5FC"
+all_entry_color = "#B7B7EB"
 avg_entry_color = "#7BE5CC"
 cpu_core_colors = [
   "#B7A5EE",
@@ -29,7 +29,7 @@ cpu_core_colors = [
 
 [styles.graphs]
 graph_color = "#414662"
-legend_text = { color = "#A09DCD" }
+legend_text = { color = "#A79DCD" }
 
 [styles.memory]
 arc_color = "#6DD9C0"
@@ -52,12 +52,12 @@ tx_color = "#B7A5EE"
 tx_total_color = "#BFA2EC"
 
 [styles.tables]
-headers = { color = "#D8D5FC", bold = true }
+headers = { color = "#B7B7EB", bold = true }
 
 [styles.widgets]
 border_color = "#414662"
 disabled_text = { color = "#586193" }
 selected_border_color = "#B1B0E8"
 selected_text = { color = "#FFFFFF", bg_color = "#564E83" }
-text = { color = "#A09DCD" }
-widget_title = { color = "#D8D5FC", bold = true }
+text = { color = "#A79DCD" }
+widget_title = { color = "#B7B7EB", bold = true }

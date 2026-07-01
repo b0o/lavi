@@ -42,13 +42,13 @@
     "thinkingText": "textMuted",
     "thinkingXhigh": "#DE82B6",
     "toolDiffAdded": "#8BF9A6",
-    "toolDiffContext": "#B5B3D5",
+    "toolDiffContext": "#BAB3D5",
     "toolDiffRemoved": "#F58095",
-    "toolErrorBg": "#2A2942",
+    "toolErrorBg": "#373249",
     "toolOutput": "",
-    "toolPendingBg": "#3B4C72",
-    "toolSuccessBg": "#2F3C5B",
-    "toolTitle": "#A09DCD",
+    "toolPendingBg": "#2D344D",
+    "toolSuccessBg": "#1C2030",
+    "toolTitle": "#A79DCD",
     "userMessageBg": "backgroundPanel",
     "userMessageText": "",
     "warning": "warning"
@@ -61,9 +61,9 @@
   "name": "lavi",
   "vars": {
     "accent": "#E2AAF3",
-    "background": "#1C2436",
-    "backgroundMenu": "#2F3C5B",
-    "backgroundPanel": "#1D263A",
+    "background": "#24293D",
+    "backgroundMenu": "#1C2030",
+    "backgroundPanel": "#252B41",
     "border": "#414662",
     "borderActive": "#767EAD",
     "borderSubtle": "#414662",
@@ -73,7 +73,7 @@
     "primary": "#7C89F8",
     "secondary": "#AF8EEB",
     "success": "#6DE38B",
-    "textMuted": "#A09DCD",
+    "textMuted": "#A79DCD",
     "warning": "#F78F5F"
   }
 }

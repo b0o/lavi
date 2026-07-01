@@ -8,7 +8,7 @@
       medium_battery_color = "#F6DDB1";
     };
     cpu = {
-      all_entry_color = "#D8D5FC";
+      all_entry_color = "#B7B7EB";
       avg_entry_color = "#7BE5CC";
       cpu_core_colors = [
         "#B7A5EE"
@@ -32,7 +32,7 @@
     graphs = {
       graph_color = "#414662";
       legend_text = {
-        color = "#A09DCD";
+        color = "#A79DCD";
       };
     };
     memory = {
@@ -58,7 +58,7 @@
     tables = {
       headers = {
         bold = true;
-        color = "#D8D5FC";
+        color = "#B7B7EB";
       };
     };
     widgets = {
@@ -72,11 +72,11 @@
         color = "#FFFFFF";
       };
       text = {
-        color = "#A09DCD";
+        color = "#A79DCD";
       };
       widget_title = {
         bold = true;
-        color = "#D8D5FC";
+        color = "#B7B7EB";
       };
     };
   };

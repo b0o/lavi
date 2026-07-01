@@ -13,30 +13,41 @@
       flake-utils,
     }:
     let
+      # Read a variant's theme files, given the filename suffix
+      # ("" for the default lavi variant, "-ember" for ember, ...).
+      mkThemes = sfx: {
+        alacritty = builtins.readFile (./contrib/alacritty + "/lavi${sfx}.toml");
+        base16 = builtins.readFile (./contrib/base16 + "/lavi${sfx}.yaml");
+        bottom = builtins.readFile (./contrib/bottom + "/lavi${sfx}.toml");
+        btop = builtins.readFile (./contrib/btop + "/lavi${sfx}.theme");
+        clipse = builtins.readFile (./contrib/clipse + "/lavi${sfx}.json");
+        dank-material-shell = builtins.readFile (./contrib/dank-material-shell + "/lavi${sfx}.json");
+        foot = builtins.readFile (./contrib/foot + "/lavi${sfx}.ini");
+        ghostty = builtins.readFile (./contrib/ghostty + "/lavi${sfx}.conf");
+        kitty = builtins.readFile (./contrib/kitty + "/lavi${sfx}.conf");
+        opencode = builtins.readFile (./contrib/opencode + "/lavi${sfx}.json");
+        pi = builtins.readFile (./contrib/pi + "/lavi${sfx}.json");
+        textmate = builtins.readFile (./contrib/textmate + "/lavi${sfx}.tmTheme");
+        wezterm = builtins.readFile (./contrib/wezterm + "/lavi${sfx}.toml");
+        windows_terminal = builtins.readFile (./contrib/windows_terminal + "/lavi${sfx}.json");
+        zellij = builtins.readFile (./contrib/zellij + "/lavi${sfx}.kdl");
+      };
+
       # System-independent outputs
       systemIndependent = {
         # Home-manager module
         homeManagerModules.default = import ./nix/homeManagerModules;
         homeManagerModules.lavi = self.homeManagerModules.default;
 
-        # Raw theme content as strings for programmatic access
-        # Uses pre-committed files for fast evaluation (no build needed)
-        lib.themes = {
-          alacritty = builtins.readFile ./contrib/alacritty/lavi.toml;
-          base16 = builtins.readFile ./contrib/base16/lavi.yaml;
-          bottom = builtins.readFile ./contrib/bottom/lavi.toml;
-          btop = builtins.readFile ./contrib/btop/lavi.theme;
-          clipse = builtins.readFile ./contrib/clipse/lavi.json;
-          dank-material-shell = builtins.readFile ./contrib/dank-material-shell/lavi.json;
-          foot = builtins.readFile ./contrib/foot/lavi.ini;
-          ghostty = builtins.readFile ./contrib/ghostty/lavi.conf;
-          kitty = builtins.readFile ./contrib/kitty/lavi.conf;
-          opencode = builtins.readFile ./contrib/opencode/lavi.json;
-          pi = builtins.readFile ./contrib/pi/lavi.json;
-          textmate = builtins.readFile ./contrib/textmate/lavi.tmTheme;
-          wezterm = builtins.readFile ./contrib/wezterm/lavi.toml;
-          windows_terminal = builtins.readFile ./contrib/windows_terminal/lavi.json;
-          zellij = builtins.readFile ./contrib/zellij/lavi.kdl;
+        # Raw theme content as strings for programmatic access.
+        # Uses pre-committed files for fast evaluation (no build needed).
+        #
+        # `lib.themes.<app>` is the default ("lavi") variant. Per-variant
+        # content is under `lib.variants.<variant>.<app>`.
+        lib.themes = mkThemes "";
+        lib.variants = builtins.mapAttrs (_: sfx: mkThemes sfx) {
+          lavi = "";
+          ember = "-ember";
         };
 
         # Base16 color scheme for Stylix integration

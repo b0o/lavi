@@ -3,10 +3,10 @@
 # See: https://github.com/chriskempson/base16
 scheme: Lavi
 author: Maddison Cohodas (https://github.com/b0o)
-base00: "24293D"
-base01: "2A2D3C"
-base02: "515D8A"
-base03: "767EAD"
+base00: "1D2130"
+base01: "1F222E"
+base02: "4E5A83"
+base03: "6B76A8"
 base04: "A79DCD"
 base05: "EDE8FD"
 base06: "EEE5FF"

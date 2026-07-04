@@ -2,18 +2,17 @@ local p = require("lush_theme.lavi.palette")
 local lavi = require("lush_theme.lavi")
 local transforms = require("lush_theme.lavi.transforms")
 
--- Surface elevation model. lavi's default is "raised": container surfaces get
--- progressively lighter than the base. Some variants (e.g. ember) instead use
--- a "recessed" elevation, where containers sit at or below the base, matching
--- matugen's scheme-fidelity look.
+-- Surface container elevation. lavi derives its containers by lightening the
+-- base directly. Variants with a compressed bg ladder (e.g. ember) instead
+-- source the containers from the ladder steps, so they stay tight and follow
+-- the variant's neutrals rather than spreading.
 local variant = vim.g.lavi_build_variant or "lavi"
-local recessed = ({ ember = true })[variant] or false
 
-local dark_containers = recessed
+local dark_containers = (variant == "ember")
     and {
-      surfaceContainer = lavi.NormalNC.bg.darken(4),
-      surfaceContainerHigh = lavi.NormalNC.bg,
-      surfaceContainerHighest = p.bg0,
+      surfaceContainer = lavi.Normal.bg,
+      surfaceContainerHigh = p.bg2,
+      surfaceContainerHighest = p.bg3,
     }
   or {
     surfaceContainer = lavi.Normal.bg,

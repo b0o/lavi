@@ -28,12 +28,12 @@ cpu_core_colors = [
 ]
 
 [styles.graphs]
-graph_color = "#414662"
+graph_color = "#383E56"
 legend_text = { color = "#A79DCD" }
 
 [styles.memory]
 arc_color = "#6DD9C0"
-cache_color = "#636CA1"
+cache_color = "#5C689D"
 ram_color = "#9FDFB5"
 swap_color = "#F6DDB1"
 gpu_colors = [
@@ -55,8 +55,8 @@ tx_total_color = "#BFA2EC"
 headers = { color = "#B7B7EB", bold = true }
 
 [styles.widgets]
-border_color = "#414662"
-disabled_text = { color = "#586193" }
+border_color = "#383E56"
+disabled_text = { color = "#515C8A" }
 selected_border_color = "#B1B0E8"
 selected_text = { color = "#FFFFFF", bg_color = "#564E83" }
 text = { color = "#A79DCD" }

@@ -1,6 +1,6 @@
 {
   "dark": {
-    "background": "#171A27",
+    "background": "#191C29",
     "backgroundText": "#EDE8FD",
     "error": "#E56179",
     "info": "#80BDFF",
@@ -8,22 +8,22 @@
     "name": "Lavi Dark",
     "outline": "#7D7490",
     "primary": "#9D92ED",
-    "primaryContainer": "#515D8A",
-    "primaryText": "#171A27",
+    "primaryContainer": "#4E5A83",
+    "primaryText": "#191C29",
     "secondary": "#838EF1",
-    "surface": "#191C2A",
-    "surfaceContainer": "#171A27",
-    "surfaceContainerHigh": "#171A27",
-    "surfaceContainerHighest": "#191C2A",
+    "surface": "#1B1F2D",
+    "surfaceContainer": "#1E2333",
+    "surfaceContainerHigh": "#222739",
+    "surfaceContainerHighest": "#262C40",
     "surfaceText": "#B7B7EB",
     "surfaceTint": "#7583FF",
-    "surfaceVariant": "#252B41",
+    "surfaceVariant": "#1E2333",
     "surfaceVariantText": "#EDE8FD",
     "warning": "#F8C772"
   },
   "light": {
     "background": "#FFFFFF",
-    "backgroundText": "#323648",
+    "backgroundText": "#272B3A",
     "error": "#E2506A",
     "info": "#5CABFF",
     "matugen_type": "scheme-fidelity",
@@ -37,10 +37,10 @@
     "surfaceContainer": "#F2F2F2",
     "surfaceContainerHigh": "#E6E6E6",
     "surfaceContainerHighest": "#DBDBDB",
-    "surfaceText": "#525875",
+    "surfaceText": "#484F6A",
     "surfaceTint": "#7583FF",
     "surfaceVariant": "#F2F2F2",
-    "surfaceVariantText": "#323648",
+    "surfaceVariantText": "#272B3A",
     "warning": "#F7C164"
   }
 }

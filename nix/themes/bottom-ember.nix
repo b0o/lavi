@@ -30,14 +30,14 @@
       ];
     };
     graphs = {
-      graph_color = "#414662";
+      graph_color = "#383E56";
       legend_text = {
         color = "#A79DCD";
       };
     };
     memory = {
       arc_color = "#6DD9C0";
-      cache_color = "#636CA1";
+      cache_color = "#5C689D";
       gpu_colors = [
         "#BFA2EC"
         "#86BDF9"
@@ -62,9 +62,9 @@
       };
     };
     widgets = {
-      border_color = "#414662";
+      border_color = "#383E56";
       disabled_text = {
-        color = "#586193";
+        color = "#515C8A";
       };
       selected_border_color = "#B1B0E8";
       selected_text = {

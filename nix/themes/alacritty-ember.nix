@@ -3,7 +3,7 @@
 {
   colors = {
     bright = {
-      black = "#767EAD";
+      black = "#6B76A8";
       blue = "#8893FC";
       cyan = "#51E1C0";
       green = "#84EB9E";
@@ -13,25 +13,25 @@
       yellow = "#F9D494";
     };
     cursor = {
-      cursor = "#24293D";
+      cursor = "#1D2130";
       text = "#EDE8FD";
     };
     footer_bar = {
-      background = "#202537";
+      background = "#262C40";
       foreground = "#EDE8FD";
     };
     hints = {
       "end" = {
-        background = "#202537";
+        background = "#262C40";
         foreground = "#EDE8FD";
       };
       start = {
-        background = "#202537";
+        background = "#262C40";
         foreground = "#9487F8";
       };
     };
     normal = {
-      black = "#2A2D3C";
+      black = "#1F222E";
       blue = "#7C89F8";
       cyan = "#33D7B0";
       green = "#6DE38B";
@@ -41,7 +41,7 @@
       yellow = "#F8C772";
     };
     primary = {
-      background = "#24293D";
+      background = "#1D2130";
       bright_foreground = "#FFFFFF";
       dim_foreground = "#B7B7EB";
       foreground = "#EDE8FD";
@@ -49,19 +49,19 @@
     search = {
       focused_match = {
         background = "#EAB9F9";
-        foreground = "#24293D";
+        foreground = "#1D2130";
       };
       matches = {
-        background = "#24293D";
+        background = "#1D2130";
         foreground = "#EAB9F9";
       };
     };
     selection = {
-      background = "#515D8A";
+      background = "#4E5A83";
       text = "#EDE8FD";
     };
     vi_mode_cursor = {
-      cursor = "#24293D";
+      cursor = "#1D2130";
       text = "#EDE8FD";
     };
   };

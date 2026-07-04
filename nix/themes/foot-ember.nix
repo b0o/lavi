@@ -2,8 +2,8 @@
 # For use with home-manager's programs.foot.settings
 {
   colors = {
-    background = "24293D";
-    bright0 = "767EAD";
+    background = "1D2130";
+    bright0 = "6B76A8";
     bright1 = "ED788D";
     bright2 = "84EB9E";
     bright3 = "F9D494";
@@ -12,7 +12,7 @@
     bright6 = "51E1C0";
     bright7 = "FFFFFF";
     foreground = "EDE8FD";
-    regular0 = "2A2D3C";
+    regular0 = "1F222E";
     regular1 = "E56179";
     regular2 = "6DE38B";
     regular3 = "F8C772";
@@ -22,6 +22,6 @@
     regular7 = "EEE5FF";
   };
   cursor = {
-    color = "EDE8FD 24293D";
+    color = "EDE8FD 1D2130";
   };
 }

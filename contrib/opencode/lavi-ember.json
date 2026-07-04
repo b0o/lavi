@@ -6,52 +6,52 @@
       "light": "#EAB9F9"
     },
     "background": {
-      "dark": "#24293D",
+      "dark": "#1D2130",
       "light": "#FFFFFF"
     },
     "backgroundElement": {
-      "dark": "#1C2030",
+      "dark": "#222739",
       "light": "#FFFFFF"
     },
     "backgroundMenu": {
-      "dark": "#202537",
+      "dark": "#262C40",
       "light": "#FFFFFF"
     },
     "backgroundPanel": {
-      "dark": "#1C2030",
+      "dark": "#222739",
       "light": "#FFFFFF"
     },
     "border": {
-      "dark": "#414662",
-      "light": "#767EAD"
+      "dark": "#383E56",
+      "light": "#6B76A8"
     },
     "borderActive": {
-      "dark": "#767EAD",
-      "light": "#414662"
+      "dark": "#6B76A8",
+      "light": "#383E56"
     },
     "borderSubtle": {
-      "dark": "#414662",
-      "light": "#767EAD"
+      "dark": "#383E56",
+      "light": "#6B76A8"
     },
     "diffAdded": {
       "dark": "#8BF9A6",
       "light": "#8BF9A6"
     },
     "diffAddedBg": {
-      "dark": "#2F424C",
-      "light": "#2F424C"
+      "dark": "#27373F",
+      "light": "#27373F"
     },
     "diffAddedLineNumberBg": {
-      "dark": "#35595A",
-      "light": "#35595A"
+      "dark": "#2F5050",
+      "light": "#2F5050"
     },
     "diffContext": {
       "dark": "#8FC5FF",
       "light": "#8FC5FF"
     },
     "diffContextBg": {
-      "dark": "#2D376C",
-      "light": "#2D376C"
+      "dark": "#293260",
+      "light": "#293260"
     },
     "diffHighlightAdded": {
       "dark": "#8BF9A6",
@@ -66,20 +66,20 @@
       "light": "#B7B7EB"
     },
     "diffLineNumber": {
-      "dark": "#767EAD",
-      "light": "#767EAD"
+      "dark": "#6B76A8",
+      "light": "#6B76A8"
     },
     "diffRemoved": {
       "dark": "#F58095",
       "light": "#F58095"
     },
     "diffRemovedBg": {
-      "dark": "#373249",
-      "light": "#373249"
+      "dark": "#2F2A3C",
+      "light": "#2F2A3C"
     },
     "diffRemovedLineNumberBg": {
-      "dark": "#4C3851",
-      "light": "#4C3851"
+      "dark": "#443248",
+      "light": "#443248"
     },
     "error": {
       "dark": "#F47189",
@@ -147,7 +147,7 @@
     },
     "placeholderText": {
       "dark": "#7D7490",
-      "light": "#414662"
+      "light": "#383E56"
     },
     "primary": {
       "dark": "#AF8EEB",

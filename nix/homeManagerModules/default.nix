@@ -93,14 +93,14 @@ in {
     (lib.mkIf cfg.bat.enable {
       programs.bat = {
         config.theme = "lavi";
-        themes.lavi.src = (../../contrib/textmate + "/lavi${sfx}.tmTheme");
+        themes.lavi.src = ../../contrib/textmate + "/lavi${sfx}.tmTheme";
       };
     })
 
     # Btop - file-based theme, write file and set color_theme
     (lib.mkIf cfg.btop.enable {
       programs.btop.settings.color_theme = "lavi";
-      xdg.configFile."btop/themes/lavi.theme".source = (../../contrib/btop + "/lavi${sfx}.theme");
+      xdg.configFile."btop/themes/lavi.theme".source = ../../contrib/btop + "/lavi${sfx}.theme";
     })
 
     # Clipse - merge theme settings
@@ -113,7 +113,7 @@ in {
     (lib.mkIf cfg.dank-material-shell.enable (
       {
         xdg.configFile."DankMaterialShell/themes/lavi.json".source =
-          (../../contrib/dank-material-shell + "/lavi${sfx}.json");
+          ../../contrib/dank-material-shell + "/lavi${sfx}.json";
       }
       // lib.optionalAttrs (options ? programs.dank-material-shell) {
         programs.dank-material-shell.settings = {
@@ -151,7 +151,7 @@ in {
     # Wezterm - extraConfig with color scheme reference
     # Note: Wezterm uses Lua config, so we write the theme file and reference it
     (lib.mkIf cfg.wezterm.enable {
-      xdg.configFile."wezterm/colors/lavi.toml".source = (../../contrib/wezterm + "/lavi${sfx}.toml");
+      xdg.configFile."wezterm/colors/lavi.toml".source = ../../contrib/wezterm + "/lavi${sfx}.toml";
     })
 
     # Opencode - themes (expects attrset, converted to JSON)
@@ -163,7 +163,7 @@ in {
 
     # Pi - install theme file for pi discovery
     (lib.mkIf cfg.pi.enable {
-      home.file.".pi/agent/themes/lavi.json".source = (../../contrib/pi + "/lavi${sfx}.json");
+      home.file.".pi/agent/themes/lavi.json".source = ../../contrib/pi + "/lavi${sfx}.json";
     })
 
     # Zellij - themes (expects KDL string)

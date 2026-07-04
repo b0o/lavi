@@ -1,11 +1,12 @@
--- Seed colors for the "ember" variant.
+-- Seed colors for the "deep" variant (the neutral treatment).
 --
--- A cool, slate-blue take on lavi. The neutral backgrounds and grey ladder
--- shift from purple toward slate-blue; the purple/blue accents and the
--- functional warm colors (String, Number, diagnostics) are inherited from the
--- default lavi variant, so warm stays sparing and the accent identity remains
--- purple/blue. Only the seeds that differ are listed here; everything else,
--- and all derived ladders/shades, comes from the lavi base via palette.build.
+-- A dark, low-contrast, slate-blue take on lavi. The neutral backgrounds and
+-- grey ladder shift from purple toward slate-blue and sit in a tight, dark
+-- band; the accents and functional warm colors (String, Number, diagnostics)
+-- are inherited from the default lavi variant. This is the base other "deep-*"
+-- variants layer their accent treatments on top of. Only the seeds that differ
+-- are listed here; everything else, and all derived ladders/shades, comes from
+-- the lavi base via palette.build.
 
 local hsl = require("lush").hsl
 local lavi = require("lush_theme.lavi.palette.variants.lavi")
@@ -20,7 +21,7 @@ return vim.tbl_extend("force", lavi, {
   -- Keep lavi's raised elevation (panels lighter than the base) but compress
   -- the ladder so the layers sit close together, giving the flat, low-contrast
   -- feel of sodium's matugen surfaces. Default lavi steps are lighten(13)/(20);
-  -- ember uses smaller ones.
+  -- deep uses smaller ones.
   bg2 = bg1.lighten(3),
   bg3 = bg1.lighten(6),
 

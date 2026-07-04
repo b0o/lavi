@@ -49,12 +49,12 @@
 in {
   options.lavi = {
     variant = lib.mkOption {
-      type = lib.types.enum ["lavi" "ember"];
+      type = lib.types.enum ["lavi" "deep" "deep-ember"];
       default = "lavi";
       description = ''
         Which lavi variant to use for all enabled apps. Apps keep the theme
         name "lavi"; only the underlying colors change. For Neovim, select the
-        colorscheme explicitly (e.g. `:colorscheme lavi-ember`).
+        colorscheme explicitly (e.g. `:colorscheme lavi-deep`).
       '';
     };
 

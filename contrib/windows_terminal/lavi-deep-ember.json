@@ -1,0 +1,23 @@
+{
+  "name": "lavi",
+  "selectionBackground": "#4E5A83",
+  "cursorColor": "#1D2130",
+  "foreground": "#EDE8FD",
+  "background": "#1D2130",
+  "black": "#1F222E",
+  "blue": "#686AF3",
+  "cyan": "#2CEDC0",
+  "green": "#7CF89B",
+  "purple": "#B98AFF",
+  "red": "#F2637E",
+  "white": "#EEE5FF",
+  "yellow": "#FFD080",
+  "brightBlack": "#6B76A8",
+  "brightBlue": "#7678F4",
+  "brightCyan": "#43EFC7",
+  "brightGreen": "#8BF9A6",
+  "brightRed": "#F47189",
+  "brightPurple": "#BF94FF",
+  "brightWhite": "#FFFFFF",
+  "brightYellow": "#FFD68F"
+}

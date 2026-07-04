@@ -33,7 +33,8 @@ vim.api.nvim_create_user_command("LaviBuild", function()
   -- alongside (e.g. contrib/alacritty/lavi-sodium.toml).
   local variants = {
     { name = "lavi", suffix = "" },
-    { name = "ember", suffix = "-ember" },
+    { name = "deep", suffix = "-deep" },
+    { name = "deep-ember", suffix = "-deep-ember" },
   }
 
   -- The suffix of the variant currently being built (set by build_for_variant).

@@ -47,7 +47,8 @@
         lib.themes = mkThemes "";
         lib.variants = builtins.mapAttrs (_: sfx: mkThemes sfx) {
           lavi = "";
-          ember = "-ember";
+          deep = "-deep";
+          "deep-ember" = "-deep-ember";
         };
 
         # Base16 color scheme for Stylix integration

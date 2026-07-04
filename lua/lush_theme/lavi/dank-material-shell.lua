@@ -8,7 +8,7 @@ local transforms = require("lush_theme.lavi.transforms")
 -- the variant's neutrals rather than spreading.
 local variant = vim.g.lavi_build_variant or "lavi"
 
-local dark_containers = (variant == "ember")
+local dark_containers = (variant ~= "lavi")
     and {
       surfaceContainer = lavi.Normal.bg,
       surfaceContainerHigh = p.bg2,

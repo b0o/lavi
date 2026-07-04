@@ -55,7 +55,7 @@
           <key>fontStyle</key>
           <string>italic bold</string>
           <key>foreground</key>
-          <string>#7D7490</string>
+          <string>#8582C0</string>
         </dict>
       </dict>
       <dict>
@@ -230,7 +230,7 @@
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>#8486EB</string>
+          <string>#766EE7</string>
         </dict>
       </dict>
       <dict>
@@ -243,7 +243,7 @@
           <key>fontStyle</key>
           <string>italic underline</string>
           <key>foreground</key>
-          <string>#686AF3</string>
+          <string>#5B50F1</string>
         </dict>
       </dict>
       <dict>

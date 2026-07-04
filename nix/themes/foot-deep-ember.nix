@@ -7,7 +7,7 @@
     bright1 = "ED788D";
     bright2 = "84EB9E";
     bright3 = "F9D494";
-    bright4 = "797BF1";
+    bright4 = "7067EF";
     bright5 = "C09CF7";
     bright6 = "51E1C0";
     bright7 = "FFFFFF";
@@ -16,7 +16,7 @@
     regular1 = "E56179";
     regular2 = "6DE38B";
     regular3 = "F8C772";
-    regular4 = "6F71EC";
+    regular4 = "6258E9";
     regular5 = "B09CED";
     regular6 = "33D7B0";
     regular7 = "EEE5FF";

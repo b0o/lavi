@@ -4,7 +4,7 @@
   colors = {
     bright = {
       black = "#6B76A8";
-      blue = "#797BF1";
+      blue = "#7067EF";
       cyan = "#51E1C0";
       green = "#84EB9E";
       magenta = "#C09CF7";
@@ -27,12 +27,12 @@
       };
       start = {
         background = "#262C40";
-        foreground = "#9487F8";
+        foreground = "#FE9D2F";
       };
     };
     normal = {
       black = "#1F222E";
-      blue = "#6F71EC";
+      blue = "#6258E9";
       cyan = "#33D7B0";
       green = "#6DE38B";
       magenta = "#B09CED";

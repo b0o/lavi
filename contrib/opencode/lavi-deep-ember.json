@@ -50,8 +50,8 @@
       "light": "#8FC5FF"
     },
     "diffContextBg": {
-      "dark": "#2A2F5B",
-      "light": "#2A2F5B"
+      "dark": "#282C57",
+      "light": "#282C57"
     },
     "diffHighlightAdded": {
       "dark": "#8BF9A6",
@@ -87,11 +87,11 @@
     },
     "info": {
       "dark": "#80BDFF",
-      "light": "#686AF3"
+      "light": "#5B50F1"
     },
     "markdownBlockQuote": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownCode": {
       "dark": "#A79DCD",
@@ -102,8 +102,8 @@
       "light": "#A79DCD"
     },
     "markdownEmph": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownHeading": {
       "dark": "#D5C2FF",
@@ -114,20 +114,20 @@
       "light": "#6A6798"
     },
     "markdownImage": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownImageText": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownLink": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownLinkText": {
-      "dark": "#9698F8",
-      "light": "#9698F8"
+      "dark": "#8B83F6",
+      "light": "#8B83F6"
     },
     "markdownListEnumeration": {
       "dark": "#D0CEF8",
@@ -146,7 +146,7 @@
       "light": "#EEE5FF"
     },
     "placeholderText": {
-      "dark": "#7D7490",
+      "dark": "#8582C0",
       "light": "#383E56"
     },
     "primary": {
@@ -154,8 +154,8 @@
       "light": "#E69570"
     },
     "secondary": {
-      "dark": "#686AF3",
-      "light": "#686AF3"
+      "dark": "#5B50F1",
+      "light": "#5B50F1"
     },
     "selectedListItemText": {
       "dark": "#EDE8FD",
@@ -166,8 +166,8 @@
       "light": "#7CF89B"
     },
     "syntaxComment": {
-      "dark": "#7D7490",
-      "light": "#7D7490"
+      "dark": "#8582C0",
+      "light": "#8582C0"
     },
     "syntaxFunction": {
       "dark": "#9CF2DE",

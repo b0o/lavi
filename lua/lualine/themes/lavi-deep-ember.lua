@@ -1,7 +1,7 @@
 return {
   command = {
     a = {
-      bg = "#686AF3",
+      bg = "#5B50F1",
       fg = "#FFFFFF",
       gui = "bold",
     },

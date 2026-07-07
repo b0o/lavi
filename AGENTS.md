@@ -7,7 +7,13 @@ Lavi is a Neovim colorscheme with theme generators for terminal emulators and CL
 ```
 lavi/
 ├── lua/lush_theme/lavi/         # SOURCE - edit these files
-│   ├── palette.lua              # Canonical color palette (lush hsl colors)
+│   ├── palette/                 # Canonical color palette (variant-aware)
+│   │   ├── init.lua             #   Resolver: picks the active variant and builds it
+│   │   ├── build.lua            #   Builder: derives the full palette from seed colors
+│   │   └── variants/            #   Per-variant seed colors
+│   │       ├── lavi.lua         #     Default variant (the base seed set)
+│   │       ├── deep.lua         #     Dark, low-contrast slate neutral treatment
+│   │       └── deep-ember.lua   #     deep + sodium-style accents (extends deep.lua)
 │   ├── lavi.lua                 # Neovim highlight groups
 │   ├── init.lua                 # Entry point (returns lavi.lua)
 │   ├── lualine.lua              # Lualine statusline theme
@@ -21,6 +27,8 @@ lavi/
 │   ├── ghostty.lua
 │   ├── kitty.lua
 │   ├── opencode.lua
+│   ├── pi.lua
+│   ├── textmate.lua
 │   ├── wezterm.lua
 │   ├── zellij.lua
 │   └── base16.lua
@@ -30,6 +38,10 @@ lavi/
 │   ├── setup.lua                # Colorscheme setup (applies config + highlight groups)
 │   └── types.lua                # Type definitions (lavi.Config)
 │
+│                                # NOTE: the default "lavi" variant writes the
+│                                # unsuffixed paths below; other variants write
+│                                # "-<variant>" siblings (e.g. colors/lavi-deep.lua,
+│                                # contrib/ghostty/lavi-deep-ember.conf).
 ├── colors/lavi.lua              # GENERATED - compiled neovim colorscheme
 ├── colors/lavi_dev.lua          # SOURCE - development colorscheme loader (uses lush at runtime)
 ├── lua/lavi/palette.lua         # GENERATED - compiled palette (plain hex strings, no lush)
@@ -105,6 +117,11 @@ Generated files (do not edit directly):
 - `contrib/` - theme files and READMEs for external apps
 - `nix/themes/` - nix expressions
 
+Every generated artifact is produced once per variant (see [Variants](#variants)).
+The default `lavi` variant keeps the unsuffixed paths above; other variants get
+`-<variant>` siblings (`colors/lavi-deep.lua`, `contrib/ghostty/lavi-deep-ember.conf`,
+`nix/themes/alacritty-deep.nix`, `lua/lavi/palette-deep.lua`, ...).
+
 CI will auto-regenerate and commit these on pushes to main. PRs will fail if generated files are stale.
 
 ## Build System
@@ -113,7 +130,7 @@ The build pipeline uses [lush.nvim](https://github.com/rktjmp/lush.nvim) for col
 
 ### How it works
 
-`build.lua` bootstraps lazy.nvim, loads lush + shipwright, and defines the `LaviBuild` command. Contrib themes are registered with the `build_contrib` wrapper:
+`build.lua` defines the `LaviBuild` command. When lush + shipwright are already on the runtime path (as Nix provides), it uses them directly; otherwise it bootstraps them via lazy.nvim. `LaviBuild` builds **every [variant](#variants) in a loop** — for each variant it selects that variant's seeds, invalidates the `lush_theme.lavi.*` module cache so the palette rebuilds, and writes variant-suffixed outputs (the default `lavi` variant keeps the unsuffixed paths). Contrib themes are registered with the `build_contrib` wrapper:
 
 ```lua
 build_contrib({
@@ -161,14 +178,51 @@ nix flake check
 
 ## Color Palette
 
-The palette is defined in `lua/lush_theme/lavi/palette.lua` using lush's `hsl()` function. Colors support manipulation methods:
+The palette is **variant-aware**. `palette/init.lua` resolves the active variant (via `vim.g.lavi_build_variant`, defaulting to `lavi`), loads that variant's seed colors from `palette/variants/<name>.lua`, and passes them to `palette/build.lua`, which derives the full palette. `require("lush_theme.lavi.palette")` returns the built palette for the active variant, so highlight groups and generators are variant-agnostic.
+
+- **Seeds** (`palette/variants/*.lua`) are the raw `hsl()` inputs — the ANSI hues, the `bg1`/`fg2`/`black` bases, and the accents. A variant only lists the seeds that differ from the default and inherits the rest (via `vim.tbl_extend`).
+- **`palette/build.lua`** derives everything else from the seeds: the `bg0..bg3` and `fg0..fg3` ladders, the bright ANSI hues, the grey and purple shades, the light-mode values, selection/cursor colors, and the muted terminal ANSI set. Each derived value uses `M.x = M.x or <derivation>`, so a variant can override any derived color by supplying it as a seed.
+
+Colors are lush hsl objects and support manipulation methods:
 
 ```lua
 p.red.lighten(10)
 p.cyan.desaturate(20).darken(5)
-p.bg.mix(p.green, 15)
+p.bg1.mix(p.green, 15)
 p.blue.rotate(20).saturate(30)
 ```
+
+The background/foreground ladders are numeric and luminance-ascending: `bg0` (darkest) → `bg3` (brightest) with `bg1` the Normal background; `fg0` (dimmest) → `fg3` (brightest) with `fg2` the main text color.
+
+## Variants
+
+A variant is a set of seed-color overrides on top of the default `lavi` palette; the shared builder + highlight groups + generators carry that recoloring through every output. The current variants:
+
+| Variant      | Seed file                         | Description                                                                                                                   |
+| ------------ | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `lavi`       | `palette/variants/lavi.lua`       | The default: the full base seed set                                                                                           |
+| `deep`       | `palette/variants/deep.lua`       | A dark, low-contrast slate neutral treatment (darker/compressed bg + grey ladders, muted text); accents inherited from `lavi` |
+| `deep-ember` | `palette/variants/deep-ember.lua` | `deep` neutrals + sodium-style accents (orange primary, indigo secondary, lavender outline); `extends` `deep.lua`             |
+
+Variants can **compose**: a seed file can `require` another variant's seeds and extend them (`deep-ember` layers accents onto `deep`).
+
+The active variant is chosen at **build time** via `vim.g.lavi_build_variant`; `build.lua` loops over the registered variants, invalidating the `lush_theme.lavi.*` module cache between each so the palette rebuilds. The compiled colorschemes are plain hex (no lush at runtime), so nothing reads the resolver at runtime — neovim picks a variant by name (`:colorscheme lavi-deep`), and apps read the variant's generated file.
+
+### Adding a variant
+
+1. Create `palette/variants/<name>.lua`. Return a seed table — extend the base (or another variant) and override only what differs:
+
+   ```lua
+   local hsl = require("lush").hsl
+   local base = require("lush_theme.lavi.palette.variants.lavi")
+   return vim.tbl_extend("force", base, {
+     bg1 = hsl("#..."), -- override seeds; derived colors follow, or override them too
+   })
+   ```
+
+2. Register it in `build.lua`'s `variants` list (`{ name = "<name>", suffix = "-<name>" }`).
+3. Add it to the flake's `lib.variants` map and the `lavi.variant` enum in the home-manager module.
+4. Run `just build` — it generates `*-<name>` siblings for every output. Some generators branch on `vim.g.lavi_build_variant` for variant-specific behaviour (e.g. `dank-material-shell.lua` uses a compressed container mapping for non-default variants); mirror that pattern if a generator needs it.
 
 ## Adding a New Theme Generator
 
@@ -251,10 +305,10 @@ build_contrib({
 
 ### 4. Add to `flake.nix`
 
-Add to the `lib.themes` attrset:
+Add to the `mkThemes` helper (it backs both `lib.themes` and the per-variant `lib.variants`):
 
 ```nix
-<app> = builtins.readFile ./contrib/<app>/lavi.<ext>;
+<app> = builtins.readFile (./contrib/<app> + "/lavi${sfx}.<ext>");
 ```
 
 ### 5. Add to home-manager module
@@ -320,17 +374,18 @@ Commit both the source file and all generated output.
 
 ## Nix Outputs
 
-| Output                            | Description                                       |
-| --------------------------------- | ------------------------------------------------- |
-| `packages.<system>.lavi-nvim`     | Minimal Neovim plugin (no lush dependency)        |
-| `packages.<system>.lavi-nvim-dev` | Full source including lush theme files            |
-| `packages.<system>.lavi-themes`   | All files from `contrib/`                         |
-| `packages.<system>.lavi-build`    | Build script (`lavi-build` command)               |
-| `lib.themes.<app>`                | Raw theme content as strings                      |
-| `lib.base16`                      | Base16 color scheme for Stylix                    |
-| `homeManagerModules.lavi`         | Home-manager module with per-app `enable` options |
-| `devShells.<system>.default`      | Dev shell with build tools                        |
-| `checks.themes-up-to-date`        | Verifies committed files match generated output   |
+| Output                            | Description                                                            |
+| --------------------------------- | ---------------------------------------------------------------------- |
+| `packages.<system>.lavi-nvim`     | Minimal Neovim plugin (no lush dependency)                             |
+| `packages.<system>.lavi-nvim-dev` | Full source including lush theme files                                 |
+| `packages.<system>.lavi-themes`   | All files from `contrib/`                                              |
+| `packages.<system>.lavi-build`    | Build script (`lavi-build` command)                                    |
+| `lib.themes.<app>`                | Raw theme content as strings (default `lavi` variant)                  |
+| `lib.variants.<variant>.<app>`    | Raw theme content per variant (`lavi`, `deep`, `deep-ember`)           |
+| `lib.base16`                      | Base16 color scheme for Stylix                                         |
+| `homeManagerModules.lavi`         | Home-manager module with per-app `enable` options + a `variant` option |
+| `devShells.<system>.default`      | Dev shell with build tools                                             |
+| `checks.themes-up-to-date`        | Verifies committed files match generated output                        |
 
 ## CI
 

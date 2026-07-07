@@ -68,6 +68,31 @@ With [lazy.nvim](https://github.com/folke/lazy.nvim):
 | ------------- | ------- | ------- | ---------------------- |
 | `transparent` | boolean | `false` | Transparent background |
 
+### Variants
+
+Lavi ships several variants that share the same overall family:
+
+| Variant      | Neovim colorscheme | Description                                                                              |
+| ------------ | ------------------ | ---------------------------------------------------------------------------------------- |
+| `lavi`       | `lavi`             | The default soft purple theme                                                            |
+| `deep`       | `lavi-deep`        | A dark, low-contrast slate treatment (muted, compressed backgrounds)                     |
+| `deep-ember` | `lavi-deep-ember`  | `deep` neutrals with warmer accents (orange primary, indigo secondary, lavender outline) |
+
+In Neovim, select a variant by name:
+
+```lua
+vim.cmd.colorscheme 'lavi-deep'
+```
+
+For terminals and CLI tools, each variant has its own generated theme file
+(`contrib/<app>/lavi-deep.<ext>`, `contrib/<app>/lavi-deep-ember.<ext>`, ...) and
+its own Nix output (`inputs.lavi.lib.variants.deep.<app>`). With the
+home-manager module, choose the variant for all enabled apps at once:
+
+```nix
+lavi.variant = "deep"; # or "deep-ember"; defaults to "lavi"
+```
+
 ### Other Programs
 
 <!-- LAVI_PROGRAMS_OPEN -->
@@ -288,14 +313,15 @@ Lavi provides a Nix flake with multiple outputs for flexible integration.
 
 #### Flake Outputs
 
-| Output                            | Description                                               |
-| --------------------------------- | --------------------------------------------------------- |
-| `packages.<system>.lavi-nvim`     | Minimal Neovim plugin (runtime only, no lush dependency)  |
-| `packages.<system>.lavi-nvim-dev` | Full Neovim plugin with lush sources for customization    |
-| `packages.<system>.lavi-themes`   | All theme files from `contrib/`                           |
-| `lib.themes.<app>`                | Raw theme content as strings (e.g., `lib.themes.ghostty`) |
-| `lib.base16`                      | Base16 color scheme for Stylix integration                |
-| `homeManagerModules.lavi`         | Home-manager module with per-app options                  |
+| Output                            | Description                                                               |
+| --------------------------------- | ------------------------------------------------------------------------- |
+| `packages.<system>.lavi-nvim`     | Minimal Neovim plugin (runtime only, no lush dependency)                  |
+| `packages.<system>.lavi-nvim-dev` | Full Neovim plugin with lush sources for customization                    |
+| `packages.<system>.lavi-themes`   | All theme files from `contrib/`                                           |
+| `lib.themes.<app>`                | Raw theme content as strings (default variant, e.g. `lib.themes.ghostty`) |
+| `lib.variants.<variant>.<app>`    | Raw theme content per variant (`lavi`, `deep`, `deep-ember`)              |
+| `lib.base16`                      | Base16 color scheme for Stylix integration                                |
+| `homeManagerModules.lavi`         | Home-manager module with per-app options + a `variant` option             |
 
 #### Home-Manager Module
 
@@ -329,6 +355,9 @@ Import and configure:
   };
 }
 ```
+
+Set `lavi.variant = "deep";` (or `"deep-ember"`) to switch all enabled apps to a
+[variant](#variants) at once — apps keep the `lavi` name and only the colors change.
 
 #### Stylix Integration
 
